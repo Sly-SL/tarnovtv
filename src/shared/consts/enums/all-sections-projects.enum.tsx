@@ -1,0 +1,1 @@
+export const AllSectionsProjectsEnum = ["projects","documents","tech"] as const

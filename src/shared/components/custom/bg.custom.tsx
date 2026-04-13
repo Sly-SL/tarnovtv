@@ -1,0 +1,50 @@
+"use client"
+
+import {PointMaterial, Points, type PointsInstancesProps,} from "@react-three/drei";
+import {Canvas, useFrame} from "@react-three/fiber";
+import * as random from "maath/random";
+import {Suspense, useRef, useState} from "react";
+import type {Points as PointsType} from "three";
+
+const Background = (props: PointsInstancesProps) => {
+    const ref = useRef<PointsType | null>(null);
+    const [sphere] = useState(() =>
+        random.inSphere(new Float32Array(5000 * 3), { radius: 1.2 }),
+    );
+
+    useFrame((_state, delta) => {
+        if (ref.current) {
+            ref.current.rotation.x -= delta / 10;
+        }
+    });
+
+    return (
+        <group rotation={[0, 0, 0]}>
+            <Points
+                ref={ref}
+                stride={3}
+                positions={new Float32Array(sphere)}
+                frustumCulled
+                {...props}
+            >
+                <PointMaterial
+                    transparent
+                    color="#fff"
+                    size={0.002}
+                    sizeAttenuation
+                    depthWrite={false}
+                />
+            </Points>
+        </group>
+    );
+};
+
+export const StarBackground = () => (
+    <div className="w-full h-screen fixed inset-0 -z-10">
+        <Canvas camera={{ position: [0, 0, 1] }}>
+            <Suspense fallback={null}>
+                <Background />
+            </Suspense>
+        </Canvas>
+    </div>
+);
