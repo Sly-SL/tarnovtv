@@ -2,14 +2,14 @@ import type {ButtonHeaderProps} from "@/shared/types/header-button.type";
 import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
 import Image from "next/image";
 
-const logo = "/assets/logo.jpeg";
+const logo = "/assets/logo.svg";
 
 export const SUBDIV = "-subdiv"
 
 export const BUTTONS: ButtonHeaderProps[] = [
     {
         link:shortcuts.home,
-        children:<Image src={logo} alt={"logo"} height={50} width={50} />,
+        children:<Image src={logo} className={"dark:invert"} alt={"logo"} height={50} width={50} priority />,
         id:shortcuts.home.slice(1),
     },
     {

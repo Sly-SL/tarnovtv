@@ -3,7 +3,7 @@
 import {PointMaterial, Points, type PointsInstancesProps,} from "@react-three/drei";
 import {Canvas, useFrame} from "@react-three/fiber";
 import * as random from "maath/random";
-import {Suspense, useRef, useState} from "react";
+import {Suspense, useEffect, useRef, useState} from "react";
 import type {Points as PointsType} from "three";
 
 const Background = (props: PointsInstancesProps) => {
@@ -11,6 +11,34 @@ const Background = (props: PointsInstancesProps) => {
     const [sphere] = useState(() =>
         random.inSphere(new Float32Array(5000 * 3), { radius: 1.2 }),
     );
+
+    function useStarColor() {
+        const [color, setColor] = useState("#000")
+
+        useEffect(() => {
+            const update = () => {
+                const value = getComputedStyle(document.documentElement)
+                    .getPropertyValue("--star-color")
+                    .trim()
+                setColor(value)
+            }
+
+            const media = window.matchMedia("(prefers-color-scheme: dark)")
+
+            update()
+
+            media.addEventListener("change", update)
+
+            return () => {
+                media.removeEventListener("change", update)
+            }
+        }, [])
+
+        return color
+    }
+
+    const color = useStarColor()
+
 
     useFrame((_state, delta) => {
         if (ref.current) {
@@ -29,7 +57,7 @@ const Background = (props: PointsInstancesProps) => {
             >
                 <PointMaterial
                     transparent
-                    color="#fff"
+                    color={color}
                     size={0.002}
                     sizeAttenuation
                     depthWrite={false}

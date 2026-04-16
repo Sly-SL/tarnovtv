@@ -28,12 +28,11 @@ export default function Cookie () {
             </p>
             <BasicButton
                 type={'button'}
-                themaHex={''}
                 onClick={() => {
                     localStorage.setItem("functional-cookie-banner", "shown");
                     setVisible(false);
                 }}
-                className="py-3 px-6 gap-2 whitespace-nowrap rounded-button font-bold transition-all  duration-500 button-shadow dark:border-gradient dark:shadow-gradient bg-[#E9E9E9] text-black hover:bg-linear-to-r hover:from-[#b12ef2] hover:to-[#5f3175] dark:text-white dark:bg-black dark:text-head dark:hover:bg-none"
+                className="py-3 px-6 gap-2 whitespace-nowrap rounded-button font-bold transition-all  duration-500 button-shadow"
             >
                 Okej
             </BasicButton>
