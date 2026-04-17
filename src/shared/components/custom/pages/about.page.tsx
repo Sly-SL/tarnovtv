@@ -8,7 +8,7 @@ export const dynamic = "force-static"
 
 const AboutPage = () => {
 
-    const startDate = new Date("2021-05-12");
+    const startDate = new Date("2024-08-11");
     const today = new Date();
     const YearExperience =
         today.getFullYear() - startDate.getFullYear() -
@@ -39,7 +39,7 @@ const AboutPage = () => {
             icon: GlobeIcon,
             color: "from-white/20 to-gray-200/20",
             value: value,
-            label: "Jestem na rynku",
+            label: "Jesteśmy z wami już",
             description: "Stabilność to podstawa!",
         },
     ];
@@ -58,7 +58,7 @@ const AboutPage = () => {
                 <div className={"grid grid-rows-2 items-center"}>
                     <div>
                         <Animate preset={"fadeDown"}>
-                            <h1 className={"font-bold text-2xl pt-5 text-black dark:text-white"}>SlySL Coder</h1>
+                            <h1 className={"font-bold text-2xl pt-5 text-black dark:text-white"}>TarnovTV</h1>
                         </Animate>
 
                         <div

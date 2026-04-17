@@ -12,7 +12,7 @@ const NotFound = () => {
                 </div>
 
                 <h1 className="text-6xl font-bold mb-4">404</h1>
-                <p className="text-xl mb-8 text-white">Oppss! Strona którą szukasz jest niedostępna.<br/> Sprawdź czy posiadasz uprawnienia na jej przegłąd</p>
+                <p className="text-xl mb-8 dark:text-white text-black">Oppss! Strona którą szukasz jest niedostępna.<br/> Sprawdź czy posiadasz uprawnienia na jej przegłąd</p>
                 <Link href={shortcuts.home} className="px-6 py-3 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors">
                     Wróć
                 </Link>

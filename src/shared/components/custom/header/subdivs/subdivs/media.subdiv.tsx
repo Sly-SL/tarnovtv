@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type {CascadeShortcutsType} from "@/shared/types/shortcuts.type";
-import {shortcutsSlysl} from "@/shared/consts/enums/shortcuts.enum";
+import {shortcutsMedia} from "@/shared/consts/enums/shortcuts.enum";
 import SubdivConstructor from "@/shared/components/custom/header/subdivs/subdiv-constructor.subdiv";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
 
@@ -10,11 +10,10 @@ const Buttons:{label:string,linkClassName:string,buttons:
             href:CascadeShortcutsType,
         }[]
 }[]=[
-    {label:"Slysl",linkClassName:'text-3xl',buttons:[
-            {name:"Youtube", href:shortcutsSlysl.yt},
-            {name:"Github", href:shortcutsSlysl.github},
-            {name:"Tiktok", href:shortcutsSlysl.tiktok},
-            {name:"Instagram", href:shortcutsSlysl.instagram},
+    {label:"",linkClassName:'text-3xl',buttons:[
+            {name:"Youtube", href:shortcutsMedia.yt},
+            {name:"Tiktok", href:shortcutsMedia.tiktok},
+            {name:"Instagram", href:shortcutsMedia.instagram},
         ]},
 ]
 

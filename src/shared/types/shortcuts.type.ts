@@ -1,11 +1,11 @@
-import {shortcuts, shortcutsSlysl,} from "@/shared/consts/enums/shortcuts.enum";
+import {shortcuts, shortcutsMedia,} from "@/shared/consts/enums/shortcuts.enum";
 
 export type ShortcutsType = typeof shortcuts[keyof typeof shortcuts];
 
-export type ShortcutsSlyslType = typeof shortcutsSlysl[keyof typeof shortcutsSlysl];
+export type ShortcutsMediaType = typeof shortcutsMedia[keyof typeof shortcutsMedia];
 
 
-export type AllShortcutsType = ShortcutsType | ShortcutsSlyslType
+export type AllShortcutsType = ShortcutsType | ShortcutsMediaType
 
 
 type Combine<A extends string, B extends string> =

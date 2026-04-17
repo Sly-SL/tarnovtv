@@ -17,7 +17,7 @@ const SocialLinksCustom = () => {
                     duration={700}>
                     <h3 className="text-xl font-semibold text-black/90 group-hover:text-black dark:text-white/90  dark:group-hover:text-white mb-6 flex items-center gap-3 tracking-tight">
                         <span className="inline-block w-8 h-[2px] bg-indigo-500/80 rounded-full"></span>
-                        Moje media
+                        Nasze media
                     </h3>
                 </Animate>
 
@@ -92,7 +92,7 @@ const SocialLinksCustom = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {linksMap.map((link, i) => (
                             <Animate
-                                key={link.name}
+                                key={i}
                                 preset={i % 2 == 0 ? "fadeLeft" : "fadeRight"}
                             >
                                 <a

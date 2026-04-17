@@ -2,6 +2,7 @@ export const shortcuts = {
     "projects":"/projects",
     "media":"/media",
     "home":"/",
+    "settings":"/settings",
     "about":"/about",
     "admin": "/admin",
     "change" : "/change",
@@ -15,10 +16,8 @@ export const shortcuts = {
     "login":"/login",
 }as const;
 
-export const shortcutsSlysl = {
-    "yt":"/slyslYt",
-    "github":"/slyslGithub",
-    "tiktok":"/tiktok",
-    "instagram":"/instagram",
-    "cv":""
+export const shortcutsMedia = {
+    "yt":"https://www.youtube.com/@tarnovtv",
+    "tiktok":"https://www.tiktok.com/@tarnovtv",
+    "instagram":"https://www.instagram.com/tarnow_tv/",
 } as const;

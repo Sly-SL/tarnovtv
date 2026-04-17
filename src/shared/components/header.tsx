@@ -6,10 +6,11 @@ import ProjectsSubdiv from "@/shared/components/custom/header/subdivs/subdivs/pr
 import ContactSubdiv from "@/shared/components/custom/header/subdivs/subdivs/contact.subdiv";
 import MediaSubdiv from "@/shared/components/custom/header/subdivs/subdivs/media.subdiv";
 import OffersSubdiv from "@/shared/components/custom/header/subdivs/subdivs/offers.subdiv";
+import Animate from "@/shared/components/libs/animate/animate.ssr";
+import SettingsSubdiv from "@/shared/components/custom/header/subdivs/subdivs/settings.subdiv";
 
 
 const Header = () => {
-
     return (
         <header className="bg-[rgba(255,255,255,0.55)] dark:bg-[rgba(22,22,23,0.8)] w-screen fixed z-[9999] backdrop-blur-[20px] backdrop-saturate-180 border-b border-purple-100 dark:border-purple-200/15">
             <h1 className={"hidden"}>Tarnov TV</h1>
@@ -22,7 +23,7 @@ const Header = () => {
                             <ButtonHeader id={BUTTONS[0].id} link={BUTTONS[0].link}>
                                 {BUTTONS[0].children}
                             </ButtonHeader>
-                            {BUTTONS.filter((_,i)=>i !== 0).map((button)=>(
+                            {BUTTONS.filter((_,i)=>i !== 0 && i !== 7).map((button)=>(
                                 <ButtonHeader
                                     className={button.className+" text-md underline-offset-8  hover:underline hover:decoration-[3px] hover:text-purple-500 dark:hover:text-purple-400"}
                                     getElementByIdAction={button.getElementByIdAction}
@@ -39,6 +40,7 @@ const Header = () => {
                             <ContactSubdiv/>
                             <MediaSubdiv/>
                             <ProjectsSubdiv/>
+                            <SettingsSubdiv/>
                         </li>
                     </nav>
                 </div>
@@ -54,19 +56,21 @@ const Header = () => {
                         <SidebarChangeButton className={"absolute right-4 top-4 translate-x-1 z-3 "}/>
 
                         <li>
-                            <aside id={"global-sidebar"} className={'hidden animate-out duration-1000'}>
-                                <ul className={"flex flex-col pt-20 h-screen justify-center items-center gap-3"}>
-                                    {BUTTONS.filter((_,i)=>i !== 0).map((button)=>(
-                                        <ButtonHeader
-                                            className={button.className+" text-6xl text-center w-full"}
-                                            getElementByIdAction={button.getElementByIdAction}
-                                            id={button.id}
-                                            key={button.id}
-                                            link={button.link}>
-                                            {button.children}
-                                        </ButtonHeader>
-                                    ))}
-                                </ul>
+                            <aside id={"global-sidebar"} className={'hidden'}>
+                                <Animate preset={"fadeDown"}>
+                                    <ul className={"flex flex-col pt-20 h-screen justify-center items-center gap-3"}>
+                                        {BUTTONS.filter((_,i)=>i !== 0 && i !== 6).map((button)=>(
+                                            <ButtonHeader
+                                                className={button.className+" text-6xl text-center w-full"}
+                                                getElementByIdAction={button.getElementByIdAction}
+                                                id={button.id}
+                                                key={button.id}
+                                                link={button.link}>
+                                                {button.children}
+                                            </ButtonHeader>
+                                        ))}
+                                    </ul>
+                                </Animate>
                             </aside>
                         </li>
                     </ol>

@@ -4,6 +4,7 @@ export const parseBoolean = (value?: string): boolean =>
 export const CONSTANTS = {
     FRONTEND_DOMEN: process.env.NEXT_PUBLIC_FRONTEND_DOMEN ?? "localhost:3000",
     FRONTEND_URL: process.env.NEXT_PUBLIC_FRONTEND_URL ?? "localhost:3000",
+    NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV ?? "development",
     IS_BETA: parseBoolean(process.env.NEXT_PUBLIC_IS_BETA) ?? true,
     FIREBASE:{
         apiKey: process.env.FIREBASE_API_KEY,
