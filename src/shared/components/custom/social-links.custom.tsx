@@ -16,7 +16,7 @@ const SocialLinksCustom = () => {
                     preset={"fadeRight"}
                     duration={700}>
                     <h3 className="text-xl font-semibold text-black/90 group-hover:text-black dark:text-white/90  dark:group-hover:text-white mb-6 flex items-center gap-3 tracking-tight">
-                        <span className="inline-block w-8 h-[2px] bg-indigo-500/80 rounded-full"></span>
+                        <span className="inline-block w-8 h-[2px] bg-(--contrast-color)/80 rounded-full"></span>
                         Nasze media
                     </h3>
                 </Animate>

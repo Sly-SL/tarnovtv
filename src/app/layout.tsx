@@ -1,7 +1,7 @@
 import type {ReactNode} from "react";
 import type {Metadata} from "next";
 import "./globals.css";
-import Header from "@/shared/components/header";
+import LegacyHeader from "@/shared/components/legacy-header";
 import Head from 'next/head';
 import {Toaster} from "@/shared/components/libs/basic/sonner/root.sonner";
 import Cookie from "@/shared/components/libs/basic/cookie.component"
@@ -9,8 +9,13 @@ import Footer from "@/shared/components/footer";
 import {Montserrat} from "next/font/google";
 import {Analytics} from "@vercel/analytics/next"
 import {SpeedInsights} from "@vercel/speed-insights/next"
-import {StarBackground} from "@/shared/components/custom/bg.custom";
+import StarBackground from "@/shared/components/custom/bg.custom";
 import {CONSTANTS} from "@/shared/consts/consts.consts";
+import {AllThemesEnum} from "@/shared/consts/enums/all-themes.enum";
+import {AllModesEnum} from "@/shared/consts/enums/all-modes.enum";
+import NewMode from "@/shared/components/new-mode";
+import Setup from "@/shared/components/setup";
+import {cookies} from "next/headers";
 
 export const revalidate = 86400
 
@@ -108,25 +113,29 @@ const montserrat = Montserrat({
   display: "swap",
 },);
 
-export default function RootLayout({
+export default async function RootLayout({
                                      children,
                                    }: Readonly<{
   children: ReactNode;
 }>) {
+    const cookieStore = await cookies();
+    const isCookieAccepted = cookieStore.get("functional-cookie-banner")?.value === "shown";
   return (
-      <html lang="pl">
+      <html lang="pl" data-theme={AllThemesEnum[0]} data-mode={AllModesEnum[1]}>
       <Head>
         <meta name="google-site-verification" content="HDV4XPwnAUVrHCVJpbDRqxEVmYz217w-U77aikkUxRI" />
       </Head>
       <body
           className={`antialiased max-w-screen ${montserrat.variable}`}
       >
-      <Header />
-      <main className="pt-20">
+      <Setup/>
+      <StarBackground/>
+      <LegacyHeader />
+      <main className={`pt-21 [html[data-mode=new]_&]:md:ml-38 ${isCookieAccepted && "[html[data-mode=new]_&]:pt-12"}`} >
           {children}
       </main>
-      <Cookie/>
-      <StarBackground/>
+      <NewMode />
+      {!isCookieAccepted && <Cookie />}
       <Toaster/>
       <Footer/>
       <Analytics mode={CONSTANTS.NODE_ENV == "development" ? "development" : "production"} />

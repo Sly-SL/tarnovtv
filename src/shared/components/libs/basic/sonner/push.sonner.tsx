@@ -8,19 +8,17 @@ interface ClassicSonnerProps {
     children:ReactNode,
     openButtonText:ReactNode,
     disabled?:boolean,
-    colorHex?:string,
     onToastAction?: () => unknown,
     buttonType:"submit"|"reset"|"button",
     className?:string
 }
 
-export function BasicSonner({children, colorHex,openButtonText,onToastAction,buttonType,disabled=false,className}:ClassicSonnerProps) {
+export function BasicSonner({children,openButtonText,onToastAction,buttonType,disabled=false,className}:ClassicSonnerProps) {
     return (
         <BasicButton
             className={className + " "}
             type={buttonType}
             disabled={disabled}
-            themaHex={colorHex}
             onClick={() => {
                 toast(
                     <div>{children}</div>

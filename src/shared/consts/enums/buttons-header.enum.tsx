@@ -1,16 +1,23 @@
 import type {ButtonHeaderProps} from "@/shared/types/header-button.type";
 import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
-import Image from "next/image";
-import {GearIcon} from "@phosphor-icons/react/ssr";
-
-const logo = "/assets/logo.svg";
+import {
+    DotsSixIcon,
+    FoldersIcon,
+    GearIcon,
+    ImagesSquareIcon,
+    PhoneIncomingIcon,
+    RocketLaunchIcon,
+    ScalesIcon,
+} from "@phosphor-icons/react/ssr";
+import TarnovTvIcon from "@/shared/consts/icons/tarnov-tv.icon";
+import TeamIcon from "@/shared/consts/icons/team.icon";
 
 export const SUBDIV = "-subdiv"
 
-export const BUTTONS: ButtonHeaderProps[] = [
+export const BUTTONSLEGACY: ButtonHeaderProps[] = [
     {
         link:shortcuts.home,
-        children: <Image src={logo} className={"dark:invert"} alt={"logo"} height={50} width={50} priority />,
+        children: <TarnovTvIcon className={"text-(--contrast-color)"} height={50} width={50} />,
         id:shortcuts.home.slice(1),
     },
     {
@@ -44,6 +51,12 @@ export const BUTTONS: ButtonHeaderProps[] = [
         getElementByIdAction: shortcuts.contact.slice(1) + SUBDIV
     },
     {
+        link:shortcuts.us,
+        children: "Nasz zespół",
+        id:shortcuts.us.slice(1),
+        getElementByIdAction:shortcuts.us.slice(1) + SUBDIV,
+    },
+    {
         link:shortcuts.settings,
         children: <GearIcon size={25}/>,
         id:shortcuts.settings.slice(1),
@@ -52,6 +65,60 @@ export const BUTTONS: ButtonHeaderProps[] = [
     {
         link:shortcuts.settings,
         children: "Ustawienia",
+        mobile:true,
         id:shortcuts.settings.slice(1) + "-mobile",
     }
 ] as const;
+
+export const BUTTONSNEW: ButtonHeaderProps[] = [
+    {
+        link:shortcuts.home,
+        children:<TarnovTvIcon height={35} width={35}/>,
+        label:"Tarnov TV"
+    },
+    {
+        link:shortcuts.projects,
+        children:<RocketLaunchIcon height={35} width={35}/>,
+        label:"Projekty"
+    },
+    {
+        link:shortcuts.media,
+        children:<ImagesSquareIcon height={35} width={35}/>,
+        label:"Media"
+    },
+    {
+        link:shortcuts.contact,
+        children:<PhoneIncomingIcon height={35} width={35}/>,
+        label:"Kontakt"
+    },
+    {
+        link:shortcuts.about,
+        children: <FoldersIcon height={35} width={35}/>,
+        label:"O nas",
+        mobile:false
+    },
+    {
+        link:shortcuts.offers,
+        children:<ScalesIcon height={35} width={35}/>,
+        label:"Oferta",
+        mobile:false
+    },
+    {
+        link:shortcuts.us,
+        children: <TeamIcon height={35} width={35}/>,
+        label: "Nasz zespół",
+        mobile:false
+    },
+    {
+        link:shortcuts.settings,
+        children: <GearIcon height={35} width={35}/>,
+        label: "Ustawienia",
+        mobile:false
+    },
+    {
+        link:shortcuts.more,
+        children:<DotsSixIcon height={35} width={35}/>,
+        label:"Więcej",
+        mobile:true,
+    },
+]

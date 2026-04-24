@@ -5,6 +5,8 @@ export type ButtonHeaderProps = {
     link: ShortcutsType;
     children: ReactNode;
     className?: string;
+    label?: ReactNode;
     getElementByIdAction?: string;
     id?: string;
+    mobile?: boolean;
 }

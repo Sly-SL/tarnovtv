@@ -92,7 +92,7 @@ export const CommentForm = memo(function CommentForm() {
     // =========================
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 pt-8 ring-1 ring-purple-500/50 p-4 rounded-2xl">
+        <form onSubmit={handleSubmit} className="space-y-6 pt-8 ring-1 ring-(--contrast-color)/50 p-4 rounded-2xl">
             {/* Name */}
             <Animate
                 duration={700}
@@ -108,7 +108,7 @@ export const CommentForm = memo(function CommentForm() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Wpisz imię"
-                    className="w-full p-3 rounded-xl bg-white/5 border dark:border-white/10 border-black/80 text-black/90 group-hover:text-black dark:text-white/90  dark:group-hover:text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-orange-500/20 transition-all"
+                    className="w-full p-3 rounded-xl bg-white/5 border dark:border-white/10 border-black/80 text-black/90 group-hover:text-black dark:text-white/90  dark:group-hover:text-white placeholder-gray-400 focus:outline-none focus:border-(--contrast-color)-500 focus:ring-2 focus:ring-orange-500/20 transition-all"
                     required
                 />
             </Animate>
@@ -128,7 +128,7 @@ export const CommentForm = memo(function CommentForm() {
                     value={comment}
                     onChange={handleTextareaChange}
                     placeholder="Napisz wiadomość..."
-                    className="w-full p-4 rounded-xl bg-white/5 border dark:border-white/10 border-black/80 text-black/90 group-hover:text-black dark:text-white/90  dark:group-hover:text-white  placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-orange-500/20 transition-all resize-none min-h-[120px]"
+                    className="w-full p-4 rounded-xl bg-white/5 border dark:border-white/10 border-black/80 text-black/90 group-hover:text-black dark:text-white/90  dark:group-hover:text-white  placeholder-gray-400 focus:outline-none focus:border-(--contrast-color)-500 focus:ring-2 focus:ring-orange-500/20 transition-all resize-none min-h-[120px]"
                     required
                 />
             </Animate>
@@ -181,7 +181,7 @@ export const CommentForm = memo(function CommentForm() {
                             <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-orange-500/20 text-purple-400 hover:bg-orange-500/30 transition-all border border-dashed border-orange-500/50 hover:border-purple-500"
+                                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-orange-500/20 text-(--contrast-color) hover:bg-orange-500/30 transition-all border border-dashed border-orange-500/50 hover:border-(--contrast-color)"
                             >
                                 <ImagesSquareIcon className="w-5 h-5"/>
                                 Wybierz zdjęcie profilowe

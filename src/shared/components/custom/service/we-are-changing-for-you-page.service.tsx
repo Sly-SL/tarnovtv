@@ -1,18 +1,11 @@
-import Image from "next/image";
 import {InstagramLogoIcon, TiktokLogoIcon} from "@phosphor-icons/react/ssr";
+import TarnovTvIcon from "@/shared/consts/icons/tarnov-tv.icon";
 
 export default function WeAreChangingForYouPageService() {
     return (
         <div className="flex flex-col flex-1 items-center justify-center">
-            <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start">
-                <Image
-                    className="dark:invert"
-                    src="/assets/logo.svg"
-                    alt="TarnovTV"
-                    width={100}
-                    height={20}
-                    priority
-                />
+            <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-12 px-16 sm:items-start">
+                <TarnovTvIcon className={"text-(--contrast-color)"} height={100} width={100} />
                 <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
                     <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
                         Zmieniamy się dla was
@@ -21,14 +14,14 @@ export default function WeAreChangingForYouPageService() {
                         niedługo strona będzie dostępna, narazie zobacz{" "}
                         <a
                             href="https://www.tiktok.com/@tarnovtv?lang=en-GB"
-                            className="font-medium text-zinc-950 dark:text-zinc-50"
+                            className="font-medium text-(--contrast-color)"
                         >
                             Tiktok
                         </a>{" "}
                         albo{" "}
                         <a
                             href="https://www.instagram.com/tarnow_tv/"
-                            className="font-medium text-zinc-950 dark:text-zinc-50"
+                            className="font-medium text-(--contrast-color)"
                         >
                             Instagram
                         </a>

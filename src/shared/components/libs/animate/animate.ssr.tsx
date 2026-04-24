@@ -46,7 +46,7 @@ function useInView(threshold = 0.1, triggerOnce = false) {
 
 const Animate = ({
                      children,
-                     className,
+                     className="",
                      preset,
                      duration = 1000,
                      delay = 0,

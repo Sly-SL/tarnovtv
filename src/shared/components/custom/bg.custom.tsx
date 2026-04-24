@@ -3,14 +3,14 @@
 import {PointMaterial, Points, type PointsInstancesProps,} from "@react-three/drei";
 import {Canvas, useFrame} from "@react-three/fiber";
 import * as random from "maath/random";
-import {Suspense, useEffect, useRef, useState} from "react";
+import {Suspense, useEffect, useMemo, useRef, useState} from "react";
 import type {Points as PointsType} from "three";
 
 const Background = (props: PointsInstancesProps) => {
     const ref = useRef<PointsType | null>(null);
-    const [sphere] = useState(() =>
-        random.inSphere(new Float32Array(5000 * 3), { radius: 1.2 }),
-    );
+    const sphere = useMemo(() =>
+            random.inSphere(new Float32Array(5000 * 3), { radius: 1.2 }),
+        [],)
 
     function useStarColor() {
         const [color, setColor] = useState("#000")
@@ -67,7 +67,7 @@ const Background = (props: PointsInstancesProps) => {
     );
 };
 
-export const StarBackground = () => (
+const StarBackground = () => (
     <div className="w-full h-screen fixed inset-0 -z-10">
         <Canvas camera={{ position: [0, 0, 1] }}>
             <Suspense fallback={null}>
@@ -76,3 +76,5 @@ export const StarBackground = () => (
         </Canvas>
     </div>
 );
+
+export default StarBackground;

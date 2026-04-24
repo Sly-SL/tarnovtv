@@ -23,13 +23,13 @@ const MediaSubdiv = () => {
             <div className={"grid items-start justify-center gap-18"}>
                 {Buttons.map((item, i) => (
                     <div className={"grid grid-cols-1"} key={i}>
-                        <label className={"text-sm font-light pb-1 text-[rgb(134,134,139)]"}>
+                        <label className={"text-sm font-light pb-1 text-(--contrast-color)"}>
                             {item.label}
                         </label>
 
                         {item.buttons.map((button, i) => ((
                             <Animate preset={i % 4 == 1 ? "fadeRight" : i % 4 == 2 ?  "fadeDown": i % 4 == 3 ? "fadeUp" : "fadeLeft"} key={i}>
-                                <Link className={item.linkClassName+" text-black/90 hover:text-black dark:text-white/90  dark:hover:text-whitefont-medium hover:scale-105 duration-500"} href={button.href} >
+                                <Link className={item.linkClassName+" text-black/90 hover:text-black dark:text-white/90  dark:hover:text-white font-medium hover:scale-105 duration-500"} href={button.href} >
                                     {button.name}
                                 </Link>
                             </Animate>

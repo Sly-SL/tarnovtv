@@ -58,7 +58,7 @@ const AboutPage = () => {
                 <div className={"grid grid-rows-2 items-center"}>
                     <div>
                         <Animate preset={"fadeDown"}>
-                            <h1 className={"font-bold text-2xl pt-5 text-black dark:text-white"}>TarnovTV</h1>
+                            <h1 className={"font-bold text-2xl pt-5 text-(--contrast-color)"}>TarnovTV</h1>
                         </Animate>
 
                         <div

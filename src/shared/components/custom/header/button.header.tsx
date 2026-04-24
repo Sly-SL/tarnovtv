@@ -59,7 +59,7 @@ export default function ButtonHeader({link, children, className, getElementByIdA
     return (
         <li id={id} className={`${className ? className : ""}`}>
                 <Link href={link}>
-                    <span className="text-[rgba(22,22,23,0.8)] nav-link-shadow hover:text-[rgba(22,22,23,1)] dark:text-[#ffffff]/80 font-normal dark:hover:text-[#ffffff]">
+                    <span className="text-[rgba(22,22,23,0.8)] flex gap-4 nav-link-shadow hover:text-[rgba(22,22,23,1)] dark:text-[#ffffff]/80 font-normal dark:hover:text-[#ffffff]">
                         {children}
                     </span>
                 </Link>

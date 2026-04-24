@@ -35,17 +35,17 @@ const ContactForm = () => {
         <Animate
             preset={"fadeLeft"}
             duration={1100}
-            className="w-full bg-linear-to-b from-white/10 to-white/5 rounded-2xl overflow-hidden backdrop-blur-xl shadow-xl p-6">
+            className="w-full bg-linear-to-b from-white/10 to-white/5 rounded-2xl overflow-hidden backdrop-blur-xl shadow-xl p-8">
                 <div className="flex justify-between items-start mb-8">
                     <div>
-                        <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-linear-to-r from-[#6366f1] to-[#a855f7]">
+                        <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-linear-to-r from-[#6366f1] to-(--contrast-color)">
                             Skontaktuj się z nami
                         </h2>
                         <p className="text-gray-400">
                             Masz coś do omówienia? Napisz do nas wiadomość i porozmawiajmy.
                         </p>
                     </div>
-                    <ShareNetworkIcon className="w-10 h-10 text-[#6366f1] opacity-50" />
+                    <ShareNetworkIcon className="w-10 h-10 text-(--contrast-color) opacity-50" />
                 </div>
             <form
                 action="https://formsubmit.co/tarnovtv@gmail.com"

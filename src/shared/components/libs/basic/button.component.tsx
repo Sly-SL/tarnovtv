@@ -1,10 +1,9 @@
-export const dynamic = "force-static";
-
 import type {CSSProperties, FC, MouseEvent, ReactNode} from "react";
+
+export const dynamic = "force-static";
 
 interface BasicButtonProps {
     children?: ReactNode;
-    themaHex?: string;
     type?: "submit" | "reset" | "button";
     className?: string;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => unknown;
@@ -17,31 +16,18 @@ interface BasicButtonProps {
     size?: "sm" | "md" | "lg";
 }
 
-const getContrastColor = (hex: string) => {
-    // Преобразуем hex в RGB
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-
-    // Яркость по формуле WCAG
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-    return brightness > 125 ? "#000000" : "#ffffff"; // темный текст на светлом фоне и наоборот
-};
-
 export const BasicButton: FC<BasicButtonProps> = ({
-                                                          children,
-                                                          themaHex = "#b12ef2",
-                                                          type = "button",
-                                                          className = "",
-                                                          onClick,
-                                                          onDoubleClick,
-                                                          disabled,
-                                                          loading,
-                                                          description,
-                                                          style,
-                                                          variant = "solid",
-                                                          size = "md",
-                                                      }) => {
+                                                      children,
+                                                      type = "button",
+                                                      className = "",
+                                                      onClick,
+                                                      onDoubleClick,
+                                                      disabled,
+                                                      loading,
+                                                      description,
+                                                      variant = "solid",
+                                                      size = "md",
+                                                  }) => {
     const sizeClass =
         size === "sm"
             ? "text-xs py-1.5 px-3 rounded-md"
@@ -55,12 +41,12 @@ export const BasicButton: FC<BasicButtonProps> = ({
 
     const variantClass =
         variant === "solid"
-            ? " shadow-[0_3px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.25)] " +
-            "bg-[color:var(--btn-color)] hover:brightness-105 focus-visible:ring-[color:var(--btn-color)]"
+            ? "shadow-[0_3px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.25)] " +
+            "bg-[color:var(--contrast-color)] hover:brightness-105 focus-visible:ring-[color:var(--contrast-color)]"
             : variant === "outline"
-                ? "border border-[color:var(--btn-color)] " +
-                "hover:bg-[color:var(--btn-color)] hover:text-white focus-visible:ring-[color:var(--btn-color)]"
-                : " hover:bg-[color:var(--btn-color)]/10 focus-visible:ring-[color:var(--btn-color)]";
+                ? "border border-[color:var(--contrast-color)] " +
+                "hover:bg-[color:var(--contrast-color)] hover:text-white focus-visible:ring-[color:var(--contrast-color)]"
+                : "hover:bg-[color:var(--contrast-color)]/10 focus-visible:ring-[color:var(--contrast-color)]";
 
     return (
         <button
@@ -70,15 +56,16 @@ export const BasicButton: FC<BasicButtonProps> = ({
             disabled={disabled || loading}
             aria-disabled={disabled || loading}
             aria-busy={loading}
-            style={{ "--btn-color": themaHex,color: getContrastColor(themaHex), style} as CSSProperties}
             className={`${base} ${sizeClass} ${variantClass} ${className}`}
         >
             {loading ? (
-                <span className="w-4 h-4 border-2 border-white/80 border-t-transparent rounded-full animate-spin" />
+                <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
             ) : (
                 <>
                     {description && (
-                        <span className="opacity-90 text-sm font-normal">{description}</span>
+                        <span className="opacity-90 text-sm font-normal">
+              {description}
+            </span>
                     )}
                     {children}
                 </>

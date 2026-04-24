@@ -1,7 +1,9 @@
 export const shortcuts = {
     "projects":"/projects",
     "media":"/media",
+    "more":"/more",
     "home":"/",
+    "us":"/us",
     "settings":"/settings",
     "about":"/about",
     "admin": "/admin",

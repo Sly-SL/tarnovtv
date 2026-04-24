@@ -19,6 +19,40 @@
     }
 }
 
+html[data-theme="red"] {
+    --contrast-color: #f70f4d;
+}
+
+html[data-theme="green"] {
+    --contrast-color: #1aeb07;
+}
+
+html[data-theme="blue"] {
+    --contrast-color: #16caf2;
+}
+
+html[data-theme="purple"] {
+    --contrast-color: #a607eb
+}
+
+html[data-theme="gold"] {
+    --contrast-color: #f78b0f;
+}
+
+html[data-mode="new"] {
+    --legacy: none;
+    --new: block;
+}
+
+html[data-mode="legacy"] {
+    --legacy: block;
+    --new: none;
+}
+
+@theme inline {
+    --contrast-color: var(--contrast-color);
+}
+
 body {
     color: var(--foreground);
     background-color: var(--background);
