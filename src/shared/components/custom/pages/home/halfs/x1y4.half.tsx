@@ -1,8 +1,8 @@
-import ToggleProject from "@/shared/components/custom/pages/projects/toggle.project";
-import ProjectTabs from "@/shared/components/custom/pages/projects/tabs/project.tabs";
-import DocsTabs from "@/shared/components/custom/pages/projects/tabs/docs.tabs";
-import TechTabs from "@/shared/components/custom/pages/projects/tabs/tech.tabs";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
+import TechTabs from "@/shared/components/custom/pages/home/projects/tabs/tech.tabs";
+import DocsTabs from "@/shared/components/custom/pages/home/projects/tabs/docs.tabs";
+import ProjectTabs from "@/shared/components/custom/pages/home/projects/tabs/project.tabs";
+import ToggleProject from "@/shared/components/custom/pages/home/projects/toggle.project";
 
 const X1Y4Half = () => {
     return (

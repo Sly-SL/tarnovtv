@@ -1,7 +1,7 @@
-import {ToggleButtonProjects} from "@/shared/components/custom/pages/projects/toggle-show.projects";
 import ProjectBody from "@/shared/components/custom/body/projects/project.body";
 import {getProjectsQuery} from "@/lib/firebase/queries/get-projects.query";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
+import {ToggleButtonProjects} from "@/shared/components/custom/pages/home/projects/toggle-show.projects";
 
 const ProjectTabs = async () => {
 

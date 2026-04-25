@@ -1,7 +1,7 @@
 import {getDocumentsQuery} from "@/lib/firebase/queries/get-document.query";
-import {ToggleButtonProjects} from "@/shared/components/custom/pages/projects/toggle-show.projects";
 import DocumentBody from "@/shared/components/custom/body/projects/document.body";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
+import {ToggleButtonProjects} from "@/shared/components/custom/pages/home/projects/toggle-show.projects";
 
 const DocsTabs = async () => {
     const documents = await getDocumentsQuery();
