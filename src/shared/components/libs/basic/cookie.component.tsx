@@ -33,7 +33,7 @@ export default function Cookie () {
                 <BasicButton
                     type={'button'}
                     onClick={() => {
-                        localStorage.setItem("functional-cookie-banner", "shown");
+                        document.cookie = "functional-cookie-banner=shown; path=/; max-age=31536000";
                     }}
                     className="py-3 px-6 gap-2 whitespace-nowrap rounded-button font-bold transition-all  duration-500 button-shadow"
                 >
