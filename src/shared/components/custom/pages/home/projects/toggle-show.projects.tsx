@@ -2,7 +2,7 @@
 
 import type {FC} from "react";
 import {useEffect, useState} from "react";
-import type {AllSectionsProjectsType} from "@/shared/types/all-sections-projects.type";
+import type {AllSectionsProjectsType} from "@/shared/types/all/all-sections-projects.type";
 
 interface ToggleButtonProps {
     type: AllSectionsProjectsType;

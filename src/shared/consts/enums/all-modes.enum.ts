@@ -1,0 +1,1 @@
+export const AllModesEnum = ["new","legacy"] as const;

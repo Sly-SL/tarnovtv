@@ -3,7 +3,6 @@ import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
 import {
     DotsSixIcon,
     FoldersIcon,
-    GearIcon,
     ImagesSquareIcon,
     PhoneIncomingIcon,
     RocketLaunchIcon,
@@ -11,6 +10,7 @@ import {
 } from "@phosphor-icons/react/ssr";
 import TarnovTvIcon from "@/shared/consts/icons/tarnov-tv.icon";
 import TeamIcon from "@/shared/consts/icons/team.icon";
+import {AccountHeaderButton} from "@/shared/components/custom/header/account.button";
 
 export const SUBDIV = "-subdiv"
 
@@ -58,15 +58,17 @@ export const BUTTONSLEGACY: ButtonHeaderProps[] = [
     },
     {
         link:shortcuts.settings,
-        children: <GearIcon size={25}/>,
+        children: <AccountHeaderButton/>,
         id:shortcuts.settings.slice(1),
+        noLink:true,
         getElementByIdAction: shortcuts.settings.slice(1) + SUBDIV
     },
     {
         link:shortcuts.settings,
-        children: "Ustawienia",
-        mobile:true,
-        id:shortcuts.settings.slice(1) + "-mobile",
+        children: <AccountHeaderButton/>,
+        noLink:true,
+        id:shortcuts.settings.slice(1),
+        mobile:true
     }
 ] as const;
 
@@ -111,7 +113,8 @@ export const BUTTONSNEW: ButtonHeaderProps[] = [
     },
     {
         link:shortcuts.settings,
-        children: <GearIcon height={35} width={35}/>,
+        children: <AccountHeaderButton/>,
+        noLink:true,
         label: "Ustawienia",
         mobile:false
     },

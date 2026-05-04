@@ -1,11 +1,11 @@
 import ProjectBody from "@/shared/components/custom/body/projects/project.body";
-import {getProjectsQuery} from "@/lib/firebase/queries/get-projects.query";
+import {projectsGet} from "@/lib/firebase/get/projects.get";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
 import {ToggleButtonProjects} from "@/shared/components/custom/pages/home/projects/toggle-show.projects";
 
 const ProjectTabs = async () => {
 
-    const projects = await getProjectsQuery()
+    const projects = await projectsGet()
     return (
         <div>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
@@ -20,7 +20,7 @@ const ProjectTabs = async () => {
                                     Img={project.image}
                                     Title={project.name}
                                     Description={project.description}
-                                    Link={project.deployment_url}
+                                    Link={project.id}
                                     id={project.id}
                                 />
                         </Animate>
@@ -38,7 +38,7 @@ const ProjectTabs = async () => {
                                 Img={project.image}
                                 Title={project.name}
                                 Description={project.description}
-                                Link={project.deployment_url}
+                                Link={project.id}
                                 id={project.id}
                             />
                         </Animate>
@@ -56,7 +56,7 @@ const ProjectTabs = async () => {
                                 Img={project.image}
                                 Title={project.name}
                                 Description={project.description}
-                                Link={project.deployment_url}
+                                Link={project.id}
                                 id={project.id}
                             />
                         </Animate>

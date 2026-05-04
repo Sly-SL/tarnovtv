@@ -5,6 +5,7 @@ const X1Y2Half = () => {
     return (
         <div className={"pt-5 grid justify-center"}>
             <RoundPhotoCustom
+                size={"200"}
                 photo={SiteRender}
                 alt={"Site render"}/>
         </div>

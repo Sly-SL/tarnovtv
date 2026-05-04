@@ -1,0 +1,1 @@
+export type AllCollectionsType = "comments"| "offers" | "projects" | "users" | "sessions" | "media" | "settings" | "tokens"

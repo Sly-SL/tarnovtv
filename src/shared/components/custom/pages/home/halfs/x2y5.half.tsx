@@ -1,7 +1,7 @@
 'use client'
 
 import {CommentForm} from "@/shared/components/forms/comment.form";
-import {getCommentsQuery} from "@/lib/firebase/queries/get-comments.query";
+import {getCommentsQuery} from "@/lib/firebase/get/comments.get";
 import {CommentBody} from "@/shared/components/custom/body/comments/comment.body";
 import {useEffect, useState} from "react";
 import {CommentBodyProps} from "@/shared/types/comment-body.type";

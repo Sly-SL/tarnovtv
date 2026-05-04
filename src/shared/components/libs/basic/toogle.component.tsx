@@ -30,9 +30,8 @@ const BasicToggleComponent = <T extends string | number | boolean>({
                             setActiveIndex(index);
                             item.func(item.value);
                         }}
-                        className={`flex-1 px-4 py-3 text-sm font-medium transition-colors duration-200
-              ${isActive ? " rounded-3xl border text-white bg-purple-500 " : "dark:text-white hover:scale-105 text-black/90"}
-            `}
+                        // bg-[var(--contrast-color)] don't touch only legacy work now
+                        className={`flex-1 px-4 overflow-hidden py-3 text-sm font-medium transition-colors duration-200 ${isActive ? " rounded-3xl border text-white bg-[var(--contrast-color)]" : " dark:text-white hover:scale-105 text-black/90 "}`}
                     >
                         {item.label}
                     </div>

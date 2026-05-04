@@ -1,13 +1,13 @@
 import {StatCard} from "@/shared/components/custom/stats-card.custom";
-import {getProjectsQuery} from "@/lib/firebase/queries/get-projects.query";
-import {getDocumentsQuery} from "@/lib/firebase/queries/get-document.query";
+import {projectsGet} from "@/lib/firebase/get/projects.get";
+import {getDocumentsQuery} from "@/lib/firebase/get/document.get";
 import {CertificateIcon, CodeIcon, GlobeIcon} from "@phosphor-icons/react";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
 
 export const revalidate = 3600 * 24
 
 const X1Y3Half = async () => {
-    const storedProjects = await getProjectsQuery()
+    const storedProjects = await projectsGet()
     const storedDocuments = await getDocumentsQuery()
     const startDate = new Date("2021-11-01");
     const today = new Date();

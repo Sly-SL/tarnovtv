@@ -1,47 +1,56 @@
 "use client";
 
-import Animate from "@/shared/components/libs/animate/animate.ssr";
-import {AllThemesEnum, AllThemesEnumType,} from "@/shared/consts/enums/all-themes.enum";
-import {ChangeThemeUtil} from "@/shared/util/change-theme.util";
-import {BasicH3} from "@/shared/components/libs/basic/text/h3.text";
-import LiquidGlassCustom from "@/shared/components/custom/liquid-glass.custom";
-import {BasicP} from "../libs/basic/text/p.text";
+import {AllThemesEnum} from "@/shared/consts/enums/all-themes.enum";
+import {ChangeThemeUtil} from "@/shared/util/change/settings/change-theme.util";
+import type {AllThemesType} from "@/shared/types/all/all-themes.type";
+import type {UserType} from "@/shared/types/domen/user.type";
 
-const themeButtons: Record<AllThemesEnumType, string> = {
+const themeColors: Record<AllThemesType, string> = {
     purple: "bg-purple-500",
-    green: "bg-green-500",
-    blue: "bg-blue-500",
-    red: "bg-red-500",
-    gold: "bg-yellow-500",
+    green:  "bg-green-500",
+    lagune: "bg-blue-300",
+    red:    "bg-red-600",
+    gold:   "bg-yellow-600",
+    blue:   "bg-blue-700",
+    pink:   "bg-pink-400",
 };
 
-const ChangeThemeCustom = () => {
+const ChangeThemeCustom = (user?: Partial<UserType>) => {
     return (
-        <section className="w-full">
-            <Animate
-                preset="fadeDown"
-                duration={500}
-                className="flex gap-5 w-full"
-            >
-                <LiquidGlassCustom className={"p-5"}>
-                    <section className={"grid gap-2"}>
-                        <BasicH3>Motyw</BasicH3>
-                        <BasicP className={"text-(--contrast-color)/80"}>Wybierz motyw</BasicP>
-                        <ul className="flex flex-wrap gap-3 pt-4 justify-center">
-                            {AllThemesEnum.map((theme) => (
-                                <li key={theme}>
-                                    <button
-                                        type="button"
-                                        onClick={() => ChangeThemeUtil(theme)}
-                                        className={`w-10 h-10 pointer-events-auto rounded-full transition ${themeButtons[theme]} hover:scale-110 active:scale-95`}
-                                    />
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
-                </LiquidGlassCustom>
-            </Animate>
-        </section>
+        <div className="h-full rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] p-6 flex flex-col gap-4">
+
+            {/* Label */}
+            <span className="block text-[11px] font-medium tracking-widest uppercase text-white/35">
+                Motyw
+            </span>
+
+            <div>
+                <p className="text-lg font-bold text-white leading-tight">
+                    Kolor{" "}
+                    <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
+                        akcentu
+                    </span>
+                </p>
+                <p className="text-xs text-white/30 mt-1">
+                    Wybierz kolor, który pojawia się w całej aplikacji.
+                </p>
+            </div>
+
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent"/>
+
+            <ul className="flex flex-wrap gap-3">
+                {AllThemesEnum.map((theme) => (
+                    <li key={theme}>
+                        <button
+                            type="button"
+                            title={theme}
+                            onClick={() => ChangeThemeUtil(theme, user?.id)}
+                            className={`w-9 h-9 rounded-full border-2 border-white/10 transition-all duration-150 hover:scale-110 active:scale-95 hover:border-(--contrast-color)/50 ${themeColors[theme]}`}
+                        />
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 };
 

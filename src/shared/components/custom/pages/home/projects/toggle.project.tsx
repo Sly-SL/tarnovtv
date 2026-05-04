@@ -1,9 +1,9 @@
 'use client'
 
 import {useState} from 'react';
-import type {AllSectionsProjectsType} from "@/shared/types/all-sections-projects.type";
 import {CertificateIcon, CodeIcon, PackageIcon} from "@phosphor-icons/react";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
+import type {AllSectionsProjectsType} from "@/shared/types/all/all-sections-projects.type";
 
 const ToggleProject = () => {
     const [value, setValue] = useState<AllSectionsProjectsType>("projects");

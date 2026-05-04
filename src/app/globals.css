@@ -27,8 +27,17 @@ html[data-theme="green"] {
     --contrast-color: #1aeb07;
 }
 
-html[data-theme="blue"] {
+html[data-theme="lagune"] {
     --contrast-color: #16caf2;
+}
+
+
+html[data-theme="blue"] {
+    --contrast-color: #100cfa;
+}
+
+html[data-theme="pink"] {
+    --contrast-color: #fa1ef6;
 }
 
 html[data-theme="purple"] {

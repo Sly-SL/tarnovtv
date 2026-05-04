@@ -1,11 +1,11 @@
 import Link from "next/link";
 import SubdivConstructor from "@/shared/components/custom/header/subdivs/subdiv-constructor.subdiv";
-import {getProjectsQuery} from "@/lib/firebase/queries/get-projects.query";
+import {projectsGet} from "@/lib/firebase/get/projects.get";
 import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
 
 const ProjectsSubdiv = async () => {
-    const projects = await getProjectsQuery()
+    const projects = await projectsGet()
     return (
         <SubdivConstructor id={"projects"}>
             <div className={"grid grid-cols-3 items-start justify-center gap-18"}>

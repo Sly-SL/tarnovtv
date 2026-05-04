@@ -2,7 +2,7 @@ import type {StaticImageData} from "next/image";
 import Image from "next/image";
 import Animate from "@/shared/components/libs/animate/animate.ssr";
 
-const RoundPhotoCustom = ({photo,alt}:{photo:StaticImageData,alt:string}) => {
+const RoundPhotoCustom = ({photo,alt,size}:{photo:string|StaticImageData,alt:string,size:string}) => {
     return (
         <div className="flex justify-end items-center sm:p-14 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
             <Animate
@@ -18,19 +18,18 @@ const RoundPhotoCustom = ({photo,alt}:{photo:StaticImageData,alt:string}) => {
                 </div>
 
                 <div className="relative">
-                    <div className="w-72 h-72 sm:w-80 sm:h-80 md:w-88 md:h-88 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
+                    <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
                         <div className="absolute inset-0 border-4 border-white/20 rounded-full z-20 transition-all duration-700 group-hover:border-white/40 group-hover:scale-105" />
 
                         {/* Optimized overlay effects - disabled on mobile */}
                         <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 via-transparent to-blue-500/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 hidden sm:block" />
 
                         <Image
-                            src={photo.src}
+                            src={photo}
                             alt={alt}
-                            height={photo.height}
-                            width={photo.width}
-                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-2"
-                            loading="lazy"
+                            fill
+                            sizes={size}
+                            className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-2"
                         />
 
                         {/* Advanced hover effects - desktop only */}

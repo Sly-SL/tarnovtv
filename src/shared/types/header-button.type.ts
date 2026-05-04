@@ -9,4 +9,5 @@ export type ButtonHeaderProps = {
     getElementByIdAction?: string;
     id?: string;
     mobile?: boolean;
+    noLink?: boolean; // ← добавь
 }

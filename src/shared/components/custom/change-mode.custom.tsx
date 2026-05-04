@@ -1,42 +1,40 @@
 "use client";
 
-import Animate from "@/shared/components/libs/animate/animate.ssr";
-import {BasicH3} from "@/shared/components/libs/basic/text/h3.text";
-import LiquidGlassCustom from "@/shared/components/custom/liquid-glass.custom";
-import {BasicP} from "../libs/basic/text/p.text";
 import {AllModesEnum} from "@/shared/consts/enums/all-modes.enum";
-import {ChangeModeUtil} from "@/shared/util/change-mode.util";
-import {BasicButton} from "@/shared/components/libs/basic/button.component";
+import {ChangeModeUtil} from "@/shared/util/change/settings/change-mode.util";
+import BasicToggleComponent from "@/shared/components/libs/basic/toogle.component";
+import type {UserType} from "@/shared/types/domen/user.type";
 
-const ChangeModeCustom = () => {
+const ChangeModeCustom = (user?: Partial<UserType>) => {
     return (
-        <section className="w-full">
-            <Animate
-                preset="fadeDown"
-                duration={500}
-                className="flex gap-5 w-full"
-            >
-                <LiquidGlassCustom className={"p-5"}>
-                    <section className={"grid gap-2"}>
-                        <BasicH3>Tryb</BasicH3>
-                        <BasicP className={"text-(--contrast-color)/80"}>Wybierz tryb</BasicP>
-                        <ul className="flex flex-wrap gap-3 pt-4 justify-center">
-                            {AllModesEnum.map((mode) => (
-                                <li key={mode}>
-                                    <BasicButton
-                                        type="button"
-                                        onClick={() => ChangeModeUtil(mode)}
-                                        className={`rounded-full transition hover:scale-110 active:scale-95`}
-                                    >
-                                        {mode}
-                                    </BasicButton>
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
-                </LiquidGlassCustom>
-            </Animate>
-        </section>
+        <div className="h-full rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] p-6 flex flex-col gap-4">
+
+            <span className="block text-[11px] font-medium tracking-widest uppercase text-white/35">
+                Tryb
+            </span>
+
+            <div>
+                <p className="text-lg font-bold text-white leading-tight">
+                    Tryb{" "}
+                    <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
+                        wyświetlania
+                    </span>
+                </p>
+                <p className="text-xs text-white/30 mt-1">
+                    Wybierz stary bądź nowy styl interfejsu.
+                </p>
+            </div>
+
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent"/>
+
+            <BasicToggleComponent
+                data={AllModesEnum.map((item) => ({
+                    label: item,
+                    value: item,
+                    func: () => ChangeModeUtil(item, user?.id),
+                }))}
+            />
+        </div>
     );
 };
 

@@ -1,9 +1,9 @@
 'use server'
 
 import type {CommentBodyProps} from "@/shared/types/comment-body.type";
-import {addDataWithCustomId} from "@/lib/firebase/firebase";
 import {randomUUID} from "node:crypto";
 import {NextResponse} from "next/server";
+import {addDataWithCustomId} from "@/lib/firebase/firebase-admin";
 
 export async function AddCommentAction(data:Omit<CommentBodyProps, "id">){
     if(!data.name || !data.comment){

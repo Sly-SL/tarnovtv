@@ -1,5 +1,5 @@
 {
-  "name": "portfolio2",
+  "name": "tarnovtv",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -21,14 +21,17 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "argon2": "^0.44.0",
-    "firebase": "^12.12.0",
+    "device-detector-js": "^3.0.3",
+    "firebase": "^12.12.1",
+    "firebase-admin": "^13.8.0",
     "framer-motion": "^12.38.0",
+    "i18n-iso-countries": "^7.14.0",
     "knip": "^6.4.1",
     "next": "16.2.4",
     "nodemailer": "^8.0.5",
     "react": "19.2.5",
     "react-dom": "19.2.5",
-    "react-hook-form": "^7.72.1",
+    "react-hook-form": "^7.75.0",
     "sonner": "^2.0.7",
     "sweetalert2": "^11.26.24",
     "tree": "^0.1.3"

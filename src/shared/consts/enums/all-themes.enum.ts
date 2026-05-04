@@ -1,0 +1,1 @@
+export const AllThemesEnum = ["purple", "gold", "lagune", "pink", "blue", "green", "red"] as const;

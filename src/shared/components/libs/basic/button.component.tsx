@@ -45,7 +45,7 @@ export const BasicButton: FC<BasicButtonProps> = ({
             "bg-[color:var(--contrast-color)] hover:brightness-105 focus-visible:ring-[color:var(--contrast-color)]"
             : variant === "outline"
                 ? "border border-[color:var(--contrast-color)] " +
-                "hover:bg-[color:var(--contrast-color)] hover:text-white focus-visible:ring-[color:var(--contrast-color)]"
+                "hover:bg-[color:var(--contrast-color)] duration-400 hover:text-white focus-visible:ring-[color:var(--contrast-color)]"
                 : "hover:bg-[color:var(--contrast-color)]/10 focus-visible:ring-[color:var(--contrast-color)]";
 
     return (

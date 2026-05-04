@@ -1,0 +1,1 @@
+export const AllUsersRolesEnum = ["user", "moderator", "admin"] as const;

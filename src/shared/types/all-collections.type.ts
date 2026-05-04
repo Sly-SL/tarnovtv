@@ -1,1 +1,0 @@
-export type AllCollectionsType = "comments" | "projects" | "users" | "sessions" | "documents"

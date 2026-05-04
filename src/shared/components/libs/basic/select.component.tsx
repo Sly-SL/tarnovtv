@@ -1,6 +1,6 @@
 export const dynamic = "force-static";
 
-import type {ChangeEventHandler, CSSProperties, FC} from "react";
+import type {ChangeEventHandler, FC} from "react";
 
 export interface Option {
     value: string | number;
@@ -12,7 +12,6 @@ export interface BasicSelectProps {
     onChange?: ChangeEventHandler<HTMLSelectElement>;
     className?: string;
     placeholder?: string;
-    themaHex?: string;
     name?: string;
     required?: boolean;
     options: Option[];
@@ -23,7 +22,6 @@ export const BasicSelect: FC<BasicSelectProps> = ({
                                                           value,
                                                           onChange,
                                                           className = "",
-                                                          themaHex = "#ff7a00",
                                                           required = false,
                                                           placeholder = "Wybierz...",
                                                           name,
@@ -32,8 +30,7 @@ export const BasicSelect: FC<BasicSelectProps> = ({
                                                       }) => {
     return (
         <div
-            className={`relative w-full ${className}`}
-            style={{ "--select-color": themaHex } as CSSProperties}
+            className={`relative w-full contrast-color ${className}`}
         >
             <select
                 name={name}
@@ -42,7 +39,7 @@ export const BasicSelect: FC<BasicSelectProps> = ({
                 required={required}
                 disabled={disabled}
                 aria-disabled={disabled}
-                className={`w-full appearance-none rounded-lg px-4 py-3 text-sm md:text-base bg-white/80 dark:bg-black/20 border border-(--select-color) text-gray-900 dark:text-gray-100 shadow-[0_3px_12px_rgba(0,0,0,0.08)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-(--select-color) disabled:opacity-50 disabled:pointer-events-none hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]`}
+                className={`w-full appearance-none rounded-lg px-4 py-3 text-sm md:text-base bg-white/80 dark:bg-black/20 border border-(--contrast-color) text-(--contrast-color) shadow-[0_3px_12px_rgba(0,0,0,0.08)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-(--contrast-color) disabled:opacity-50 disabled:pointer-events-none hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]`}
             >
                 {placeholder && <option value="" hidden>
                     {placeholder}
