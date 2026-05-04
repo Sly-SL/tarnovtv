@@ -40,7 +40,8 @@ const ChangePasswordForm = ({token}: {token: string}) => {
     };
 
     return (
-        <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden">
+        <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden
+                        bg-white dark:bg-transparent">
 
             {/* Orbs */}
             <div className="absolute -top-40 -right-28 w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[90px] pointer-events-none"/>
@@ -50,7 +51,7 @@ const ChangePasswordForm = ({token}: {token: string}) => {
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)",
                     backgroundSize: "48px 48px",
                     maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)",
                 }}
@@ -58,25 +59,31 @@ const ChangePasswordForm = ({token}: {token: string}) => {
 
             {/* Card */}
             <div
-                className="relative z-10 w-full max-w-[420px] rounded-3xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-2xl shadow-[0_32px_72px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.035)_inset] p-10"
+                className="relative z-10 w-full max-w-[420px] rounded-3xl p-10
+                           border border-gray-200 bg-white shadow-sm
+                           dark:border-white/[0.07] dark:bg-white/[0.028] dark:backdrop-blur-2xl
+                           dark:shadow-[0_32px_72px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.035)_inset]"
                 style={{animation: "fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both"}}
             >
                 <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }`}</style>
 
                 {/* Badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full bg-(--contrast-color)/10 border border-indigo-500/20 text-[10px] font-semibold tracking-widest uppercase text-(--contrast-color)/85">
-                    <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full text-[10px] font-semibold tracking-widest uppercase
+                                bg-indigo-50 border border-indigo-200 text-indigo-600
+                                dark:bg-(--contrast-color)/10 dark:border-indigo-500/20 dark:text-(--contrast-color)/85">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
                     Nowe hasło
                 </div>
 
                 {/* Heading */}
-                <h1 className="text-3xl font-extrabold tracking-tight text-white leading-tight mb-1">
+                <h1 className="text-3xl font-extrabold tracking-tight leading-tight mb-1
+                               text-gray-900 dark:text-white">
                     Zmień{" "}
                     <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                         hasło
                     </span>
                 </h1>
-                <p className="text-sm text-white/30 font-light mb-7">
+                <p className="text-sm font-light mb-7 text-gray-500 dark:text-white/30">
                     Ustaw nowe hasło — najlepiej takie, którego jeszcze nie używałeś.
                 </p>
 
@@ -107,7 +114,9 @@ const ChangePasswordForm = ({token}: {token: string}) => {
                                 <button
                                     type="button"
                                     onClick={() => setPasswordVisible(v => !v)}
-                                    className="absolute right-0 top-[22px] w-10 h-9 flex items-center justify-center text-white/30 hover:text-white/60 transition-colors"
+                                    className="absolute right-0 top-[22px] w-10 h-9 flex items-center justify-center transition-colors
+                                               text-gray-400 hover:text-gray-600
+                                               dark:text-white/30 dark:hover:text-white/60"
                                 >
                                     {passwordVisible ? <EyeSlashIcon size={16}/> : <EyeIcon size={16}/>}
                                 </button>
@@ -135,7 +144,9 @@ const ChangePasswordForm = ({token}: {token: string}) => {
                                 <button
                                     type="button"
                                     onClick={() => setPasswordVisible(v => !v)}
-                                    className="absolute right-0 top-[22px] w-10 h-9 flex items-center justify-center text-white/30 hover:text-white/60 transition-colors"
+                                    className="absolute right-0 top-[22px] w-10 h-9 flex items-center justify-center transition-colors
+                                               text-gray-400 hover:text-gray-600
+                                               dark:text-white/30 dark:hover:text-white/60"
                                 >
                                     {passwordVisible ? <EyeSlashIcon size={16}/> : <EyeIcon size={16}/>}
                                 </button>

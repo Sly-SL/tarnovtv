@@ -11,40 +11,40 @@ const Page = async () => {
         <div className="relative min-h-screen w-full flex flex-col overflow-hidden">
 
             {/* Background */}
-            <div className="absolute -top-40 right-0 w-[600px] h-[600px] rounded-full bg-amber-500/[0.07] blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.07] blur-[100px] pointer-events-none" />
+            <div className="absolute -top-40 right-0 w-[600px] h-[600px] rounded-full bg-amber-500/[0.07] blur-[120px] pointer-events-none"/>
+            <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-indigo-500/[0.07] blur-[100px] pointer-events-none"/>
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                     backgroundImage:
-                        "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+                        "linear-gradient(rgba(0,0,0,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.018) 1px, transparent 1px)",
                     backgroundSize: "48px 48px",
                     maskImage: "radial-gradient(ellipse 100% 100% at 50% 0%, black 40%, transparent 100%)",
                 }}
             />
 
             {/* Header */}
-            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-white/[0.06]">
+            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-black/[0.06] dark:border-white/[0.06]">
                 <div className="max-w-screen-xl mx-auto">
                     <Link
-                        href={shortcuts.settings+shortcuts.moderator}
-                        className="inline-flex items-center gap-5 text-xs text-white/30 hover:text-white/60 transition-colors mb-6"
+                        href={shortcuts.settings + shortcuts.moderator}
+                        className="inline-flex items-center gap-5 text-xs text-black/30 dark:text-white/30 hover:text-black/60 dark:hover:text-white/60 transition-colors mb-6"
                     >
-                        <ArrowLeftIcon size={12} />
+                        <ArrowLeftIcon size={12}/>
                         Wróć do panelu
                     </Link>
 
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full bg-amber-500/10 border border-amber-500/20 text-[10px] font-semibold tracking-widest uppercase text-amber-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_#f59e0b] animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_#f59e0b] animate-pulse"/>
                         Panel moderatora
                     </div>
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-black dark:text-white leading-tight">
                         Dodaj{" "}
                         <span className="bg-linear-to-br from-amber-400 to-orange-400 bg-clip-text text-transparent">
                             zdjęcie
                         </span>
                     </h1>
-                    <p className="text-sm text-white/30 font-light mt-1">
+                    <p className="text-sm text-black/30 dark:text-white/30 font-light mt-1">
                         Plik zostanie automatycznie umieszczony na stronie.
                     </p>
                 </div>
@@ -56,21 +56,29 @@ const Page = async () => {
                     <div className="max-w-lg">
 
                         {/* Info card */}
-                        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] p-5 mb-4 flex items-center gap-4">
+                        <div className="
+                            rounded-2xl p-5 mb-4 flex items-center gap-4 backdrop-blur-xl
+                            border border-black/[0.07] bg-black/[0.028] shadow-[0_16px_48px_rgba(0,0,0,0.08)]
+                            dark:border-white/[0.07] dark:bg-white/[0.028] dark:shadow-[0_16px_48px_rgba(0,0,0,0.35)]
+                        ">
                             <div className="w-10 h-10 flex-shrink-0 rounded-xl flex items-center justify-center bg-amber-500/10 border border-amber-500/20">
-                                <ImageSquareIcon size={20} className="text-amber-400" />
+                                <ImageSquareIcon size={20} className="text-amber-400"/>
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-white">Nowe zdjęcie do galerii</p>
-                                <p className="text-[11px] text-white/30 mt-0.5">
+                                <p className="text-sm font-medium text-black dark:text-white">Nowe zdjęcie do galerii</p>
+                                <p className="text-[11px] text-black/30 dark:text-white/30 mt-0.5">
                                     Obsługiwane formaty: PNG, JPG, WEBP. Zdjęcie pojawi się natychmiast.
                                 </p>
                             </div>
                         </div>
 
                         {/* Form */}
-                        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] p-6">
-                            <AddMediaForm />
+                        <div className="
+                            rounded-2xl p-6 backdrop-blur-xl
+                            border border-black/[0.07] bg-black/[0.028] shadow-[0_16px_48px_rgba(0,0,0,0.08)]
+                            dark:border-white/[0.07] dark:bg-white/[0.028] dark:shadow-[0_16px_48px_rgba(0,0,0,0.35)]
+                        ">
+                            <AddMediaForm/>
                         </div>
 
                     </div>

@@ -12,7 +12,7 @@ import {createPortal} from "react-dom";
 export const AccountHeaderButton = () => {
     const [user, setUser] = useState<UserType | null>(null);
     const [open, setOpen] = useState(false);
-    const [pos, setPos] = useState({ top: 0, left: 0 });
+    const [pos, setPos] = useState({top: 0, left: 0});
     const btnRef = useRef<HTMLButtonElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
@@ -51,7 +51,11 @@ export const AccountHeaderButton = () => {
     const dropdown = open && (
         <div
             ref={dropdownRef}
-            className="fixed z-[99999] w-48 rounded-2xl border border-white/[0.07] bg-black/90 backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.6)] overflow-hidden"
+            className="
+                fixed z-[99999] w-48 rounded-2xl overflow-hidden backdrop-blur-xl
+                border border-black/[0.07] bg-white/95 shadow-[0_16px_48px_rgba(0,0,0,0.15)]
+                dark:border-white/[0.07] dark:bg-black/90 dark:shadow-[0_16px_48px_rgba(0,0,0,0.6)]
+            "
             style={{
                 top: pos.top,
                 left: pos.left,
@@ -64,16 +68,16 @@ export const AccountHeaderButton = () => {
                 })(),
             }}
         >
-            <div className="px-4 py-3 border-b border-white/[0.06]">
-                <p className="text-xs font-semibold text-white truncate">{user?.name} {user?.surname}</p>
-                <p className="text-[10px] text-white/30 truncate">{user?.email}</p>
+            <div className="px-4 py-3 border-b border-black/[0.06] dark:border-white/[0.06]">
+                <p className="text-xs font-semibold text-black dark:text-white truncate">{user?.name} {user?.surname}</p>
+                <p className="text-[10px] text-black/30 dark:text-white/30 truncate">{user?.email}</p>
             </div>
             <button
                 onMouseDown={(e) => e.stopPropagation()}
-                onClick={() => { setOpen(false); router.push(shortcuts.settings); }}
-                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs text-white/60 hover:text-white hover:bg-white/[0.05] transition-colors"
+                onClick={() => {setOpen(false); router.push(shortcuts.settings);}}
+                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-colors"
             >
-                <GearIcon size={14} />
+                <GearIcon size={14}/>
                 Ustawienia
             </button>
             <button
@@ -86,11 +90,12 @@ export const AccountHeaderButton = () => {
                 }}
                 className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs text-red-400/70 hover:text-red-400 hover:bg-red-500/[0.05] transition-colors"
             >
-                <SignOutIcon size={14} />
+                <SignOutIcon size={14}/>
                 Wyloguj się
             </button>
         </div>
     );
+
     if (!user) {
         return (
             <button
@@ -102,7 +107,7 @@ export const AccountHeaderButton = () => {
                 }}
                 className="flex flex-col items-center gap-1 opacity-70 hover:opacity-100 transition-opacity"
             >
-                <SignInIcon height={35} width={35} />
+                <SignInIcon height={35} width={35}/>
                 <span className="text-xs">Zaloguj</span>
             </button>
         );
@@ -116,8 +121,8 @@ export const AccountHeaderButton = () => {
                 className="flex flex-col items-center gap-1 opacity-70 hover:opacity-100 transition-opacity"
             >
                 {user.image
-                    ? <img src={user.image} className="w-[35px] h-[35px] rounded-full object-cover border border-white/20" alt={user.name} />
-                    : <UserCircleIcon height={35} width={35} />}
+                    ? <img src={user.image} className="w-[35px] h-[35px] rounded-full object-cover border border-black/20 dark:border-white/20" alt={user.name}/>
+                    : <UserCircleIcon height={35} width={35}/>}
                 <span className="text-[10px] max-w-[60px] truncate">{user.name}</span>
             </button>
 

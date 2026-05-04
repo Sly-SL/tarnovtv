@@ -20,15 +20,15 @@ import {userPatch} from "@/lib/firebase/patch/user.patch";
 import {changeUserRoleAction} from "@/actions/admin/change-role.action";
 
 const roleMeta: Record<AllUsersRolesType, {label: string; color: string; icon: React.ReactNode}> = {
-    user:      {label: "User",      color: "text-white/50 bg-white/[0.04] border-white/[0.08]",         icon: <UserIcon size={11}/>},
-    moderator: {label: "Moderator", color: "text-amber-400 bg-amber-500/10 border-amber-500/20",         icon: <ShieldWarningIcon size={11}/>},
-    admin:     {label: "Admin",     color: "text-red-400   bg-red-500/10   border-red-500/20",           icon: <ShieldCheckIcon size={11}/>},
+    user:      {label: "User",      color: "text-black/50 dark:text-white/50 bg-black/[0.04] dark:bg-white/[0.04] border-black/[0.08] dark:border-white/[0.08]", icon: <UserIcon size={11}/>},
+    moderator: {label: "Moderator", color: "text-amber-400 bg-amber-500/10 border-amber-500/20",                                                                  icon: <ShieldWarningIcon size={11}/>},
+    admin:     {label: "Admin",     color: "text-red-400 bg-red-500/10 border-red-500/20",                                                                        icon: <ShieldCheckIcon size={11}/>},
 };
 
 export default function AdminUsersPage() {
-    const [users, setUsers]       = useState<UserType[]>([]);
-    const [filtered, setFiltered] = useState<UserType[]>([]);
-    const [search, setSearch]     = useState("");
+    const [users, setUsers]           = useState<UserType[]>([]);
+    const [filtered, setFiltered]     = useState<UserType[]>([]);
+    const [search, setSearch]         = useState("");
     const [roleFilter, setRoleFilter] = useState<AllUsersRolesType | "all">("all");
     const [isPending, startTransition] = useTransition();
 
@@ -79,23 +79,23 @@ export default function AdminUsersPage() {
             {/* Orbs */}
             <div className="absolute -top-40 right-0 w-[600px] h-[600px] rounded-full bg-red-500/[0.06] blur-[120px] pointer-events-none"/>
             <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-(--contrast-color)/[0.05] blur-[100px] pointer-events-none"/>
-            <div className="absolute inset-0 pointer-events-none" style={{backgroundImage:"linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px)",backgroundSize:"48px 48px",maskImage:"radial-gradient(ellipse 100% 100% at 50% 0%,black 40%,transparent 100%)"}}/>
+            <div className="absolute inset-0 pointer-events-none" style={{backgroundImage: "linear-gradient(rgba(0,0,0,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.018) 1px,transparent 1px)", backgroundSize: "48px 48px", maskImage: "radial-gradient(ellipse 100% 100% at 50% 0%,black 40%,transparent 100%)"}}/>
 
             {/* Header */}
-            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-white/[0.06]">
+            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-black/[0.06] dark:border-white/[0.06]">
                 <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row sm:items-end justify-between gap-3">
                     <div>
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full bg-red-500/10 border border-red-500/20 text-[10px] font-semibold tracking-widest uppercase text-red-400">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-400 shadow-[0_0_6px_#f87171] animate-pulse"/>
                             Panel administratora
                         </div>
-                        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+                        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-black dark:text-white leading-tight">
                             Zarządzaj{" "}
                             <span className="bg-linear-to-br from-red-400 to-rose-400 bg-clip-text text-transparent">
                                 użytkownikami
                             </span>
                         </h1>
-                        <p className="text-sm text-white/30 font-light mt-1">
+                        <p className="text-sm text-black/30 dark:text-white/30 font-light mt-1">
                             {filtered.length} z {users.length} użytkowników
                         </p>
                     </div>
@@ -107,17 +107,17 @@ export default function AdminUsersPage() {
             </div>
 
             {/* Filters */}
-            <div className="relative z-10 px-4 sm:px-8 lg:px-12 py-4 border-b border-white/[0.04]">
+            <div className="relative z-10 px-4 sm:px-8 lg:px-12 py-4 border-b border-black/[0.04] dark:border-white/[0.04]">
                 <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row gap-3">
 
                     {/* Search */}
                     <div className="relative flex-1">
-                        <MagnifyingGlassIcon size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25"/>
+                        <MagnifyingGlassIcon size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-black/25 dark:text-white/25"/>
                         <input
                             value={search}
                             onChange={e => setSearch(e.target.value)}
                             placeholder="Szukaj po imieniu, nazwisku, e-mailu..."
-                            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-white/[0.08] bg-white/[0.04] text-white text-sm placeholder:text-white/20 outline-none focus:border-(--contrast-color)/40 focus:bg-(--contrast-color)/[0.04] transition-all duration-200"
+                            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.04] dark:bg-white/[0.04] text-black dark:text-white text-sm placeholder:text-black/20 dark:placeholder:text-white/20 outline-none focus:border-(--contrast-color)/40 focus:bg-(--contrast-color)/[0.04] transition-all duration-200"
                         />
                     </div>
 
@@ -131,7 +131,7 @@ export default function AdminUsersPage() {
                                     "px-3 py-2 rounded-xl border text-xs font-medium transition-all duration-150",
                                     roleFilter === r
                                         ? "border-(--contrast-color)/40 bg-(--contrast-color)/10 text-(--contrast-color)"
-                                        : "border-white/[0.07] bg-white/[0.025] text-white/40 hover:text-white/60",
+                                        : "border-black/[0.07] dark:border-white/[0.07] bg-black/[0.025] dark:bg-white/[0.025] text-black/40 dark:text-white/40 hover:text-black/60 dark:hover:text-white/60",
                                 ].join(" ")}
                             >
                                 {r === "all" ? "Wszyscy" : r.charAt(0).toUpperCase() + r.slice(1)}
@@ -144,10 +144,14 @@ export default function AdminUsersPage() {
             {/* Table */}
             <div className="relative z-10 flex-1 px-4 sm:px-8 lg:px-12 py-6">
                 <div className="max-w-screen-xl mx-auto">
-                    <div className="rounded-3xl border border-white/[0.07] bg-white/[0.018] backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.4)] overflow-hidden">
+                    <div className="
+                        rounded-3xl overflow-hidden backdrop-blur-2xl
+                        border border-black/[0.07] bg-black/[0.018] shadow-[0_16px_48px_rgba(0,0,0,0.1)]
+                        dark:border-white/[0.07] dark:bg-white/[0.018] dark:shadow-[0_16px_48px_rgba(0,0,0,0.4)]
+                    ">
 
                         {/* Table head */}
-                        <div className="hidden md:grid grid-cols-[1fr_2fr_1fr_1fr_auto] gap-4 px-6 py-3 border-b border-white/[0.05] text-[10px] font-medium tracking-widest uppercase text-white/25">
+                        <div className="hidden md:grid grid-cols-[1fr_2fr_1fr_1fr_auto] gap-4 px-6 py-3 border-b border-black/[0.05] dark:border-white/[0.05] text-[10px] font-medium tracking-widest uppercase text-black/25 dark:text-white/25">
                             <span>Użytkownik</span>
                             <span>E-mail</span>
                             <span>Rola</span>
@@ -157,32 +161,32 @@ export default function AdminUsersPage() {
 
                         {/* Rows */}
                         {filtered.length === 0 ? (
-                            <div className="py-16 text-center text-white/20 text-sm">Brak wyników</div>
+                            <div className="py-16 text-center text-black/20 dark:text-white/20 text-sm">Brak wyników</div>
                         ) : (
                             filtered.map((user, i) => (
                                 <div
                                     key={user.id}
                                     className={[
-                                        "grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_1fr_auto] gap-4 px-6 py-4 items-center transition-colors duration-150 hover:bg-white/[0.02]",
-                                        i !== filtered.length - 1 ? "border-b border-white/[0.04]" : "",
+                                        "grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_1fr_auto] gap-4 px-6 py-4 items-center transition-colors duration-150 hover:bg-black/[0.02] dark:hover:bg-white/[0.02]",
+                                        i !== filtered.length - 1 ? "border-b border-black/[0.04] dark:border-white/[0.04]" : "",
                                     ].join(" ")}
                                 >
                                     {/* Name */}
                                     <div className="flex items-center gap-2.5">
-                                        <div className="w-8 h-8 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center flex-shrink-0 text-white/30 overflow-hidden">
+                                        <div className="w-8 h-8 rounded-full bg-black/[0.06] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.08] flex items-center justify-center flex-shrink-0 text-black/30 dark:text-white/30 overflow-hidden">
                                             {user.image
                                                 ? <img src={user.image} alt="" className="w-full h-full object-cover"/>
                                                 : <UserIcon size={14}/>
                                             }
                                         </div>
                                         <div className="min-w-0">
-                                            <p className="text-sm font-medium text-white/80 truncate">{user.name} {user.surname}</p>
-                                            <p className="text-[10px] text-white/25 truncate md:hidden">{user.email}</p>
+                                            <p className="text-sm font-medium text-black/80 dark:text-white/80 truncate">{user.name} {user.surname}</p>
+                                            <p className="text-[10px] text-black/25 dark:text-white/25 truncate md:hidden">{user.email}</p>
                                         </div>
                                     </div>
 
                                     {/* Email */}
-                                    <p className="hidden md:block text-sm text-white/40 truncate">{user.email}</p>
+                                    <p className="hidden md:block text-sm text-black/40 dark:text-white/40 truncate">{user.email}</p>
 
                                     {/* Role select */}
                                     <div>
@@ -197,7 +201,7 @@ export default function AdminUsersPage() {
                                             ].join(" ")}
                                         >
                                             {AllUsersRolesEnum.map(r => (
-                                                <option key={r} value={r} className="bg-[#0d0f17] text-white">{r}</option>
+                                                <option key={r} value={r} className="bg-white dark:bg-[#0d0f17] text-black dark:text-white">{r}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -206,7 +210,7 @@ export default function AdminUsersPage() {
                                     <div className="flex items-center gap-2">
                                         <span className={[
                                             "text-sm font-bold",
-                                            user.badAttempts > 0 ? "text-red-400" : "text-white/25",
+                                            user.badAttempts > 0 ? "text-red-400" : "text-black/25 dark:text-white/25",
                                         ].join(" ")}>
                                             {user.badAttempts}
                                         </span>
@@ -214,14 +218,14 @@ export default function AdminUsersPage() {
                                             <button
                                                 onClick={() => handleBadAttempts(user.id)}
                                                 disabled={isPending}
-                                                className="text-[10px] text-white/25 hover:text-white/60 underline underline-offset-2 transition-colors disabled:opacity-40"
+                                                className="text-[10px] text-black/25 dark:text-white/25 hover:text-black/60 dark:hover:text-white/60 underline underline-offset-2 transition-colors disabled:opacity-40"
                                             >
                                                 reset
                                             </button>
                                         )}
                                     </div>
 
-                                    {/* Role badge mobile */}
+                                    {/* Role badge */}
                                     <div className="flex items-center gap-1.5">
                                         <span className={["inline-flex items-center gap-1 px-2 py-0.5 rounded-full border text-[10px] font-semibold", roleMeta[user.role].color].join(" ")}>
                                             {roleMeta[user.role].icon}
@@ -236,7 +240,7 @@ export default function AdminUsersPage() {
                     {/* Back */}
                     <Link
                         href={shortcuts.settings + shortcuts.admin}
-                        className="mt-6 inline-flex items-center gap-2 text-xs text-white/25 hover:text-white/60 transition-colors"
+                        className="mt-6 inline-flex items-center gap-2 text-xs text-black/25 dark:text-white/25 hover:text-black/60 dark:hover:text-white/60 transition-colors"
                     >
                         <ArrowLeftIcon size={12}/>
                         Wróć do panelu admina

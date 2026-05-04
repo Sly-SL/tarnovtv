@@ -23,8 +23,16 @@ const contacts = [
     {icon: <ClockIcon size={18} weight="duotone"/>, label: "Odpowiadamy", value: "Pon–Pt, 9:00–18:00", href: null},
 ];
 
-const inputCls = "w-full px-4 py-3 rounded-xl border border-white/[0.08] bg-white/[0.04] text-white text-sm placeholder:text-white/20 outline-none focus:border-(--contrast-color)/40 focus:bg-(--contrast-color)/[0.06] focus:shadow-[0_0_0_3px_rgba(99,102,241,0.1)] transition-all duration-200";
-const labelCls = "block text-[11px] font-medium tracking-widest uppercase text-white/35 mb-2";
+const inputCls = [
+    "w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all duration-200 resize-none",
+    "border-black/[0.08] dark:border-white/[0.08]",
+    "bg-black/[0.03] dark:bg-white/[0.04]",
+    "text-black dark:text-white",
+    "placeholder:text-black/25 dark:placeholder:text-white/20",
+    "focus:border-(--contrast-color)/40 focus:bg-(--contrast-color)/[0.04] dark:focus:bg-(--contrast-color)/[0.06] focus:shadow-[0_0_0_3px_rgba(99,102,241,0.1)]",
+].join(" ");
+
+const labelCls = "block text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35 mb-2";
 
 const ContactPage = () => {
     const [sent, setSent] = useState(false);
@@ -58,7 +66,7 @@ const ContactPage = () => {
 
             {/* Grid */}
             <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0 pointer-events-none opacity-30 dark:opacity-100"
                 style={{
                     backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
                     backgroundSize: "48px 48px",
@@ -76,24 +84,24 @@ const ContactPage = () => {
                         <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
                         Kontakt
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-3">
+                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-black dark:text-white leading-tight mb-3">
                         Porozmawiajmy o{" "}
                         <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                             Tarnowie
                         </span>
                     </h1>
-                    <p className="text-base text-white/30 font-light max-w-lg">
+                    <p className="text-base text-black/40 dark:text-white/30 font-light max-w-lg">
                         Masz pomysł, pytanie lub chcesz nawiązać współpracę? Napisz do nas — odpowiadamy w ciągu 24h.
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6">
 
-                    {/* ── Form ── */}
-                    <div className="rounded-3xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-2xl shadow-[0_32px_72px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.035)_inset] p-8">
+                    {/* Form */}
+                    <div className="rounded-3xl border hover:scale-[1.02] duration-700 border-black/[0.07] dark:border-white/[0.07] bg-black/[0.03] dark:bg-white/[0.028] backdrop-blur-2xl shadow-[0_32px_72px_rgba(0,0,0,0.08)] dark:shadow-[0_32px_72px_rgba(0,0,0,0.4)] p-8">
                         {!sent ? (
                             <>
-                                <p className="text-[11px] font-medium tracking-widest uppercase text-white/35 mb-6">Wyślij wiadomość</p>
+                                <p className={labelCls + " mb-6"}>Wyślij wiadomość</p>
                                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -110,14 +118,14 @@ const ContactPage = () => {
                                     <div>
                                         <label className={labelCls}>Temat</label>
                                         <select name="subject" value={values.subject} onChange={handleChange} required className={inputCls + " cursor-pointer"}>
-                                            <option value="" disabled className="bg-[#0d0f17]">Wybierz temat</option>
-                                            {subjects.map(s => <option key={s} value={s} className="bg-[#0d0f17]">{s}</option>)}
+                                            <option value="" disabled className="bg-white dark:bg-[#0d0f17]">Wybierz temat</option>
+                                            {subjects.map(s => <option key={s} value={s} className="bg-white dark:bg-[#0d0f17]">{s}</option>)}
                                         </select>
                                     </div>
 
                                     <div>
                                         <label className={labelCls}>Wiadomość</label>
-                                        <textarea name="message" value={values.message} onChange={handleChange} required rows={5} placeholder="Opisz czego potrzebujesz..." className={inputCls + " resize-none"}/>
+                                        <textarea name="message" value={values.message} onChange={handleChange} required rows={5} placeholder="Opisz czego potrzebujesz..." className={inputCls}/>
                                     </div>
 
                                     <button
@@ -138,8 +146,8 @@ const ContactPage = () => {
                                     <CheckCircleIcon size={28} weight="duotone"/>
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-bold text-white mb-2">Wiadomość wysłana!</h2>
-                                    <p className="text-sm text-white/30">Dziękujemy — odpiszemy najszybciej jak to możliwe.</p>
+                                    <h2 className="text-xl font-bold text-black dark:text-white mb-2">Wiadomość wysłana!</h2>
+                                    <p className="text-sm text-black/40 dark:text-white/30">Dziękujemy — odpiszemy najszybciej jak to możliwe.</p>
                                 </div>
                                 <button
                                     onClick={() => {setSent(false); setValues({name:"",email:"",subject:"",message:""});}}
@@ -151,26 +159,26 @@ const ContactPage = () => {
                         )}
                     </div>
 
-                    {/* ── Sidebar ── */}
+                    {/* Sidebar */}
                     <div className="flex flex-col gap-4">
 
                         {/* Contact info */}
-                        <div className="rounded-3xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.4)] p-6">
-                            <p className="text-[11px] font-medium tracking-widest uppercase text-white/35 mb-5">Dane kontaktowe</p>
+                        <div className="rounded-3xl border hover:scale-[1.02] duration-700 border-black/[0.07] dark:border-white/[0.07] bg-black/[0.03] dark:bg-white/[0.028] backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.08)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.4)] p-6">
+                            <p className="text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35 mb-5">Dane kontaktowe</p>
                             <div className="flex flex-col gap-3">
                                 {contacts.map(c => (
                                     <div key={c.label} className="flex items-start gap-3">
-                                        <div className="w-8 h-8 rounded-xl flex items-center justify-center bg-white/[0.04] border border-white/[0.06] text-white/40 flex-shrink-0">
+                                        <div className="w-8 h-8 rounded-xl flex items-center justify-center bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.06] text-black/40 dark:text-white/40 flex-shrink-0">
                                             {c.icon}
                                         </div>
                                         <div>
-                                            <p className="text-[10px] uppercase tracking-widest text-white/25 mb-0.5">{c.label}</p>
+                                            <p className="text-[10px] uppercase tracking-widest text-black/25 dark:text-white/25 mb-0.5">{c.label}</p>
                                             {c.href ? (
-                                                <Link href={c.href} className="text-sm text-white/55 hover:text-(--contrast-color) transition-colors">
+                                                <Link href={c.href} className="text-sm text-black/55 dark:text-white/55 hover:text-(--contrast-color) transition-colors">
                                                     {c.value}
                                                 </Link>
                                             ) : (
-                                                <p className="text-sm text-white/55">{c.value}</p>
+                                                <p className="text-sm text-black/55 dark:text-white/55">{c.value}</p>
                                             )}
                                         </div>
                                     </div>
@@ -186,11 +194,11 @@ const ContactPage = () => {
                             href="https://maps.google.com/?q=Tarnów"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group rounded-3xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.4)] flex flex-col items-center justify-center gap-2 py-7 text-center hover:border-(--contrast-color)/25 hover:bg-(--contrast-color)/[0.04] transition-all duration-150"
+                            className="group rounded-3xl hover:scale-[1.02] duration-700 border border-black/[0.07] dark:border-white/[0.07] bg-black/[0.03] dark:bg-white/[0.028] backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.08)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.4)] flex flex-col items-center justify-center gap-2 py-7 text-center hover:border-(--contrast-color)/25 hover:bg-(--contrast-color)/[0.04] transition-all"
                         >
-                            <MapPinIcon size={26} weight="duotone" className="text-white/25 group-hover:text-(--contrast-color) transition-colors"/>
-                            <p className="text-sm font-medium text-white/40 group-hover:text-white transition-colors">Tarnów, Małopolska</p>
-                            <p className="text-xs text-white/20 group-hover:text-(--contrast-color)/60 transition-colors">Otwórz w Google Maps →</p>
+                            <MapPinIcon size={26} weight="duotone" className="text-black/25 dark:text-white/25 group-hover:text-(--contrast-color) transition-colors"/>
+                            <p className="text-sm font-medium text-black/40 dark:text-white/40 group-hover:text-black dark:group-hover:text-white transition-colors">Tarnów, Małopolska</p>
+                            <p className="text-xs text-black/20 dark:text-white/20 group-hover:text-(--contrast-color)/60 transition-colors">Otwórz w Google Maps →</p>
                         </Link>
                     </div>
                 </div>

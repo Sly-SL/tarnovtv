@@ -42,7 +42,6 @@ const X1Y1HalfSettings = (user: UserType) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const router = useRouter();
 
-
     const {
         control,
         handleSubmit,
@@ -100,7 +99,6 @@ const X1Y1HalfSettings = (user: UserType) => {
 
     return (
         <Animate preset="fadeLeft">
-            {/* Full-screen container */}
             <div className="relative min-h-screen w-full flex flex-col overflow-hidden">
 
                 {/* ── Background layer ── */}
@@ -111,34 +109,33 @@ const X1Y1HalfSettings = (user: UserType) => {
                     className="absolute inset-0 pointer-events-none"
                     style={{
                         backgroundImage:
-                            "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+                            "linear-gradient(rgba(0,0,0,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.018) 1px, transparent 1px)",
                         backgroundSize: "48px 48px",
                         maskImage: "radial-gradient(ellipse 100% 100% at 50% 0%, black 40%, transparent 100%)",
                     }}
                 />
 
                 {/* ── Page header ── */}
-                <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-white/[0.06]">
+                <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-black/[0.06] dark:border-white/[0.06]">
                     <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
                         <div>
                             <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full bg-(--contrast-color)/10 border border-indigo-500/20 text-[10px] font-semibold tracking-widest uppercase text-(--contrast-color)/85">
                                 <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
                                 Ustawienia konta
                             </div>
-                            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-black dark:text-white leading-tight">
                                 Twój{" "}
                                 <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                                     Profil
                                 </span>
                             </h1>
-                            <p className="text-sm text-white/30 font-light mt-1">
+                            <p className="text-sm text-black/30 dark:text-white/30 font-light mt-1">
                                 Zarządzaj swoimi danymi i personalizuj konto.
                             </p>
                         </div>
 
-                        {/* Role + ID chip – visible on desktop in header */}
                         <div className="hidden sm:flex items-center gap-3">
-                            <span className="text-[10px] uppercase tracking-widest text-white/25 font-mono">
+                            <span className="text-[10px] uppercase tracking-widest text-black/25 dark:text-white/25 font-mono">
                                 {user.id.slice(0, 12)}…
                             </span>
                             <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase border ${roleBadge[user.role] ?? roleBadge.user}`}>
@@ -151,24 +148,27 @@ const X1Y1HalfSettings = (user: UserType) => {
                 {/* ── Main content ── */}
                 <div className="relative z-10 flex-1 px-4 sm:px-8 lg:px-12 py-8">
                     <div className="max-w-screen-xl mx-auto">
-
-                        {/* Two-column on ≥ lg, single column on mobile */}
                         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] xl:grid-cols-[320px_1fr] gap-6 lg:gap-8 items-stretch">
 
                             {/* ── LEFT: Avatar card ── */}
-                            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] p-6 flex flex-col items-center gap-4 h-full justify-between">
-                                <div className="flex flex-col gap-0.5 px-3 py-2 rounded-xl border border-white/[0.05] bg-white/[0.018]">
+                            <div className="
+                                rounded-2xl p-6 flex flex-col items-center gap-4 h-full justify-between
+                                border border-black/[0.07] bg-black/[0.028] shadow-[0_16px_48px_rgba(0,0,0,0.08)]
+                                dark:border-white/[0.07] dark:bg-white/[0.028] dark:shadow-[0_16px_48px_rgba(0,0,0,0.35)]
+                                backdrop-blur-xl
+                            ">
+                                <div className="flex flex-col gap-0.5 px-3 py-2 rounded-xl border border-black/[0.05] bg-black/[0.018] dark:border-white/[0.05] dark:bg-white/[0.018]">
                                     <button
-                                    onClick={async () => { await LogoutAction(); router.refresh(); }}
-                                    className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs text-red-400/70 hover:text-red-400 hover:bg-red-500/[0.05] transition-colors">
-                                    <SignOutIcon size={14} />
-                                    Wyloguj się
+                                        onClick={async () => { await LogoutAction(); router.refresh(); }}
+                                        className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs text-red-400/70 hover:text-red-400 hover:bg-red-500/[0.05] transition-colors">
+                                        <SignOutIcon size={14}/>
+                                        Wyloguj się
                                     </button>
                                 </div>
 
                                 {/* Avatar picker */}
                                 <label className="relative cursor-pointer group">
-                                    <div className="relative w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] rounded-full overflow-hidden border-2 border-white/10 group-hover:border-(--contrast-color)/40 transition-all duration-200 shadow-[0_0_0_4px_rgba(255,255,255,0.03)]">
+                                    <div className="relative w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] rounded-full overflow-hidden border-2 border-black/10 dark:border-white/10 group-hover:border-(--contrast-color)/40 transition-all duration-200 shadow-[0_0_0_4px_rgba(0,0,0,0.03)] dark:shadow-[0_0_0_4px_rgba(255,255,255,0.03)]">
                                         {displayPhoto ? (
                                             <Image
                                                 src={displayPhoto}
@@ -178,7 +178,7 @@ const X1Y1HalfSettings = (user: UserType) => {
                                                 className="object-cover"
                                             />
                                         ) : (
-                                            <div className="w-full h-full flex items-center justify-center bg-white/[0.04] text-white/20">
+                                            <div className="w-full h-full flex items-center justify-center bg-black/[0.04] dark:bg-white/[0.04] text-black/20 dark:text-white/20">
                                                 <UserCircleGearIcon size={60}/>
                                             </div>
                                         )}
@@ -189,22 +189,20 @@ const X1Y1HalfSettings = (user: UserType) => {
                                     <input type="file" accept="image/*" className="hidden" onChange={handleChangeAvatar}/>
                                 </label>
 
-                                {/* Name + role on mobile (also shown here on all sizes) */}
                                 <div className="text-center">
-                                    <p className="text-base font-semibold text-white">{user.name} {user.surname}</p>
+                                    <p className="text-base font-semibold text-black dark:text-white">{user.name} {user.surname}</p>
                                     <span className={`inline-flex items-center mt-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase border ${roleBadge[user.role] ?? roleBadge.user}`}>
                                         {user.role}
                                     </span>
                                 </div>
 
                                 {/* ID on mobile */}
-                                <div className="sm:hidden w-full flex flex-col gap-1 px-3 py-2.5 rounded-xl border border-white/[0.05] bg-white/[0.018]">
-                                    <span className="text-[10px] uppercase tracking-widest text-white/25">ID konta</span>
-                                    <span className="text-white/40 font-mono text-[11px] truncate">{user.id}</span>
+                                <div className="sm:hidden w-full flex flex-col gap-1 px-3 py-2.5 rounded-xl border border-black/[0.05] bg-black/[0.018] dark:border-white/[0.05] dark:bg-white/[0.018]">
+                                    <span className="text-[10px] uppercase tracking-widest text-black/25 dark:text-white/25">ID konta</span>
+                                    <span className="text-black/40 dark:text-white/40 font-mono text-[11px] truncate">{user.id}</span>
                                 </div>
 
-                                {/* Divider */}
-                                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent"/>
+                                <div className="w-full h-px bg-gradient-to-r from-transparent via-black/[0.07] to-transparent dark:via-white/[0.07]"/>
 
                                 {/* Info cells */}
                                 <div className="w-full flex flex-col gap-2 text-xs">
@@ -212,14 +210,13 @@ const X1Y1HalfSettings = (user: UserType) => {
                                         {label: "E-mail", value: user.email},
                                         {label: "Płeć", value: user.gender === "male" ? "Mężczyzna" : "Kobieta"},
                                     ].map(({label, value}) => (
-                                        <div key={label} className="flex flex-col gap-0.5 px-3 py-2 rounded-xl border border-white/[0.05] bg-white/[0.018]">
-                                            <span className="text-[10px] uppercase tracking-widest text-white/25">{label}</span>
-                                            <span className="text-white/55 font-medium truncate">{value}</span>
+                                        <div key={label} className="flex flex-col gap-0.5 px-3 py-2 rounded-xl border border-black/[0.05] bg-black/[0.018] dark:border-white/[0.05] dark:bg-white/[0.018]">
+                                            <span className="text-[10px] uppercase tracking-widest text-black/25 dark:text-white/25">{label}</span>
+                                            <span className="text-black/55 dark:text-white/55 font-medium truncate">{value}</span>
                                         </div>
                                     ))}
                                 </div>
 
-                                {/* Save photo CTA */}
                                 {photo && (
                                     <button
                                         type="button"
@@ -234,13 +231,17 @@ const X1Y1HalfSettings = (user: UserType) => {
                             </div>
 
                             {/* ── RIGHT: Form card ── */}
-                            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] p-6 sm:p-8">
+                            <div className="
+                                rounded-2xl p-6 sm:p-8
+                                border border-black/[0.07] bg-black/[0.028] shadow-[0_16px_48px_rgba(0,0,0,0.08)]
+                                dark:border-white/[0.07] dark:bg-white/[0.028] dark:shadow-[0_16px_48px_rgba(0,0,0,0.35)]
+                                backdrop-blur-xl
+                            ">
                                 <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }`}</style>
 
                                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
 
-                                    {/* Section: Dane osobowe */}
-                                    <span className="block text-[11px] font-medium tracking-widest uppercase text-white/35">
+                                    <span className="block text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35">
                                         Dane osobowe
                                     </span>
 
@@ -278,20 +279,19 @@ const X1Y1HalfSettings = (user: UserType) => {
                                         )}
                                     />
 
-                                    {/* ID read-only – desktop only (mobile shows in left card) */}
-                                    <div className="hidden sm:flex flex-col gap-1 px-3 py-2.5 rounded-xl border border-white/[0.05] bg-white/[0.018]">
-                                        <span className="text-[10px] uppercase tracking-widest text-white/25">ID konta</span>
-                                        <span className="text-white/40 font-mono text-xs truncate">{user.id}</span>
+                                    {/* ID read-only – desktop only */}
+                                    <div className="hidden sm:flex flex-col gap-1 px-3 py-2.5 rounded-xl border border-black/[0.05] bg-black/[0.018] dark:border-white/[0.05] dark:bg-white/[0.018]">
+                                        <span className="text-[10px] uppercase tracking-widest text-black/25 dark:text-white/25">ID konta</span>
+                                        <span className="text-black/40 dark:text-white/40 font-mono text-xs truncate">{user.id}</span>
                                     </div>
 
-                                    <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent"/>
+                                    <div className="w-full h-px bg-gradient-to-r from-transparent via-black/[0.07] to-transparent dark:via-white/[0.07]"/>
 
-                                    {/* Section: Zmiana hasła */}
                                     <div>
-                                        <span className="block text-[11px] font-medium tracking-widest uppercase text-white/35">
+                                        <span className="block text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35">
                                             Zmiana hasła
                                         </span>
-                                        <p className="text-[11px] text-white/25 mt-0.5">
+                                        <p className="text-[11px] text-black/25 dark:text-white/25 mt-0.5">
                                             Zostaw puste, jeśli nie chcesz zmieniać hasła.
                                         </p>
                                     </div>
@@ -320,7 +320,7 @@ const X1Y1HalfSettings = (user: UserType) => {
                                                     <button
                                                         type="button"
                                                         onClick={() => setPasswordVisible((v) => !v)}
-                                                        className="absolute right-2.5 top-[34px] text-white/30 hover:text-white/60 transition-colors"
+                                                        className="absolute right-2.5 top-[34px] text-black/30 dark:text-white/30 hover:text-black/60 dark:hover:text-white/60 transition-colors"
                                                     >
                                                         {passwordVisible ? <EyeSlashIcon size={16}/> : <EyeIcon size={16}/>}
                                                     </button>
@@ -346,7 +346,7 @@ const X1Y1HalfSettings = (user: UserType) => {
                                                     <button
                                                         type="button"
                                                         onClick={() => setPasswordVisible((v) => !v)}
-                                                        className="absolute right-2.5 top-[34px] text-white/30 hover:text-white/60 transition-colors"
+                                                        className="absolute right-2.5 top-[34px] text-black/30 dark:text-white/30 hover:text-black/60 dark:hover:text-white/60 transition-colors"
                                                     >
                                                         {passwordVisible ? <EyeSlashIcon size={16}/> : <EyeIcon size={16}/>}
                                                     </button>
@@ -355,7 +355,7 @@ const X1Y1HalfSettings = (user: UserType) => {
                                         />
                                     </div>
 
-                                    <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent"/>
+                                    <div className="w-full h-px bg-gradient-to-r from-transparent via-black/[0.07] to-transparent dark:via-white/[0.07]"/>
 
                                     <BasicButton
                                         type="submit"

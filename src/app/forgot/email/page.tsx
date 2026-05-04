@@ -34,40 +34,50 @@ const ForgotEmailForm = () => {
     };
 
     return (
-        <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden">
+        <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden
+                        bg-transparent">
 
-            <div className="absolute -top-40 -right-28 w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[90px] pointer-events-none"/>
-            <div className="absolute -bottom-24 -left-20 w-[350px] h-[350px] rounded-full bg-violet-500/[0.07] blur-[90px] pointer-events-none"/>
+            {/* Декоративные блобы */}
+            <div className="absolute -top-40 -right-28 w-[500px] h-[500px] rounded-full
+                            bg-indigo-500/10 dark:bg-indigo-500/10 blur-[90px] pointer-events-none"/>
+            <div className="absolute -bottom-24 -left-20 w-[350px] h-[350px] rounded-full
+                            bg-violet-500/[0.07] blur-[90px] pointer-events-none"/>
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)",
                     backgroundSize: "48px 48px",
                     maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)",
                 }}
             />
 
             <div
-                className="relative z-10 w-full max-w-[420px] rounded-3xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-2xl shadow-[0_32px_72px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.035)_inset] p-10"
+                className="relative z-10 w-full max-w-[420px] rounded-3xl p-10
+                           border border-gray-200  shadow-sm
+                           dark:border-white/[0.07] dark:bg-white/[0.028] dark:backdrop-blur-2xl
+                           dark:shadow-[0_32px_72px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.035)_inset]"
                 style={{animation: "fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both"}}
             >
                 <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }`}</style>
 
                 {/* Badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full bg-(--contrast-color)/10 border border-indigo-500/20 text-[10px] font-semibold tracking-widest uppercase text-(--contrast-color)/85">
-                    <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full
+                                bg-indigo-50 border border-indigo-200 text-indigo-600 text-[10px] font-semibold tracking-widest uppercase
+                                dark:bg-(--contrast-color)/10 dark:border-indigo-500/20 dark:text-(--contrast-color)/85">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
                     Szukaj e-maila
                 </div>
 
                 {!foundEmail ? (
                     <>
-                        <h1 className="text-3xl font-extrabold tracking-tight text-white leading-tight mb-1">
+                        <h1 className="text-3xl font-extrabold tracking-tight leading-tight mb-1
+                                       text-gray-900 dark:text-white">
                             Znajdź swój{" "}
                             <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                                 e-mail
                             </span>
                         </h1>
-                        <p className="text-sm text-white/30 font-light mb-7">
+                        <p className="text-sm font-light mb-7 text-gray-500 dark:text-white/30">
                             Podaj dane z profilu — znajdziemy powiązane konto.
                         </p>
 
@@ -108,7 +118,8 @@ const ForgotEmailForm = () => {
                                 control={control}
                                 render={({field}) => (
                                     <div>
-                                        <span className="block text-[11px] font-medium tracking-widest uppercase text-white/35 mb-2">
+                                        <span className="block text-[11px] font-medium tracking-widest uppercase mb-2
+                                                         text-gray-400 dark:text-white/35">
                                             Płeć
                                         </span>
                                         <div className="grid grid-cols-2 gap-2">
@@ -120,8 +131,8 @@ const ForgotEmailForm = () => {
                                                     className={[
                                                         "flex items-center justify-center gap-1.5 py-2 rounded-xl border text-sm font-medium transition-all duration-150",
                                                         field.value === g
-                                                            ? "border-(--contrast-color)/45 bg-indigo-500/10 text-(--contrast-color) shadow-[0_0_0_2px_rgba(99,102,241,0.1)]"
-                                                            : "border-white/[0.07] bg-white/[0.025] text-white/38 hover:border-(--contrast-color)/20 hover:text-white/60",
+                                                            ? "border-indigo-400/50 bg-indigo-50 text-indigo-600 dark:border-(--contrast-color)/45 dark:bg-indigo-500/10 dark:text-(--contrast-color) dark:shadow-[0_0_0_2px_rgba(99,102,241,0.1)]"
+                                                            : "border-gray-200 bg-gray-50 text-gray-400 hover:border-indigo-300 hover:text-gray-600 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/38 dark:hover:border-(--contrast-color)/20 dark:hover:text-white/60",
                                                     ].join(" ")}
                                                 >
                                                     {g === "male" ? "♂ Mężczyzna" : "♀ Kobieta"}
@@ -145,21 +156,29 @@ const ForgotEmailForm = () => {
                 ) : (
                     /* Result state */
                     <div className="flex flex-col items-center text-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-(--contrast-color)/10 border border-(--contrast-color)/20 text-(--contrast-color)">
+                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center
+                                        bg-indigo-50 border border-indigo-200 text-indigo-500
+                                        dark:bg-(--contrast-color)/10 dark:border-(--contrast-color)/20 dark:text-(--contrast-color)">
                             <EnvelopeIcon size={24} weight="duotone"/>
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold text-white mb-1">Znaleźliśmy konto</h2>
-                            <p className="text-sm text-white/30 mb-4">
+                            <h2 className="text-xl font-bold mb-1 text-gray-900 dark:text-white">
+                                Znaleźliśmy konto
+                            </h2>
+                            <p className="text-sm mb-4 text-gray-500 dark:text-white/30">
                                 Adres e-mail powiązany z Twoim profilem:
                             </p>
-                            <div className="px-4 py-3 rounded-xl border border-(--contrast-color)/20 bg-(--contrast-color)/[0.06] text-(--contrast-color) font-mono text-sm tracking-wide">
+                            <div className="px-4 py-3 rounded-xl border font-mono text-sm tracking-wide
+                                            border-indigo-200 bg-indigo-50 text-indigo-600
+                                            dark:border-(--contrast-color)/20 dark:bg-(--contrast-color)/[0.06] dark:text-(--contrast-color)">
                                 {foundEmail}
                             </div>
                         </div>
                         <Link
                             href={shortcuts.login}
-                            className="mt-2 w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-white/[0.07] bg-white/[0.025] text-sm font-medium text-white/60 hover:text-white hover:border-(--contrast-color)/25 transition-all duration-150"
+                            className="mt-2 w-full flex items-center justify-center gap-2 py-3 rounded-xl border text-sm font-medium transition-all duration-150
+                                       border-gray-200 bg-gray-50 text-gray-500 hover:text-gray-800 hover:border-indigo-300
+                                       dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/60 dark:hover:text-white dark:hover:border-(--contrast-color)/25"
                         >
                             Przejdź do logowania →
                         </Link>
@@ -168,7 +187,9 @@ const ForgotEmailForm = () => {
 
                 <Link
                     href={shortcuts.forgot}
-                    className="mt-6 flex items-center justify-center gap-2 text-xs text-white/25 hover:text-(--contrast-color)/65 transition-colors"
+                    className="mt-6 flex items-center justify-center gap-2 text-xs transition-colors
+                               text-gray-300 hover:text-indigo-500
+                               dark:text-white/25 dark:hover:text-(--contrast-color)/65"
                 >
                     <ArrowLeftIcon size={12}/>
                     Wróć do wyboru opcji

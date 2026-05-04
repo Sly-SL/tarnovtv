@@ -7,7 +7,7 @@ const presets = ["fadeRight", "fadeDown", "fadeUp", "fadeLeft"] as const;
 
 const Page = () => {
     return (
-        <div className="relative min-h-screen px-4 py-16 overflow-hidden">
+        <div className="relative min-h-screen px-4 py-16 overflow-hidden bg-transparent">
 
             {/* Orbs */}
             <div className="absolute -top-40 -right-28 w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[90px] pointer-events-none"/>
@@ -17,7 +17,7 @@ const Page = () => {
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)",
                     backgroundSize: "48px 48px",
                     maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)",
                 }}
@@ -32,18 +32,21 @@ const Page = () => {
                 >
                     <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }`}</style>
 
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-4 rounded-full bg-(--contrast-color)/10 border border-indigo-500/20 text-[10px] font-semibold tracking-widest uppercase text-(--contrast-color)/85">
-                        <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-4 rounded-full text-[10px] font-semibold tracking-widest uppercase
+                                    bg-indigo-50 border border-indigo-200 text-indigo-600
+                                    dark:bg-(--contrast-color)/10 dark:border-indigo-500/20 dark:text-(--contrast-color)/85">
+                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
                         Nawigacja
                     </div>
 
-                    <h1 className="text-3xl font-extrabold tracking-tight text-white leading-tight">
+                    <h1 className="text-3xl font-extrabold tracking-tight leading-tight
+                                   text-gray-900 dark:text-white">
                         Więcej{" "}
                         <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                             opcji
                         </span>
                     </h1>
-                    <p className="text-sm text-white/30 font-light mt-1">
+                    <p className="text-sm font-light mt-1 text-gray-500 dark:text-white/30">
                         Wszystkie sekcje w jednym miejscu.
                     </p>
                 </div>
@@ -59,8 +62,12 @@ const Page = () => {
                             once
                         >
                             <Link href={button.link} className="block h-full group">
-                                <LiquidGlassCustom className="h-full min-h-[100px] flex flex-col items-center justify-center gap-2 group-hover:border-(--contrast-color)/30 group-hover:bg-(--contrast-color)/[0.04] transition-all duration-300">
-                                    <div className="text-white/50 group-hover:text-(--contrast-color) transition-colors duration-300">
+                                <LiquidGlassCustom className="h-full min-h-[100px] flex flex-col items-center justify-center gap-2 transition-all duration-300
+                                                              group-hover:border-indigo-300 group-hover:bg-indigo-50
+                                                              dark:group-hover:border-(--contrast-color)/30 dark:group-hover:bg-(--contrast-color)/[0.04]">
+                                    <div className="transition-colors duration-300
+                                                    text-gray-400 group-hover:text-indigo-500
+                                                    dark:text-white/50 dark:group-hover:text-(--contrast-color)">
                                         {button.children}
                                     </div>
                                 </LiquidGlassCustom>

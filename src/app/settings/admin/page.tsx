@@ -54,23 +54,23 @@ const Page = async () => {
             {/* Orbs */}
             <div className="absolute -top-40 right-0 w-[600px] h-[600px] rounded-full bg-(--contrast-color)/10 blur-[120px] pointer-events-none"/>
             <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-red-500/[0.07] blur-[100px] pointer-events-none"/>
-            <div className="absolute inset-0 pointer-events-none" style={{backgroundImage:"linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px)",backgroundSize:"48px 48px",maskImage:"radial-gradient(ellipse 100% 100% at 50% 0%,black 40%,transparent 100%)"}}/>
+            <div className="absolute inset-0 pointer-events-none" style={{backgroundImage: "linear-gradient(rgba(0,0,0,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.018) 1px,transparent 1px)", backgroundSize: "48px 48px", maskImage: "radial-gradient(ellipse 100% 100% at 50% 0%,black 40%,transparent 100%)"}}/>
 
             {/* Header */}
-            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-white/[0.06]">
+            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-black/[0.06] dark:border-white/[0.06]">
                 <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row sm:items-end justify-between gap-3">
                     <div>
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full bg-red-500/10 border border-red-500/20 text-[10px] font-semibold tracking-widest uppercase text-red-400">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-400 shadow-[0_0_6px_#f87171] animate-pulse"/>
                             Panel administratora
                         </div>
-                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-black dark:text-white leading-tight">
                             Witaj w{" "}
                             <span className="bg-linear-to-br from-red-400 to-rose-400 bg-clip-text text-transparent">
                                 panelu admina
                             </span>
                         </h1>
-                        <p className="text-sm text-white/30 font-light mt-1">
+                        <p className="text-sm text-black/30 dark:text-white/30 font-light mt-1">
                             Pełna kontrola nad stroną — działaj z rozsądkiem.
                         </p>
                     </div>
@@ -89,12 +89,16 @@ const Page = async () => {
                         <Animate preset="fadeUp" once>
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                                 {statCards.map((s, i) => (
-                                    <div key={i} className="rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl p-4">
+                                    <div key={i} className="
+                                        rounded-2xl p-4 backdrop-blur-xl
+                                        border border-black/[0.07] bg-black/[0.028]
+                                        dark:border-white/[0.07] dark:bg-white/[0.028]
+                                    ">
                                         <div className={`w-8 h-8 rounded-xl flex items-center justify-center border mb-3 ${s.color}`}>
                                             {s.icon}
                                         </div>
-                                        <p className="text-2xl font-extrabold text-white">{s.value}</p>
-                                        <p className="text-xs text-white/30 mt-0.5">{s.label}</p>
+                                        <p className="text-2xl font-extrabold text-black dark:text-white">{s.value}</p>
+                                        <p className="text-xs text-black/30 dark:text-white/30 mt-0.5">{s.label}</p>
                                     </div>
                                 ))}
                             </div>
@@ -106,7 +110,7 @@ const Page = async () => {
                         {/* Sections */}
                         <Animate preset="fadeUp" delay={60} once>
                             <div className="flex flex-col gap-3">
-                                <p className="text-[11px] font-medium tracking-widest uppercase text-white/35 mb-1">Sekcje</p>
+                                <p className="text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35 mb-1">Sekcje</p>
                                 {sections.map((s) => (
                                     <Link key={s.href} href={s.href}>
                                         <div className={`group rounded-2xl border ${s.border} ${s.bg} backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] p-5 flex items-center gap-4 transition-all duration-200 cursor-pointer`}>
@@ -114,24 +118,28 @@ const Page = async () => {
                                                 {s.icon}
                                             </div>
                                             <div className="flex flex-col gap-0.5 flex-1">
-                                                <span className="text-sm font-semibold text-white">{s.label}</span>
-                                                <span className="text-xs text-white/30">{s.description}</span>
+                                                <span className="text-sm font-semibold text-black dark:text-white">{s.label}</span>
+                                                <span className="text-xs text-black/30 dark:text-white/30">{s.description}</span>
                                             </div>
-                                            <ArrowRightIcon size={14} className="text-white/20 group-hover:text-white/50 group-hover:translate-x-0.5 transition-all duration-150"/>
+                                            <ArrowRightIcon size={14} className="text-black/20 dark:text-white/20 group-hover:text-black/50 dark:group-hover:text-white/50 group-hover:translate-x-0.5 transition-all duration-150"/>
                                         </div>
                                     </Link>
                                 ))}
                             </div>
                         </Animate>
 
-                        {/* Sidebar — roles + top countries */}
+                        {/* Sidebar */}
                         <Animate preset="fadeLeft" delay={120} once>
                             <div className="flex flex-col gap-4">
 
                                 {/* Roles breakdown */}
                                 {stats && (
-                                    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl p-5">
-                                        <p className="text-[11px] font-medium tracking-widest uppercase text-white/35 mb-4">Podział ról</p>
+                                    <div className="
+                                        rounded-2xl p-5 backdrop-blur-xl
+                                        border border-black/[0.07] bg-black/[0.028]
+                                        dark:border-white/[0.07] dark:bg-white/[0.028]
+                                    ">
+                                        <p className="text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35 mb-4">Podział ról</p>
                                         <div className="flex flex-col gap-2">
                                             {Object.entries(stats.byRole).map(([role, count]) => {
                                                 const pct = stats.totalUsers > 0 ? Math.round((count / stats.totalUsers) * 100) : 0;
@@ -143,11 +151,11 @@ const Page = async () => {
                                                 return (
                                                     <div key={role}>
                                                         <div className="flex justify-between text-xs mb-1">
-                                                            <span className="text-white/50 capitalize">{role}</span>
-                                                            <span className="text-white/30">{count}</span>
+                                                            <span className="text-black/50 dark:text-white/50 capitalize">{role}</span>
+                                                            <span className="text-black/30 dark:text-white/30">{count}</span>
                                                         </div>
-                                                        <div className="w-full h-1.5 rounded-full bg-white/[0.06]">
-                                                            <div className={`h-full rounded-full ${colors[role] ?? "bg-white/20"}`} style={{width: `${pct}%`}}/>
+                                                        <div className="w-full h-1.5 rounded-full bg-black/[0.06] dark:bg-white/[0.06]">
+                                                            <div className={`h-full rounded-full ${colors[role] ?? "bg-black/20 dark:bg-white/20"}`} style={{width: `${pct}%`}}/>
                                                         </div>
                                                     </div>
                                                 );
@@ -158,8 +166,12 @@ const Page = async () => {
 
                                 {/* Top countries */}
                                 {stats && stats.topCountries.length > 0 && (
-                                    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl p-5">
-                                        <p className="text-[11px] font-medium tracking-widest uppercase text-white/35 mb-4 flex items-center gap-2">
+                                    <div className="
+                                        rounded-2xl p-5 backdrop-blur-xl
+                                        border border-black/[0.07] bg-black/[0.028]
+                                        dark:border-white/[0.07] dark:bg-white/[0.028]
+                                    ">
+                                        <p className="text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35 mb-4 flex items-center gap-2">
                                             <GlobeIcon size={12}/>
                                             Top kraje (sesje)
                                         </p>
@@ -167,10 +179,10 @@ const Page = async () => {
                                             {stats.topCountries.map(({country, count}, i) => (
                                                 <div key={country} className="flex items-center justify-between">
                                                     <div className="flex items-center gap-2">
-                                                        <span className="text-xs text-white/20 w-4">{i + 1}.</span>
-                                                        <span className="text-sm text-white/60">{country}</span>
+                                                        <span className="text-xs text-black/20 dark:text-white/20 w-4">{i + 1}.</span>
+                                                        <span className="text-sm text-black/60 dark:text-white/60">{country}</span>
                                                     </div>
-                                                    <span className="text-xs font-semibold text-white/40">{count}</span>
+                                                    <span className="text-xs font-semibold text-black/40 dark:text-white/40">{count}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -183,7 +195,7 @@ const Page = async () => {
                     {/* Back */}
                     <Link
                         href={shortcuts.settings + shortcuts.moderator}
-                        className="inline-flex items-center gap-2 text-xs text-white/25 hover:text-white/60 transition-colors"
+                        className="inline-flex items-center gap-2 text-xs text-black/25 dark:text-white/25 hover:text-black/60 dark:hover:text-white/60 transition-colors"
                     >
                         <ArrowLeftIcon size={12}/>
                         Wróć do panelu moderatora

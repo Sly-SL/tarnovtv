@@ -3,17 +3,16 @@ import {ChatsCircleIcon, RocketLaunchIcon} from "@phosphor-icons/react/ssr";
 import {votingsGet} from "@/lib/firebase/get/voting.get";
 import ProjectCard from "@/shared/components/custom/body/project.body";
 import VotingCard from "@/shared/components/custom/body/voting.body";
-
-// TODO: pass real user — replace with your session/cookie util
-const getCurrentUserId = (): string | undefined => undefined;
+import {GetUserBySessionIdAction} from "@/actions/auth/get-user-by-session-id.action";
 
 const Page = async () => {
     const [projects, votings] = await Promise.all([projectsGet(), votingsGet()]);
-    const userId = getCurrentUserId();
+    const user = await GetUserBySessionIdAction();
+    const userId = user?.id;
     const publicProjects = projects.filter(p => !p.private);
 
     return (
-        <div className="relative min-h-screen w-full flex flex-col overflow-hidden">
+        <div className="relative min-h-screen w-full flex flex-col overflow-hidden bg-transparent">
 
             {/* Background */}
             <div className="absolute -top-40 right-0 w-[600px] h-[600px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none"/>
@@ -21,26 +20,31 @@ const Page = async () => {
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px)",
                     backgroundSize: "48px 48px",
                     maskImage: "radial-gradient(ellipse 100% 100% at 50% 0%,black 40%,transparent 100%)",
                 }}
             />
 
             {/* Page header */}
-            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-white/[0.06]">
+            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6
+                            border-b border-gray-100 dark:border-white/[0.06]">
                 <div className="max-w-screen-xl mx-auto">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full bg-(--contrast-color)/10 border border-indigo-500/20 text-[10px] font-semibold tracking-widest uppercase text-(--contrast-color)/85">
-                        <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full text-[10px] font-semibold tracking-widest uppercase
+                                    bg-indigo-50 border border-indigo-200 text-indigo-600
+                                    dark:bg-(--contrast-color)/10 dark:border-indigo-500/20 dark:text-(--contrast-color)/85">
+                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
                         Projekty & Głosowania
                     </div>
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight
+                                   text-gray-900 dark:text-white">
                         Co{" "}
                         <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                             tworzymy
                         </span>
                     </h1>
-                    <p className="text-sm text-white/30 font-light mt-1 max-w-lg">
+                    <p className="text-sm font-light mt-1 max-w-lg
+                                  text-gray-500 dark:text-white/30">
                         Nasze projekty i aktywne głosowania — masz wpływ na to, co robimy.
                     </p>
                 </div>
@@ -53,14 +57,17 @@ const Page = async () => {
                     {/* ── Projects ── */}
                     <section>
                         <div className="flex items-center gap-2 mb-5">
-                            <RocketLaunchIcon size={16} className="text-(--contrast-color)"/>
-                            <span className="text-[11px] font-medium tracking-widest uppercase text-white/35">
+                            <RocketLaunchIcon size={16} className="text-indigo-500 dark:text-(--contrast-color)"/>
+                            <span className="text-[11px] font-medium tracking-widest uppercase
+                                            text-gray-400 dark:text-white/35">
                                 Projekty
                             </span>
                         </div>
 
                         {publicProjects.length === 0 ? (
-                            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.028] p-12 text-center text-white/25 text-sm">
+                            <div className="rounded-2xl border p-12 text-center text-sm
+                                            border-gray-200 bg-gray-50 text-gray-400
+                                            dark:border-white/[0.07] dark:bg-white/[0.028] dark:text-white/25">
                                 Projekty są w przygotowaniu — wróć wkrótce.
                             </div>
                         ) : (
@@ -79,14 +86,17 @@ const Page = async () => {
                     {/* ── Votings ── */}
                     <section>
                         <div className="flex items-center gap-2 mb-5">
-                            <ChatsCircleIcon size={16} className="text-(--contrast-color)"/>
-                            <span className="text-[11px] font-medium tracking-widest uppercase text-white/35">
+                            <ChatsCircleIcon size={16} className="text-indigo-500 dark:text-(--contrast-color)"/>
+                            <span className="text-[11px] font-medium tracking-widest uppercase
+                                            text-gray-400 dark:text-white/35">
                                 Głosowania
                             </span>
                         </div>
 
                         {votings.length === 0 ? (
-                            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.028] p-12 text-center text-white/25 text-sm">
+                            <div className="rounded-2xl border p-12 text-center text-sm
+                                            border-gray-200 bg-gray-50 text-gray-400
+                                            dark:border-white/[0.07] dark:bg-white/[0.028] dark:text-white/25">
                                 Brak aktywnych głosowań.
                             </div>
                         ) : (
@@ -112,4 +122,3 @@ const Page = async () => {
 };
 
 export default Page;
- 

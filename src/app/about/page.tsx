@@ -70,10 +70,10 @@ const chapters = [
 ];
 
 const stats = [
-    { value: "10K+", label: "TikTok" },
-    { value: "6.5K+", label: "Instagram" },
-    { value: "2K+", label: "Facebook" },
-    { value: "2024", label: "Rok założenia" },
+    {value: "10K+", label: "TikTok"},
+    {value: "6.5K+", label: "Instagram"},
+    {value: "2K+", label: "Facebook"},
+    {value: "2024", label: "Rok założenia"},
 ];
 
 const Page = () => {
@@ -81,33 +81,32 @@ const Page = () => {
         <div className="relative min-h-screen w-full flex flex-col overflow-hidden">
 
             {/* Background */}
-            <div className="absolute -top-40 right-0 w-[600px] h-[600px] rounded-full bg-(--contrast-color)/10 blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-pink-500/[0.07] blur-[100px] pointer-events-none" />
+            <div className="absolute -top-40 right-0 w-[600px] h-[600px] rounded-full bg-(--contrast-color)/10 blur-[120px] pointer-events-none"/>
+            <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-pink-500/[0.07] blur-[100px] pointer-events-none"/>
             <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0 pointer-events-none dark:opacity-100 opacity-30"
                 style={{
-                    backgroundImage:
-                        "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+                    backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
                     backgroundSize: "48px 48px",
                     maskImage: "radial-gradient(ellipse 100% 100% at 50% 0%, black 40%, transparent 100%)",
                 }}
             />
 
             {/* Header */}
-            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-white/[0.06]">
+            <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-8 pb-6 border-b border-black/[0.06] dark:border-white/[0.06]">
                 <div className="max-w-screen-xl mx-auto">
                     <Animate preset="fadeDown">
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full bg-(--contrast-color)/10 border border-(--contrast-color)/20 text-[10px] font-semibold tracking-widest uppercase text-(--contrast-color)/85">
-                            <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
                             O nas
                         </div>
-                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-black dark:text-white leading-tight">
                             Nasza{" "}
                             <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                                 historia
                             </span>
                         </h1>
-                        <p className="text-sm text-white/30 font-light mt-1 max-w-xl">
+                        <p className="text-sm text-black/40 dark:text-white/30 font-light mt-1 max-w-xl">
                             Od warsztatów psychologicznych do rozpoznawalnego medium lokalnego.
                         </p>
                     </Animate>
@@ -115,14 +114,17 @@ const Page = () => {
             </div>
 
             {/* Stats */}
-            <div className="relative z-10 px-4 sm:px-8 lg:px-12 py-6 border-b border-white/[0.04]">
+            <div className="relative z-10 px-4 sm:px-8 lg:px-12 py-6 border-b border-black/[0.04] dark:border-white/[0.04]">
                 <div className="max-w-screen-xl mx-auto">
                     <Animate preset="fadeDown" duration={600}>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                             {stats.map((s) => (
-                                <div key={s.label} className="rounded-xl border border-white/[0.07] bg-white/[0.028] px-4 py-3 flex flex-col gap-0.5">
+                                <div
+                                    key={s.label}
+                                    className="rounded-xl hover:scale-[1.04] duration-700 border border-black/[0.07] dark:border-white/[0.07] bg-black/[0.03] dark:bg-white/[0.028] px-4 py-3 flex flex-col gap-0.5"
+                                >
                                     <span className="text-xl font-extrabold text-(--contrast-color)">{s.value}</span>
-                                    <span className="text-[11px] text-white/30 uppercase tracking-widest">{s.label}</span>
+                                    <span className="text-[11px] text-black/30 dark:text-white/30 uppercase tracking-widest">{s.label}</span>
                                 </div>
                             ))}
                         </div>
@@ -138,22 +140,22 @@ const Page = () => {
 
                             {/* Chapter label */}
                             <div className="flex items-center gap-3">
-                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-black/[0.07] dark:via-white/[0.07] to-transparent"/>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-[10px] uppercase tracking-widest text-white/25 font-semibold">{chapter.tag}</span>
+                                    <span className="text-[10px] uppercase tracking-widest text-black/25 dark:text-white/25 font-semibold">{chapter.tag}</span>
                                     <span className="px-2.5 py-0.5 rounded-full bg-(--contrast-color)/10 border border-(--contrast-color)/20 text-[10px] font-semibold text-(--contrast-color)/70">
                                         {chapter.year}
                                     </span>
                                 </div>
-                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-black/[0.07] dark:via-white/[0.07] to-transparent"/>
                             </div>
 
                             {/* Blocks */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {chapter.blocks.map((block, i) => (
                                     <Animate key={i} preset={block.preset} duration={1000}>
-                                        <div className="h-full rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] px-6 py-5">
-                                            <p className="text-sm text-white/50 leading-relaxed">
+                                        <div className="h-full hover:scale-[1.02] duration-700 rounded-2xl border border-black/[0.07] dark:border-white/[0.07] bg-black/[0.03] dark:bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.08)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.35)] px-6 py-5">
+                                            <p className="text-sm text-black/55 dark:text-white/50 leading-relaxed">
                                                 {block.text}
                                             </p>
                                         </div>
@@ -165,8 +167,8 @@ const Page = () => {
 
                     {/* Final */}
                     <Animate preset="fadeDown" duration={1000}>
-                        <div className="rounded-2xl border border-(--contrast-color)/[0.12] bg-(--contrast-color)/[0.03] backdrop-blur-xl px-8 py-8 text-center">
-                            <p className="text-lg sm:text-xl font-extrabold tracking-tight text-white leading-tight">
+                        <div className="rounded-2xl border border-(--contrast-color)/[0.12] bg-(--contrast-color)/[0.04] dark:bg-(--contrast-color)/[0.03] backdrop-blur-xl px-8 py-8 text-center">
+                            <p className="text-lg sm:text-xl font-extrabold tracking-tight text-black dark:text-white leading-tight">
                                 Tarnów TV to historia, która nadal się pisze —{" "}
                                 <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                                     razem z Wami.

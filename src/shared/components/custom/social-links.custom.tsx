@@ -7,9 +7,9 @@ const SocialLinksCustom = () => {
     const linksMap = SocialLinksEnum.filter(link => !link.isPrimary);
 
     return (
-        <div className="rounded-3xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.4)] p-6">
+        <div className="rounded-3xl border hover:scale-[1.02] duration-700 border-black/[0.07] dark:border-white/[0.07] bg-black/[0.03] dark:bg-white/[0.028] backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.08)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.4)] p-6">
 
-            <p className="text-[11px] font-medium tracking-widest uppercase text-white/35 mb-5">
+            <p className="text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35 mb-5">
                 Nasze media
             </p>
 
@@ -22,7 +22,7 @@ const SocialLinksCustom = () => {
                             href={primaryLink.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative flex items-center justify-between px-4 py-3.5 rounded-2xl border border-white/[0.06] bg-white/[0.018] overflow-hidden hover:border-white/[0.14] transition-all duration-300"
+                            className="group relative flex items-center justify-between px-4 py-3.5 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.018] dark:bg-white/[0.018] overflow-hidden hover:border-black/[0.14] dark:hover:border-white/[0.14] transition-all duration-300"
                         >
                             <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-r ${primaryLink.gradient}`}/>
                             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none overflow-hidden">
@@ -37,16 +37,16 @@ const SocialLinksCustom = () => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-sm font-semibold text-white/70 group-hover:text-white transition-colors duration-200 leading-tight">
+                                    <span className="text-sm font-semibold text-black/70 dark:text-white/70 group-hover:text-black dark:group-hover:text-white transition-colors duration-200 leading-tight">
                                         {primaryLink.displayName}
                                     </span>
-                                    <span className="text-xs text-white/30 group-hover:text-white/50 transition-colors duration-200">
+                                    <span className="text-xs text-black/30 dark:text-white/30 group-hover:text-black/50 dark:group-hover:text-white/50 transition-colors duration-200">
                                         {primaryLink.subText}
                                     </span>
                                 </div>
                             </div>
 
-                            <ShareNetworkIcon className="relative w-4 h-4 text-white/15 group-hover:text-white/50 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300"/>
+                            <ShareNetworkIcon className="relative w-4 h-4 text-black/15 dark:text-white/15 group-hover:text-black/50 dark:group-hover:text-white/50 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300"/>
                         </a>
                     </Animate>
                 )}
@@ -59,7 +59,7 @@ const SocialLinksCustom = () => {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative flex items-center gap-2.5 px-3 py-3 rounded-xl border border-white/[0.06] bg-white/[0.018] overflow-hidden hover:border-white/[0.12] transition-all duration-300"
+                                className="group relative flex items-center gap-2.5 px-3 py-3 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.018] dark:bg-white/[0.018] overflow-hidden hover:border-black/[0.12] dark:hover:border-white/[0.12] transition-all duration-300"
                             >
                                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-linear-to-r ${link.gradient}`}/>
                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none overflow-hidden">
@@ -74,15 +74,15 @@ const SocialLinksCustom = () => {
                                 </div>
 
                                 <div className="flex flex-col min-w-0 flex-1">
-                                    <span className="text-xs font-semibold text-white/60 group-hover:text-white transition-colors duration-200 leading-tight">
+                                    <span className="text-xs font-semibold text-black/60 dark:text-white/60 group-hover:text-black dark:group-hover:text-white transition-colors duration-200 leading-tight">
                                         {link.displayName}
                                     </span>
-                                    <span className="text-[10px] text-white/25 group-hover:text-white/45 truncate transition-colors duration-200">
+                                    <span className="text-[10px] text-black/25 dark:text-white/25 group-hover:text-black/45 dark:group-hover:text-white/45 truncate transition-colors duration-200">
                                         {link.subText}
                                     </span>
                                 </div>
 
-                                <ShareNetworkIcon className="w-3 h-3 text-white/15 group-hover:text-white/40 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300 flex-shrink-0"/>
+                                <ShareNetworkIcon className="w-3 h-3 text-black/15 dark:text-white/15 group-hover:text-black/40 dark:group-hover:text-white/40 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300 flex-shrink-0"/>
                             </a>
                         </Animate>
                     ))}

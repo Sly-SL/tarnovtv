@@ -22,7 +22,7 @@ const ContactAdminPage = () => {
             <div className="absolute -top-40 -left-28 w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[90px] pointer-events-none"/>
             <div className="absolute -bottom-24 -right-20 w-[350px] h-[350px] rounded-full bg-violet-500/[0.07] blur-[90px] pointer-events-none"/>
             <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0 pointer-events-none opacity-30 dark:opacity-100"
                 style={{
                     backgroundImage: "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
                     backgroundSize: "48px 48px",
@@ -31,7 +31,7 @@ const ContactAdminPage = () => {
             />
 
             <div
-                className="relative z-10 w-full max-w-[420px] rounded-3xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-2xl shadow-[0_32px_72px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.035)_inset] p-10"
+                className="relative z-10 w-full max-w-[420px] rounded-3xl border border-black/[0.07] dark:border-white/[0.07] bg-black/[0.03] dark:bg-white/[0.028] backdrop-blur-2xl shadow-[0_32px_72px_rgba(0,0,0,0.1)] dark:shadow-[0_32px_72px_rgba(0,0,0,0.55)] p-10"
                 style={{animation: "fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both"}}
             >
                 <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }`}</style>
@@ -43,19 +43,19 @@ const ContactAdminPage = () => {
                 </div>
 
                 {/* Heading */}
-                <h1 className="text-3xl font-extrabold tracking-tight text-white leading-tight mb-1">
+                <h1 className="text-3xl font-extrabold tracking-tight text-black dark:text-white leading-tight mb-1">
                     Napisz do{" "}
                     <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
                         administratora
                     </span>
                 </h1>
-                <p className="text-sm text-white/30 font-light mb-7">
+                <p className="text-sm text-black/40 dark:text-white/30 font-light mb-7">
                     Masz problem z dostępem do konta? Opisz sytuację — odezwiemy się najszybciej jak możemy.
                 </p>
 
                 {/* Email block */}
                 <div className="flex flex-col gap-2 mb-6">
-                    <span className="text-[11px] font-medium tracking-widest uppercase text-white/35">
+                    <span className="text-[11px] font-medium tracking-widest uppercase text-black/35 dark:text-white/35">
                         Adres e-mail administratora
                     </span>
                     <div className="flex items-center gap-2">
@@ -72,7 +72,7 @@ const ContactAdminPage = () => {
                                 "flex-shrink-0 w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-150",
                                 copied
                                     ? "border-(--contrast-color)/40 bg-(--contrast-color)/15 text-(--contrast-color)"
-                                    : "border-white/[0.07] bg-white/[0.025] text-white/30 hover:border-(--contrast-color)/25 hover:text-(--contrast-color)/70",
+                                    : "border-black/[0.07] dark:border-white/[0.07] bg-black/[0.025] dark:bg-white/[0.025] text-black/30 dark:text-white/30 hover:border-(--contrast-color)/25 hover:text-(--contrast-color)/70",
                             ].join(" ")}
                             title="Kopiuj adres"
                         >
@@ -85,10 +85,10 @@ const ContactAdminPage = () => {
                 </div>
 
                 {/* Tip */}
-                <div className="flex gap-3 px-4 py-3.5 rounded-xl border border-white/[0.05] bg-white/[0.015] mb-6">
+                <div className="flex gap-3 px-4 py-3.5 rounded-xl border border-black/[0.05] dark:border-white/[0.05] bg-black/[0.015] dark:bg-white/[0.015] mb-6">
                     <span className="text-lg leading-none mt-0.5">💡</span>
-                    <p className="text-xs text-white/30 leading-relaxed">
-                        W wiadomości podaj swoje <span className="text-white/50">imię, nazwisko</span> oraz <span className="text-white/50">adres e-mail</span> użyty przy rejestracji — przyspieszy to weryfikację Twojej tożsamości.
+                    <p className="text-xs text-black/35 dark:text-white/30 leading-relaxed">
+                        W wiadomości podaj swoje <span className="text-black/55 dark:text-white/50">imię, nazwisko</span> oraz <span className="text-black/55 dark:text-white/50">adres e-mail</span> użyty przy rejestracji — przyspieszy to weryfikację Twojej tożsamości.
                     </p>
                 </div>
 
@@ -103,7 +103,7 @@ const ContactAdminPage = () => {
 
                 <Link
                     href={shortcuts.forgot}
-                    className="mt-6 flex items-center justify-center gap-2 text-xs text-white/25 hover:text-(--contrast-color)/65 transition-colors"
+                    className="mt-6 flex items-center justify-center gap-2 text-xs text-black/25 dark:text-white/25 hover:text-(--contrast-color)/65 transition-colors"
                 >
                     <ArrowLeftIcon size={12}/>
                     Wróć do wyboru opcji

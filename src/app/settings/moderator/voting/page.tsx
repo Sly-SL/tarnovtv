@@ -22,8 +22,8 @@ import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
 import {ArrowLeftIcon} from "@phosphor-icons/react/ssr";
 
 
-const inputCls = "w-full px-3 py-2.5 rounded-xl border border-white/[0.08] bg-white/[0.04] text-white text-sm placeholder:text-white/20 outline-none focus:border-(--contrast-color)/40 focus:bg-(--contrast-color)/[0.06] transition-all duration-200";
-const labelCls = "block text-[10px] font-medium tracking-widest uppercase text-white/35 mb-1.5";
+const inputCls = "w-full px-3 py-2.5 rounded-xl border border-black/[0.08] bg-black/[0.04] text-black text-sm placeholder:text-black/20 outline-none focus:border-(--contrast-color)/40 focus:bg-(--contrast-color)/[0.06] transition-all duration-200 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white dark:placeholder:text-white/20";
+const labelCls = "block text-[10px] font-medium tracking-widest uppercase text-black/35 mb-1.5 dark:text-white/35";
 
 type FormOption = {id: string; label: string};
 
@@ -84,7 +84,6 @@ export default function VotingAdminPage() {
         startTransition(async () => {
             try {
                 if (editing) {
-                    // preserve existing vote counts, only update labels/active
                     const mergedOptions: VotingOptionType[] = validOptions.map(o => {
                         const existing = editing.options.find(e => e.id === o.id);
                         return {id: o.id, label: o.label, votes: existing?.votes ?? 0};
@@ -145,20 +144,19 @@ export default function VotingAdminPage() {
                 <div className="flex items-center justify-between mb-10" style={{animation:"fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both"}}>
                     <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}`}</style>
                     <div>
-
                         <Link
                             href={shortcuts.settings+shortcuts.moderator}
-                            className="inline-flex items-center gap-5 text-xs text-white/30 hover:text-white/60 transition-colors mb-6"
+                            className="inline-flex items-center gap-5 text-xs text-black/30 hover:text-black/60 transition-colors mb-6 dark:text-white/30 dark:hover:text-white/60"
                         >
                             <ArrowLeftIcon size={12} />
                             Wróć do panelu
                         </Link>
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full bg-amber-500/10 border border-amber-500/20 text-[10px] font-semibold tracking-widest uppercase text-amber-300/85">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-3 rounded-full bg-amber-500/10 border border-amber-500/20 text-[10px] font-semibold tracking-widest uppercase text-amber-600/85 dark:text-amber-300/85">
                             <SparkleIcon size={9}/>
                             Panel moderatora
                         </div>
-                        <h1 className="text-3xl font-extrabold tracking-tight text-white">Zarządzaj głosowaniami</h1>
-                        <p className="text-sm text-white/30 font-light mt-1">Twórz pytania i zarządzaj opcjami głosowania.</p>
+                        <h1 className="text-3xl font-extrabold tracking-tight text-black dark:text-white">Zarządzaj głosowaniami</h1>
+                        <p className="text-sm text-black/30 font-light mt-1 dark:text-white/30">Twórz pytania i zarządzaj opcjami głosowania.</p>
                     </div>
                     <button
                         onClick={openNew}
@@ -174,7 +172,7 @@ export default function VotingAdminPage() {
                     {/* List */}
                     <div className="flex flex-col gap-3">
                         {votings.length === 0 && (
-                            <div className="rounded-3xl border border-white/[0.07] bg-white/[0.028] p-10 text-center text-white/25 text-sm">
+                            <div className="rounded-3xl border border-black/[0.07] bg-black/[0.028] p-10 text-center text-black/25 text-sm dark:border-white/[0.07] dark:bg-white/[0.028] dark:text-white/25">
                                 Brak głosowań — dodaj pierwsze →
                             </div>
                         )}
@@ -187,20 +185,20 @@ export default function VotingAdminPage() {
                                         "flex items-start gap-4 p-5 rounded-2xl border backdrop-blur-xl transition-all duration-150",
                                         editing?.id === v.id
                                             ? "border-(--contrast-color)/40 bg-(--contrast-color)/[0.06]"
-                                            : "border-white/[0.07] bg-white/[0.028] hover:border-white/[0.12]",
+                                            : "border-black/[0.07] bg-black/[0.028] hover:border-black/[0.12] dark:border-white/[0.07] dark:bg-white/[0.028] dark:hover:border-white/[0.12]",
                                     ].join(" ")}
                                 >
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center gap-2 mb-1">
-                                            <p className="text-sm font-semibold text-white truncate">{v.question}</p>
+                                            <p className="text-sm font-semibold text-black truncate dark:text-white">{v.question}</p>
                                             <span className={[
                                                 "px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest shrink-0",
-                                                v.active ? "bg-emerald-500/10 text-emerald-400" : "bg-white/[0.05] text-white/25",
+                                                v.active ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" : "bg-black/[0.05] text-black/25 dark:bg-white/[0.05] dark:text-white/25",
                                             ].join(" ")}>
                                                 {v.active ? "Aktywne" : "Zakończone"}
                                             </span>
                                         </div>
-                                        <p className="text-xs text-white/30 mt-1">
+                                        <p className="text-xs text-black/30 mt-1 dark:text-white/30">
                                             {v.options.length} opcji · {total} {total === 1 ? "głos" : total < 5 ? "głosy" : "głosów"}
                                         </p>
                                     </div>
@@ -211,8 +209,8 @@ export default function VotingAdminPage() {
                                             className={[
                                                 "w-8 h-8 rounded-xl border flex items-center justify-center text-xs font-bold transition-all duration-150 disabled:opacity-40",
                                                 v.active
-                                                    ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20"
-                                                    : "border-white/[0.07] bg-white/[0.025] text-white/25 hover:bg-emerald-500/10 hover:text-emerald-400 hover:border-emerald-500/20",
+                                                    ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-600 hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/20 dark:text-emerald-400 dark:hover:text-red-400"
+                                                    : "border-black/[0.07] bg-black/[0.025] text-black/25 hover:bg-emerald-500/10 hover:text-emerald-600 hover:border-emerald-500/20 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/25 dark:hover:text-emerald-400",
                                             ].join(" ")}
                                             title={v.active ? "Dezaktywuj" : "Aktywuj"}
                                         >
@@ -220,14 +218,14 @@ export default function VotingAdminPage() {
                                         </button>
                                         <button
                                             onClick={() => openEdit(v)}
-                                            className="w-8 h-8 rounded-xl border border-white/[0.07] bg-white/[0.025] flex items-center justify-center text-white/35 hover:text-(--contrast-color) hover:border-(--contrast-color)/25 transition-all duration-150"
+                                            className="w-8 h-8 rounded-xl border border-black/[0.07] bg-black/[0.025] flex items-center justify-center text-black/35 hover:text-(--contrast-color) hover:border-(--contrast-color)/25 transition-all duration-150 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/35"
                                         >
                                             <PencilSimpleIcon size={14}/>
                                         </button>
                                         <button
                                             onClick={() => handleDelete(v.id)}
                                             disabled={isPending}
-                                            className="w-8 h-8 rounded-xl border border-white/[0.07] bg-white/[0.025] flex items-center justify-center text-white/35 hover:text-red-400 hover:border-red-400/25 transition-all duration-150 disabled:opacity-40"
+                                            className="w-8 h-8 rounded-xl border border-black/[0.07] bg-black/[0.025] flex items-center justify-center text-black/35 hover:text-red-500 hover:border-red-500/25 transition-all duration-150 disabled:opacity-40 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/35 dark:hover:text-red-400 dark:hover:border-red-400/25"
                                         >
                                             <TrashIcon size={14}/>
                                         </button>
@@ -239,12 +237,12 @@ export default function VotingAdminPage() {
 
                     {/* Form */}
                     {showForm && (
-                        <div className="rounded-3xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-2xl shadow-[0_32px_72px_rgba(0,0,0,0.4)] p-6 sticky top-6">
+                        <div className="rounded-3xl border border-black/[0.07] bg-black/[0.028] backdrop-blur-2xl shadow-[0_32px_72px_rgba(0,0,0,0.1)] p-6 sticky top-6 dark:border-white/[0.07] dark:bg-white/[0.028] dark:shadow-[0_32px_72px_rgba(0,0,0,0.4)]">
                             <div className="flex items-center justify-between mb-5">
-                                <p className="text-sm font-bold text-white">
+                                <p className="text-sm font-bold text-black dark:text-white">
                                     {editing ? "Edytuj głosowanie" : "Nowe głosowanie"}
                                 </p>
-                                <button onClick={closeForm} className="w-7 h-7 rounded-lg border border-white/[0.07] flex items-center justify-center text-white/30 hover:text-white transition-colors">
+                                <button onClick={closeForm} className="w-7 h-7 rounded-lg border border-black/[0.07] flex items-center justify-center text-black/30 hover:text-black transition-colors dark:border-white/[0.07] dark:text-white/30 dark:hover:text-white">
                                     <XIcon size={13}/>
                                 </button>
                             </div>
@@ -260,7 +258,7 @@ export default function VotingAdminPage() {
                                     />
                                 </div>
 
-                                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent"/>
+                                <div className="w-full h-px bg-gradient-to-r from-transparent via-black/[0.07] to-transparent dark:via-white/[0.07]"/>
 
                                 <div>
                                     <div className="flex items-center justify-between mb-2">
@@ -287,7 +285,7 @@ export default function VotingAdminPage() {
                                                     <button
                                                         type="button"
                                                         onClick={() => removeOption(idx)}
-                                                        className="shrink-0 text-white/20 hover:text-red-400 transition-colors"
+                                                        className="shrink-0 text-black/20 hover:text-red-500 transition-colors dark:text-white/20 dark:hover:text-red-400"
                                                     >
                                                         <MinusCircleIcon size={16}/>
                                                     </button>
@@ -297,7 +295,7 @@ export default function VotingAdminPage() {
                                     </div>
                                 </div>
 
-                                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent"/>
+                                <div className="w-full h-px bg-gradient-to-r from-transparent via-black/[0.07] to-transparent dark:via-white/[0.07]"/>
 
                                 {/* Active toggle */}
                                 <div
@@ -306,16 +304,16 @@ export default function VotingAdminPage() {
                                         "flex items-center gap-3 px-3 py-2.5 rounded-xl border cursor-pointer select-none transition-all duration-150",
                                         form.active
                                             ? "border-(--contrast-color)/32 bg-(--contrast-color)/[0.06]"
-                                            : "border-white/[0.06] bg-white/[0.018] hover:border-(--contrast-color)/18",
+                                            : "border-black/[0.06] bg-black/[0.018] hover:border-(--contrast-color)/18 dark:border-white/[0.06] dark:bg-white/[0.018]",
                                     ].join(" ")}
                                 >
                                     <div className={[
                                         "w-4 h-4 rounded-[5px] border flex items-center justify-center transition-all",
-                                        form.active ? "border-(--contrast-color) bg-(--contrast-color)/22" : "border-white/13 bg-white/[0.035]",
+                                        form.active ? "border-(--contrast-color) bg-(--contrast-color)/22" : "border-black/13 bg-black/[0.035] dark:border-white/13 dark:bg-white/[0.035]",
                                     ].join(" ")}>
                                         {form.active && <svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                                     </div>
-                                    <span className="text-xs text-white/40">Głosowanie aktywne</span>
+                                    <span className="text-xs text-black/40 dark:text-white/40">Głosowanie aktywne</span>
                                 </div>
 
                                 <button
