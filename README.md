@@ -1,36 +1,155 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📍 Tarnów TV — Lokalne Medium Młodzieżowe
 
-## Getting Started
+> Tworzymy wideo, organizujemy wydarzenia i budujemy lokalną społeczność — od 2024 roku.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript)
+![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange?style=flat-square&logo=firebase)
+![Tailwind](https://img.shields.io/badge/Tailwind-4-38bdf8?style=flat-square&logo=tailwindcss)
+![Lighthouse](https://img.shields.io/badge/Lighthouse-96%2F100-green?style=flat-square&logo=lighthouse)
+
+---
+
+## ✨ O projekcie
+
+**Tarnów TV** to platforma lokalnego medium młodzieżowego z Tarnowa. Publikujemy projekty, galerie mediów, organizujemy głosowania społecznościowe i prezentujemy ofertę współpracy — wszystko w jednym, nowoczesnym serwisie.
+
+---
+
+## 🚀 Stack technologiczny
+
+| Warstwa | Technologia             |
+|---|-------------------------|
+| Framework | Next.js 16 (App Router) |
+| Język | TypeScript              |
+| Stylowanie | Tailwind CSS 4          |
+| Baza danych | Firebase Firestore      |
+| Storage | ImgBB API               |
+| Ikony | Phosphor Icons          |
+| Animacje | SSR SlyAnimate          |
+| Hosting | Vercel                  |
+
+---
+
+## 📁 Struktura projektu
+
+````
+src/
+├── app/                    # App Router — strony i layouty
+│   ├── (public)/           # Strony publiczne
+│   │   ├── page.tsx        # Strona główna
+│   │   ├── projects/       # Lista i detale projektów
+│   │   ├── media/          # Galeria mediów
+│   │   ├── offers/         # Oferta współpracy
+│   │   ├── contact/        # Kontakt
+│   │   ├── us/             # Zespół
+│   │   ├── about/          # O nas
+│   │   ├── privacy/        # Polityka prywatności
+│   │   └── terms/          # Warunki użytkowania
+│   └── settings/
+│       └── moderator/      # Panel moderatora (chroniony)
+├── lib/
+│   ├── firebase/           # get / post / patch / delete
+│   └── imagebb/            # Upload zdjęć
+├── middlewares/            # Autoryzacja moderatora
+└── shared/
+├── components/         # UI components + custom
+├── consts/             # Enums, stałe
+└── types/              # Typy domenowe
+````
+---
+
+## ⚡ Uruchomienie lokalne
 
 ```bash
+# Klonowanie
+git clone https://github.com/your-org/tarnow-tv.git
+cd tarnow-tv
+
+# Instalacja zależności
+npm install
+
+# Konfiguracja zmiennych środowiskowych
+cp .env.example .env.local
+# uzupełnij .env.local swoimi kluczami Firebase i ImgBB
+
+# Uruchomienie
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otwórz [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔑 Zmienne środowiskowe
 
-## Learn More
+```env
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
 
-To learn more about Next.js, take a look at the following resources:
+# ImgBB
+IMGBB_API_KEY=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# App
+NEXT_PUBLIC_FRONTEND_URL=https://tarnov-tv.vercel.app
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛡️ Panel moderatora
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Dostęp do panelu moderatora wymaga uprawnień. Panel umożliwia:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ➕ Dodawanie, edytowanie i usuwanie **projektów** (z galerią zdjęć)
+- 💼 Zarządzanie **ofertami** współpracy
+- 🗳️ Tworzenie i zarządzanie **głosowaniami**
+- 🖼️ Upload zdjęć przez **ImgBB API**
+
+---
+
+## 📊 Wydajność
+
+Wyniki Lighthouse na urządzeniu mobilnym (Slow 4G):
+````
+Performance     ██████████ 96
+Accessibility   ██████████ 96
+Best Practices  ██████████ 100
+SEO             ██████████ 100
+FCP   1.4s  |  LCP   1.7s  |  TBT   20ms  |  CLS   0
+````
+
+---
+
+## 🗺️ Sitemap
+
+Sitemap generowany automatycznie przez Next.js dostępny pod:
+
+https://tarnov-tv.vercel.app/sitemap.xml
+
+---
+
+## 🎨 Design system
+
+- **Motywy:** Light & Dark (via Tailwind `dark:`)
+- **Kolor akcentu:** `--contrast-color` (indigo/violet)
+- **Typografia:** Extrabold headings + Light body
+- **Komponenty:** Glassmorphism cards z `backdrop-blur`
+- **Animacje:** `fadeUp` CSS keyframes + Animate SSR wrapper
+
+---
+
+## 📄 Licencja
+
+© 2024–2025 Tarnów TV. Wszelkie prawa zastrzeżone.  
+Kod źródłowy jest własnością zespołu Tarnów TV i nie może być kopiowany ani rozpowszechniany bez zgody.
+
+---
+
+<p align="center">
+  Zrobione z ❤️ w Tarnowie
+</p>
