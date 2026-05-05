@@ -1,11 +1,10 @@
 "use client";
 
-import {useState} from "react";
+import {type ChangeEvent, type FormEvent, useState} from "react";
 import Link from "next/link";
 import {ArrowRightIcon, CheckCircleIcon, ClockIcon, EnvelopeIcon, MapPinIcon, PhoneIcon} from "@phosphor-icons/react";
 import SocialLinksCustom from "@/shared/components/custom/social-links.custom";
-
-const FORMSUBMIT_EMAIL = "tarnovtv@gmail.com";
+import {CONSTANTS} from "@/shared/consts/consts.consts";
 
 type FormValues = {
     name: string;
@@ -39,14 +38,14 @@ const ContactPage = () => {
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState<FormValues>({name: "", email: "", subject: "", message: ""});
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
         setValues(v => ({...v, [e.target.name]: e.target.value}));
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         try {
-            await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+            await fetch(`https://formsubmit.co/ajax/${CONSTANTS.MAIL.admin}`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json", Accept: "application/json"},
                 body: JSON.stringify({...values, _subject: `[TarnovTV] ${values.subject}`, _captcha: "false"}),

@@ -36,17 +36,17 @@ const ContactForm = () => {
             preset={"fadeLeft"}
             duration={1100}
             className="w-full bg-linear-to-b from-white/10 to-white/5 rounded-2xl overflow-hidden backdrop-blur-xl shadow-xl p-8">
-                <div className="flex justify-between items-start mb-8">
-                    <div>
-                        <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-linear-to-r from-[#6366f1] to-(--contrast-color)">
-                            Skontaktuj się z nami
-                        </h2>
-                        <p className="text-gray-400">
-                            Masz coś do omówienia? Napisz do nas wiadomość i porozmawiajmy.
-                        </p>
-                    </div>
-                    <ShareNetworkIcon className="w-10 h-10 text-(--contrast-color) opacity-50" />
+            <div className="flex justify-between items-start mb-8">
+                <div>
+                    <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-linear-to-r from-[#6366f1] to-(--contrast-color)">
+                        Skontaktuj się z nami
+                    </h2>
+                    <p className="text-gray-400">
+                        Masz coś do omówienia? Napisz do nas wiadomość i porozmawiajmy.
+                    </p>
                 </div>
+                <ShareNetworkIcon className="w-10 h-10 text-(--contrast-color) opacity-50" />
+            </div>
             <form
                 action="https://formsubmit.co/tarnovtv@gmail.com"
                 method="POST"
@@ -108,17 +108,17 @@ const ContactForm = () => {
                 </Animate>
             </form>
 
-                <Animate
-                    preset={"fadeUp"}
-                    duration={400}>
-                    <button
-                        type="submit"
-                        disabled={pending}
-                        className="w-full mt-2 bg-linear-to-r from-black/80 to-gray-950/80 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
-                        <PaperPlaneRightIcon className="w-5 h-5" />
-                        {pending ? "Wysyłanie..." : "Wyślij wiadomość"}
-                    </button>
-                </Animate>
+            <Animate
+                preset={"fadeUp"}
+                duration={400}>
+                <button
+                    type="submit"
+                    disabled={pending}
+                    className="w-full mt-2 bg-linear-to-r from-black/80 to-gray-950/80 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
+                    <PaperPlaneRightIcon className="w-5 h-5" />
+                    {pending ? "Wysyłanie..." : "Wyślij wiadomość"}
+                </button>
+            </Animate>
         </Animate>
     );
 };

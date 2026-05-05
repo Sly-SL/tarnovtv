@@ -62,9 +62,9 @@ const ForgotEmailForm = () => {
 
                 {/* Badge */}
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full
-                                bg-indigo-50 border border-indigo-200 text-indigo-600 text-[10px] font-semibold tracking-widest uppercase
-                                dark:bg-(--contrast-color)/10 dark:border-indigo-500/20 dark:text-(--contrast-color)/85">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
+                                border text-[10px] font-semibold tracking-widest uppercase
+                               bg-(--contrast-color)/10  text-(--contrast-color)/85">
+                    <span className="w-1.5 h-1.5 rounded-full bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
                     Szukaj e-maila
                 </div>
 
@@ -131,8 +131,8 @@ const ForgotEmailForm = () => {
                                                     className={[
                                                         "flex items-center justify-center gap-1.5 py-2 rounded-xl border text-sm font-medium transition-all duration-150",
                                                         field.value === g
-                                                            ? "border-indigo-400/50 bg-indigo-50 text-indigo-600 dark:border-(--contrast-color)/45 dark:bg-indigo-500/10 dark:text-(--contrast-color) dark:shadow-[0_0_0_2px_rgba(99,102,241,0.1)]"
-                                                            : "border-gray-200 bg-gray-50 text-gray-400 hover:border-indigo-300 hover:text-gray-600 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/38 dark:hover:border-(--contrast-color)/20 dark:hover:text-white/60",
+                                                            ? " border-(--contrast-color)/45 text-(--contrast-color) dark:shadow-[0_0_0_2px_rgba(99,102,241,0.1)]"
+                                                            : "border-gray-200 bg-gray-50 text-gray-400 hover:text-gray-600 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/38 hover:border-(--contrast-color)/20 dark:hover:text-white/60",
                                                     ].join(" ")}
                                                 >
                                                     {g === "male" ? "♂ Mężczyzna" : "♀ Kobieta"}
@@ -157,8 +157,7 @@ const ForgotEmailForm = () => {
                     /* Result state */
                     <div className="flex flex-col items-center text-center gap-4">
                         <div className="w-14 h-14 rounded-2xl flex items-center justify-center
-                                        bg-indigo-50 border border-indigo-200 text-indigo-500
-                                        dark:bg-(--contrast-color)/10 dark:border-(--contrast-color)/20 dark:text-(--contrast-color)">
+                                         border border-indigo-200 bg-(--contrast-color)/10 dark:border-(--contrast-color)/20 text-(--contrast-color)">
                             <EnvelopeIcon size={24} weight="duotone"/>
                         </div>
                         <div>
@@ -169,15 +168,14 @@ const ForgotEmailForm = () => {
                                 Adres e-mail powiązany z Twoim profilem:
                             </p>
                             <div className="px-4 py-3 rounded-xl border font-mono text-sm tracking-wide
-                                            border-indigo-200 bg-indigo-50 text-indigo-600
-                                            dark:border-(--contrast-color)/20 dark:bg-(--contrast-color)/[0.06] dark:text-(--contrast-color)">
+                                            border-indigo-200 dark:border-(--contrast-color)/20 bg-(--contrast-color)/[0.06] text-(--contrast-color)">
                                 {foundEmail}
                             </div>
                         </div>
                         <Link
                             href={shortcuts.login}
                             className="mt-2 w-full flex items-center justify-center gap-2 py-3 rounded-xl border text-sm font-medium transition-all duration-150
-                                       border-gray-200 bg-gray-50 text-gray-500 hover:text-gray-800 hover:border-indigo-300
+                                       border-gray-200 bg-gray-50 text-gray-500 hover:text-gray-800
                                        dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/60 dark:hover:text-white dark:hover:border-(--contrast-color)/25"
                         >
                             Przejdź do logowania →
@@ -187,9 +185,7 @@ const ForgotEmailForm = () => {
 
                 <Link
                     href={shortcuts.forgot}
-                    className="mt-6 flex items-center justify-center gap-2 text-xs transition-colors
-                               text-gray-300 hover:text-indigo-500
-                               dark:text-white/25 dark:hover:text-(--contrast-color)/65"
+                    className="mt-6 flex items-center justify-center gap-2 text-xs transition-colors text-gray-300 dark:text-white/25 hover:text-(--contrast-color)/65"
                 >
                     <ArrowLeftIcon size={12}/>
                     Wróć do wyboru opcji

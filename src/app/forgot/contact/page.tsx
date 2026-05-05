@@ -4,14 +4,13 @@ import Link from "next/link";
 import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
 import {ArrowLeftIcon, CopyIcon, EnvelopeIcon} from "@phosphor-icons/react";
 import {useState} from "react";
-
-const ADMIN_EMAIL = "tarnovtv@gmail.com";
+import {CONSTANTS} from "@/shared/consts/consts.consts";
 
 const ContactAdminPage = () => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(ADMIN_EMAIL);
+        await navigator.clipboard.writeText(CONSTANTS.MAIL.admin);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -62,7 +61,7 @@ const ContactAdminPage = () => {
                         <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl border border-(--contrast-color)/20 bg-(--contrast-color)/[0.05]">
                             <EnvelopeIcon size={15} className="text-(--contrast-color)/60 flex-shrink-0"/>
                             <span className="text-sm text-(--contrast-color) font-mono tracking-wide">
-                                {ADMIN_EMAIL}
+                                {CONSTANTS.MAIL.admin}
                             </span>
                         </div>
                         <button
@@ -94,7 +93,7 @@ const ContactAdminPage = () => {
 
                 {/* CTA */}
                 <a
-                    href={`mailto:${ADMIN_EMAIL}?subject=Problem z dostępem do konta&body=Imię i nazwisko: %0ANumer telefonu (opcjonalnie): %0AOpis problemu: `}
+                    href={`mailto:${CONSTANTS.MAIL.admin}?subject=Problem z dostępem do konta&body=Imię i nazwisko: %0ANumer telefonu (opcjonalnie): %0AOpis problemu: `}
                     className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-linear-to-br from-(--contrast-color) to-indigo-500 text-white text-sm font-semibold tracking-wide shadow-[0_4px_24px_rgba(99,102,241,0.25)] hover:opacity-90 hover:-translate-y-0.5 transition-all duration-150"
                 >
                     <EnvelopeIcon size={16} weight="bold"/>

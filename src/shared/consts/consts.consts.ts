@@ -22,6 +22,7 @@ export const CONSTANTS = {
         port: process.env.MAIL_PORT,
         login: process.env.MAIL_LOGIN,
         password: process.env.MAIL_PASSWORD,
+        admin: process.env.NEXT_PUBLIC_MAIL_ADMIN ?? "tarnovtv@gmail.com",
     },
     SESSION: {
         name: process.env.SESSION_NAME ?? "session",
