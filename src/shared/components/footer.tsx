@@ -16,7 +16,7 @@ const Footer = () => {
                 <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
 
                     {/* Left: copyright */}
-                    <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-1.5 gap-y-1 text-xs text-black/50 dark:text-white/40 font-light">
+                    <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-1.5 gap-y-1 text-xs text-black/50 dark:text-white/60 font-light">
                         <span className="[display:var(--new)] md:w-20 w-0 inline-block shrink-0"/>
 
                         <span className="bg-linear-to-r from-blue-500 via-(--contrast-color) to-pink-500 bg-clip-text text-transparent font-semibold">©</span>
@@ -30,7 +30,7 @@ const Footer = () => {
                         >
                             Slysl
                         </a>
-                        <span className="text-black/30 dark:text-white/20">&</span>
+                        <span className="text-black/30 dark:text-white/60">&</span>
                         <a
                             href={CONSTANTS.FRONTEND_URL}
                             target="_blank"
@@ -39,7 +39,7 @@ const Footer = () => {
                         >
                             TarnovTV
                         </a>
-                        <span className="text-black/40 dark:text-white/25">· All rights reserved.</span>
+                        <span className="text-black/40 dark:text-white/60">· All rights reserved.</span>
                     </div>
 
                     {/* Right: nav */}
@@ -52,7 +52,7 @@ const Footer = () => {
                             <Link
                                 key={href}
                                 href={href}
-                                className="px-3 py-1.5 rounded-lg text-xs font-medium text-black/45 dark:text-white/35 hover:text-black dark:hover:text-white hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-all duration-150"
+                                className="px-3 py-1.5 rounded-lg text-xs font-medium text-black/45 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-all duration-150"
                             >
                                 {label}
                             </Link>

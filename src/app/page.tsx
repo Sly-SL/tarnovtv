@@ -96,7 +96,7 @@ const Page = async () => {
                                                                dark:border-white/[0.07] dark:bg-white/[0.028]">
                       <div className={`${s.color} opacity-70`}>{s.icon}</div>
                       <span className="text-2xl font-extrabold text-gray-900 dark:text-white">{s.value}</span>
-                      <span className="text-[11px] uppercase tracking-widest text-gray-400 dark:text-white/30">{s.label}</span>
+                      <span className="text-[11px] uppercase tracking-widest text-gray-400 dark:text-white/60">{s.label}</span>
                     </div>
                 ))}
               </div>
@@ -243,7 +243,7 @@ const Page = async () => {
                                             zespół
                                         </span>
                     </h2>
-                    <p className="text-sm mt-1 max-w-md leading-relaxed text-gray-500 dark:text-white/30">
+                    <p className="text-sm mt-1 max-w-md leading-relaxed text-gray-500 dark:text-white/60">
                       Jesteśmy grupą młodych ludzi z Tarnowa, którzy wspólnie tworzą lokalne medium. Poznaj nas bliżej.
                     </p>
                   </div>
@@ -280,7 +280,7 @@ const Page = async () => {
                                     współpracować?
                                 </span>
                 </h2>
-                <p className="text-sm max-w-md mx-auto mb-6 leading-relaxed text-gray-500 dark:text-white/30">
+                <p className="text-sm max-w-md mx-auto mb-6 leading-relaxed text-gray-500 dark:text-white/60">
                   Organizujesz wydarzenie? Chcesz pojawić się w naszym materiale? Napisz do nas — odpiszemy szybko.
                 </p>
                 <Link href={shortcuts.contact}>

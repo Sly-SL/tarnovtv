@@ -49,7 +49,7 @@ const NewMode = () => {
 
                 {/* ── Mobile: horizontal bottom bar ── */}
                 <div className="flex md:hidden rounded-2xl px-4 py-1.5
-                                border border-gray-200 bg-white/90 backdrop-blur-md! shadow-sm
+                                border border-gray-200 bg-white/90 backdrop-blur-xl! shadow-sm
                                 dark:border-white/[0.07] dark:bg-white/[0.028] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.035)_inset]">
                     <ul className="flex justify-between items-center w-full">
                         {BUTTONSNEW.filter((btn) => btn.mobile !== false).map((button, i) => (
