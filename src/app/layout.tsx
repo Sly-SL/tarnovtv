@@ -21,10 +21,10 @@ import {AllCleanModesEnum} from "@/shared/consts/enums/all-clean-modes.enum";
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tarnov-tv.vercel.app"),
+  metadataBase: new URL(CONSTANTS.FRONTEND_URL),
 
   title: {
-    default: "Tarnov TV — Tarnowska telewizja młodzieżowa",
+    default: "Tarnov TV — Tarnowska Telewizja Młodzieżowa",
     template: "%s | Tarnov TV",
   },
   verification:{
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
   keywords: [
     "Tarnów",
     "TarnovTV",
-    "Telewizja tarnów",
-    "Telewizja tarnov",
-    "Młodzieżowa telewizja",
+    "Telewizja Tarnów",
+    "Telewizja Tarnov",
+    "Młodzieżowa Telewizja",
   ],
 
   authors: [{ name: "Slysl" }],
@@ -66,8 +66,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    url: "https://tarnov-tv.vercel.app/",
-    title: "Tarnov TV — Tarnowska telewizja młodzieżowa",
+    url: CONSTANTS.FRONTEND_URL,
+    title: "Tarnov TV — Tarnowska Telewizja Młodzieżowa",
     description:
         "Wszystko zaczęło się w lipcu 2024 roku, podczas warsztatów psychologicznych w fundacji Bema 20 w Tarnowie. To właśnie tam narodził się pomysł stworzenia czegoś więcej niż tylko szkolnych wywiadów i krótkich nagrań. Chcieliśmy wyjść poza schemat i zacząć tworzyć materiał, który będzie angażował mieszkańców całego miasta – od luźnych ulicznych rozmów, po pytania, które budują lokalną tożsamość i pokazują codzienność Tarnowa z nieoczywistej strony.\n" +
         "Od samego początku naszym celem nie było jedynie nagrywanie filmów. Chcieliśmy zbudować społeczność – aktywną, zaangażowaną i gotową do wspólnego działania. Wtorki i soboty miały stać się dniami premier, ale równie ważne było dla nas tworzenie przestrzeni, w której ludzie mogą się spotykać, wymieniać doświadczeniami i razem uczestniczyć w wydarzeniach organizowanych w Tarnowie.\n" +
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "TarnovTV — Tarnowska telewizja młodzieżowa",
+    title: "TarnovTV — Tarnowska Telewizja Młodzieżowa",
     description:
         "Wszystko zaczęło się w lipcu 2024 roku, podczas warsztatów psychologicznych w fundacji Bema 20 w Tarnowie. To właśnie tam narodził się pomysł stworzenia czegoś więcej niż tylko szkolnych wywiadów i krótkich nagrań. Chcieliśmy wyjść poza schemat i zacząć tworzyć materiał, który będzie angażował mieszkańców całego miasta – od luźnych ulicznych rozmów, po pytania, które budują lokalną tożsamość i pokazują codzienność Tarnowa z nieoczywistej strony.\n" +
         "Od samego początku naszym celem nie było jedynie nagrywanie filmów. Chcieliśmy zbudować społeczność – aktywną, zaangażowaną i gotową do wspólnego działania. Wtorki i soboty miały stać się dniami premier, ale równie ważne było dla nas tworzenie przestrzeni, w której ludzie mogą się spotykać, wymieniać doświadczeniami i razem uczestniczyć w wydarzeniach organizowanych w Tarnowie.\n" +
