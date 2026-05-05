@@ -19,11 +19,11 @@ export async function ReqChangeAction ({data}: {data:ChangeReqValues})    {
 
     const token = await generateToken(user.id, "change-password")
     const html = await render(<
-        ChangePasswordTemplate domain={CONSTANTS.FRONTEND_DOMEN}
+        ChangePasswordTemplate domain={CONSTANTS.FRONTEND_URL}
         token={token.token}/>)
 
     await sendMail(
         user.email,
-        "Email Verification",html
+        "Change Password",html
     )
 }

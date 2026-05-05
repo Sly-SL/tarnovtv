@@ -1,15 +1,15 @@
-import { Html } from "@react-email/html";
-import { Body, Head, Heading, Link, Preview, Section, Tailwind, Text } from "@react-email/components";
-import { shortcuts } from "@/shared/consts/enums/shortcuts.enum";
-import { CONSTANTS } from "@/shared/consts/consts.consts";
+import {Html} from "@react-email/html";
+import {Body, Head, Heading, Link, Preview, Section, Tailwind, Text} from "@react-email/components";
+import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
+import {CONSTANTS} from "@/shared/consts/consts.consts";
 
 interface ChangePasswordTemplateProps {
-    domain: string;
+    url: string;
     token: string;
 }
 
-export function ChangePasswordTemplate({ domain, token }: ChangePasswordTemplateProps) {
-    const changePasswordLink = `${domain}${shortcuts["change-password"]}/${token}`;
+export function ChangePasswordTemplate({ url, token }: ChangePasswordTemplateProps) {
+    const changePasswordLink = `${url}${shortcuts["change-password"]}/${token}`;
 
     return (
         <Html>
@@ -73,7 +73,7 @@ export function ChangePasswordTemplate({ domain, token }: ChangePasswordTemplate
                             </Link>
                         </Text>
                         <Text className="text-xs text-[#ffffff15] mt-2 mb-0">
-                            {domain}
+                            {url}
                         </Text>
                     </Section>
 
