@@ -6,6 +6,7 @@ export const shortcuts = {
     "us":"/us",
     "settings":"/settings",
     "users":"/users",
+    "members":"/members",
     "verify":"/verify",
     "blocked":"/blocked",
     "about":"/about",

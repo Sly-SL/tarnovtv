@@ -12,6 +12,7 @@ import {
     LockKeyIcon,
     ShieldCheckIcon,
     UsersIcon,
+    UsersThreeIcon,
     WarningDiamondIcon,
 } from "@phosphor-icons/react/ssr";
 import {getAdminStatsAction} from "@/actions/admin/get-admin-stats.action";
@@ -36,6 +37,15 @@ const Page = async () => {
             border: "border-red-500/[0.12] hover:border-red-500/25",
             bg: "bg-red-500/[0.03] hover:bg-red-500/[0.07]",
             iconBg: "bg-red-500/10 border-red-500/20 group-hover:bg-red-500/20",
+        },
+        {
+            label: "Członkowie zespołu",
+            description: "Dodawaj i edytuj członków zespołu widocznych na stronie /us",
+            href: shortcuts.settings + shortcuts.admin + shortcuts.members,
+            icon: <UsersThreeIcon size={20} className="text-indigo-400"/>,
+            border: "border-indigo-500/[0.12] hover:border-indigo-500/25",
+            bg: "bg-indigo-500/[0.03] hover:bg-indigo-500/[0.07]",
+            iconBg: "bg-indigo-500/10 border-indigo-500/20 group-hover:bg-indigo-500/20",
         },
         {
             label: "Zablokowane konta",
