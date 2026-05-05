@@ -129,7 +129,7 @@ export default async function RootLayout({
       <Setup/>
       <StarBackground/>
       <LegacyHeader />
-      <main className={`pt-21 [html[data-mode=new]_&]:md:ml-28 [html[data-mode=new]_&]:pt-12"}`} >
+      <main className={`pt-21 [html[data-mode=new]_&]:md:ml-28 [html[data-mode=new]_&]:pt-0"}`} >
           {children}
       </main>
       <NewMode />
