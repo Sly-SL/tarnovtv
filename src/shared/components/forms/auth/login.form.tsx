@@ -5,11 +5,12 @@ import Link from "next/link";
 import {useRouter} from "next/navigation";
 import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
 import {toast} from "sonner";
-import {useState} from "react";
-import {LoginAction} from "../../../../actions/auth/login.action";
+import {useLayoutEffect, useState} from "react";
+import {LoginAction} from "@/actions/auth/login.action";
 import {BasicInput} from "@/shared/components/libs/basic/input.component";
 import {BasicButton} from "@/shared/components/libs/basic/button.component";
 import {EyeIcon, EyeSlashIcon} from "@phosphor-icons/react";
+import {GetUserBySessionIdAction} from "@/actions/auth/get-user-by-session-id.action";
 
 export type LoginFormValues = {
     login: string;
@@ -19,6 +20,14 @@ export type LoginFormValues = {
 const LoginForm = () => {
     const router = useRouter();
     const [passwordVisible, setPasswordVisible] = useState(false);
+
+    useLayoutEffect(() => {
+        let cancelled = false;
+        GetUserBySessionIdAction().then(user => {
+            if (!cancelled && user) router.push(shortcuts.settings);
+        });
+        return () => { cancelled = true; };
+    }, []);
 
     const {
         control,

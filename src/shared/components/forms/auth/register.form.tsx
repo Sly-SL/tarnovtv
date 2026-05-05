@@ -9,9 +9,10 @@ import {RegisterAction} from "@/actions/auth/register.action";
 import type {RegisterFormType} from "@/shared/types/forms/register.form.type";
 import {BasicInput} from "@/shared/components/libs/basic/input.component";
 import {BasicButton} from "@/shared/components/libs/basic/button.component";
-import {useState} from "react";
+import {useLayoutEffect, useState} from "react";
 import {EyeIcon, EyeSlashIcon} from "@phosphor-icons/react";
 import {BasicCheckbox} from "@/shared/components/libs/basic/checkbox.component";
+import {GetUserBySessionIdAction} from "@/actions/auth/get-user-by-session-id.action";
 
 const RegisterForm = () => {
     const router = useRouter();
@@ -34,6 +35,13 @@ const RegisterForm = () => {
             gender: "male",
         },
     });
+    useLayoutEffect(() => {
+        let cancelled = false;
+        GetUserBySessionIdAction().then(user => {
+            if (!cancelled && user) router.push(shortcuts.settings);
+        });
+        return () => { cancelled = true; };
+    }, []);
 
     const passwordValue = watch("password");
 
