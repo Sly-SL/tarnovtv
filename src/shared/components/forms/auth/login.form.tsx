@@ -24,7 +24,10 @@ const LoginForm = () => {
     useLayoutEffect(() => {
         let cancelled = false;
         GetUserBySessionIdAction().then(user => {
-            if (!cancelled && user) router.push(shortcuts.settings);
+            if (!cancelled && user) {
+                toast.error("Już jesteś zalogowany!")
+                router.push(shortcuts.settings)
+            }
         });
         return () => { cancelled = true; };
     }, []);

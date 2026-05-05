@@ -32,6 +32,6 @@ export const BasicCheckbox = ({checked, onChange, children}: {
                 </svg>
             )}
         </div>
-        <p className="text-xs leading-relaxed text-gray-500 dark:text-white/35">{children}</p>
+        <p className="text-xs leading-relaxed text-gray-500 dark:text-white/55">{children}</p>
     </div>
 );

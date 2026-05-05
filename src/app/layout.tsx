@@ -15,7 +15,6 @@ import {AllThemesEnum} from "@/shared/consts/enums/all-themes.enum";
 import {AllModesEnum} from "@/shared/consts/enums/all-modes.enum";
 import NewMode from "@/shared/components/new-mode";
 import Setup from "@/shared/components/setup";
-import {cookies} from "next/headers";
 import {AllCleanModesEnum} from "@/shared/consts/enums/all-clean-modes.enum";
 
 export const revalidate = 86400
@@ -119,8 +118,6 @@ export default async function RootLayout({
                                    }: Readonly<{
   children: ReactNode;
 }>) {
-    const cookieStore = await cookies();
-    const isCookieAccepted = cookieStore.get("functional-cookie-banner")?.value === "shown";
   return (
       <html lang="pl" data-theme={AllThemesEnum[0]} data-mode={AllModesEnum[0]} data-clean-mode={AllCleanModesEnum[0]}>
       <Head>
@@ -132,11 +129,11 @@ export default async function RootLayout({
       <Setup/>
       <StarBackground/>
       <LegacyHeader />
-      <main className={`pt-21 [html[data-mode=new]_&]:md:ml-28 ${isCookieAccepted && "[html[data-mode=new]_&]:pt-12"}`} >
+      <main className={`pt-21 [html[data-mode=new]_&]:md:ml-28 [html[data-mode=new]_&]:pt-12"}`} >
           {children}
       </main>
       <NewMode />
-      {!isCookieAccepted && <Cookie />}
+      <Cookie />
       <Toaster/>
       <Footer/>
       <Analytics mode={CONSTANTS.NODE_ENV == "development" ? "development" : "production"} />

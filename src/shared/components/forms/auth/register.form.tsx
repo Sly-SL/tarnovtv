@@ -38,7 +38,10 @@ const RegisterForm = () => {
     useLayoutEffect(() => {
         let cancelled = false;
         GetUserBySessionIdAction().then(user => {
-            if (!cancelled && user) router.push(shortcuts.settings);
+            if (!cancelled && user) {
+                router.push(shortcuts.settings)
+                toast.error("Już jesteś zalogowany!")
+            }
         });
         return () => { cancelled = true; };
     }, []);
@@ -49,7 +52,7 @@ const RegisterForm = () => {
         if (!acceptedRules) return toast.error("Musisz zaakceptować regulamin");
         try {
             await RegisterAction(data);
-            router.push(shortcuts.settings);
+            router.push(shortcuts.login);
         } catch (error: unknown) {
             if (error instanceof Error) toast.error(error.message);
         }
@@ -121,8 +124,10 @@ const RegisterForm = () => {
                         <Controller
                             name="surname"
                             control={control}
-                            rules={{required: "Podaj nazwisko"}}
-                            render={({field}) => (
+                            rules={{
+                                required: "Podaj nazwisko",
+                                pattern: {value: /^[^@]+$/, message: "Nieprawidłowe nazwisko"},
+                            }}                            render={({field}) => (
                                 <BasicInput
                                     {...field}
                                     label="Nazwisko"
@@ -241,7 +246,7 @@ const RegisterForm = () => {
                                             className={[
                                                 "flex items-center justify-center gap-1.5 py-2 rounded-xl border text-sm font-medium transition-all duration-150",
                                                 field.value === g
-                                                    ? "border-indigo-400/50 bg-indigo-50 text-indigo-600 dark:border-(--contrast-color)/45 dark:bg-indigo-500/10 dark:text-(--contrast-color) dark:shadow-[0_0_0_2px_rgba(99,102,241,0.1)]"
+                                                    ? "border-(--contrast-color)/45 bg-(--contrast-color)/10  text-(--contrast-color) dark:shadow-[0_0_0_2px_rgba(99,102,241,0.1)]"
                                                     : "border-gray-200 bg-gray-50 text-gray-400 hover:border-indigo-300 hover:text-gray-600 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-white/38 dark:hover:border-(--contrast-color)/20 dark:hover:text-white/60",
                                             ].join(" ")}
                                         >
@@ -271,8 +276,7 @@ const RegisterForm = () => {
                             href={shortcuts.privacy}
                             onClick={(e) => e.stopPropagation()}
                             className="transition-colors hover:underline underline-offset-2
-                                       text-indigo-500 hover:text-indigo-600
-                                       dark:text-(--contrast-color)/70 dark:hover:text-(--contrast-color)"
+                                       text-(--contrast-color)/70 hover:text-(--contrast-color)"
                         >
                             polityką prywatności
                         </Link>
@@ -291,13 +295,11 @@ const RegisterForm = () => {
                 </form>
 
                 <p className="mt-5 text-center text-xs
-                              text-gray-400 dark:text-white/25">
+                              text-gray-400 dark:text-white/55">
                     Masz już konto?{" "}
                     <Link
                         href={shortcuts.login}
-                        className="transition-colors
-                                   text-indigo-500 hover:text-indigo-600
-                                   dark:text-(--contrast-color)/65 dark:hover:text-(--contrast-color)"
+                        className="transition-colors text-(--contrast-color)/65 hover:text-(--contrast-color)"
                     >
                         Zaloguj się
                     </Link>
