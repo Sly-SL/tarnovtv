@@ -12,4 +12,5 @@ export type UserType = {
     role: AllUsersRolesType;
     isDeactivated: boolean;
     deactivatedAt: Date | null;
+    createdAt: Date;
 };

@@ -23,27 +23,24 @@ export async function getAdminStatsAction(): Promise<AdminStatsType | null> {
     ]);
 
     const users = usersSnap.docs.map(d => d.data() as UserType);
+    const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
     const byRole: Record<string, number> = {user: 0, moderator: 0, admin: 0};
     let blockedUsers = 0;
     let recentRegistrations = 0;
-    const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
     for (const u of users) {
         byRole[u.role] = (byRole[u.role] ?? 0) + 1;
         if (u.badAttempts > 0) blockedUsers++;
+        if (u.createdAt && new Date(u.createdAt).getTime() > sevenDaysAgo) recentRegistrations++;
     }
 
-    // Count sessions and top countries
     const countryCounts: Record<string, number> = {};
     for (const doc of sessionsSnap.docs) {
-        const data = doc.data();
-        const country = data?.metadata?.location?.country;
+        const country = doc.data()?.metadata?.location?.country;
         if (country && country !== "unknown") {
             countryCounts[country] = (countryCounts[country] ?? 0) + 1;
         }
-        const createdAt = data?.createdAt;
-        if (createdAt && createdAt > sevenDaysAgo) recentRegistrations++;
     }
 
     const topCountries = Object.entries(countryCounts)
