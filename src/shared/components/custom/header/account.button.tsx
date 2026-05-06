@@ -85,7 +85,7 @@ export const AccountHeaderButton = () => {
                 onClick={async () => {
                     setOpen(false);
                     await LogoutAction();
-                    router.push("/");
+                    router.push("/login");
                     router.refresh();
                 }}
                 className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs text-red-400/70 hover:text-red-400 hover:bg-red-500/[0.05] transition-colors"

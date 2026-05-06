@@ -159,7 +159,11 @@ const X1Y1HalfSettings = (user: UserType) => {
                             ">
                                 <div className="flex flex-col gap-0.5 px-3 py-2 rounded-xl border border-black/[0.05] bg-black/[0.018] dark:border-white/[0.05] dark:bg-white/[0.018]">
                                     <button
-                                        onClick={async () => { await LogoutAction(); router.refresh(); }}
+                                        onClick={async () => {
+                                            await LogoutAction();
+                                            router.push("/login");
+                                            router.refresh();
+                                        }}
                                         className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs text-red-400/70 hover:text-red-400 hover:bg-red-500/[0.05] transition-colors">
                                         <SignOutIcon size={14}/>
                                         Wyloguj się
