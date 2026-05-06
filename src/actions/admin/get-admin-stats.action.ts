@@ -32,7 +32,7 @@ export async function getAdminStatsAction(): Promise<AdminStatsType | null> {
     for (const u of users) {
         byRole[u.role] = (byRole[u.role] ?? 0) + 1;
         if (u.badAttempts > 0) blockedUsers++;
-        if (u.createdAt && new Date(u.createdAt).getTime() > sevenDaysAgo) recentRegistrations++;
+        if (u.createdAt && u.createdAt.toMillis() > sevenDaysAgo) recentRegistrations++;
     }
 
     const countryCounts: Record<string, number> = {};
