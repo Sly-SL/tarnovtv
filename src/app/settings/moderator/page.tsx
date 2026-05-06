@@ -16,8 +16,8 @@ import type {JSX} from "react";
 
 const sections: {label: string; href: string; icon: JSX.Element; delay: number}[] = [
     {
-        label: "Projekty",
-        href: shortcuts.moderator + shortcuts.projects,
+        label: "Wydarzenia",
+        href: shortcuts.moderator + shortcuts.events,
         icon: <FolderOpenIcon size={18} weight="duotone"/>,
         delay: 0,
     },

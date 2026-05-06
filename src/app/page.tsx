@@ -1,7 +1,7 @@
 import Animate from "@/shared/components/libs/animate/animate.ssr";
 import Link from "next/link";
 import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
-import {projectsGet} from "@/lib/firebase/get/projects.get";
+import {eventGet} from "../lib/firebase/get/event.get";
 import {mediaGet} from "@/lib/firebase/get/media.get";
 import Image from "next/image";
 import {
@@ -23,9 +23,9 @@ const stats = [
 ];
 
 const Page = async () => {
-  const [projects, media] = await Promise.all([projectsGet(), mediaGet()]);
+  const [events, media] = await Promise.all([eventGet(), mediaGet()]);
 
-  const latestProjects = projects.filter((p) => !p.private).slice(0, 3);
+  const latestEvents = events.filter((e) => !e.private).slice(0, 3);
   const latestMedia = media.slice(0, 6);
 
   return (
@@ -65,10 +65,10 @@ const Page = async () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
-              <Link href={shortcuts.projects}>
+              <Link href={shortcuts.events}>
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white text-sm font-semibold transition-all duration-150 shadow-[0_4px_24px_rgba(99,102,241,0.35)] hover:opacity-90 bg-(--contrast-color)">
                   <RocketLaunchIcon size={15}/>
-                  Zobacz projekty
+                  Zobacz wydarzenia
                   <ArrowRightIcon size={13}/>
                 </div>
               </Link>
@@ -105,7 +105,7 @@ const Page = async () => {
         </section>
 
         {/* ── LATEST PROJECTS ── */}
-        {latestProjects.length > 0 && (
+        {latestEvents.length > 0 && (
             <section className="relative z-10 px-4 sm:px-8 lg:px-12 py-16">
               <div className="max-w-screen-xl mx-auto">
                 <Animate preset="fadeDown">
@@ -115,16 +115,16 @@ const Page = async () => {
                                                     border border-indigo-200 text-(--contrast-color)
                                                     bg-(--contrast-color)/10 dark:border-(--contrast-color)/20">
                         <RocketLaunchIcon size={9}/>
-                        Projekty
+                        Wydarzenia
                       </div>
                       <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
                         Ostatnie{" "}
                         <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
-                                            projekty
+                                            wydarzenia
                                         </span>
                       </h2>
                     </div>
-                    <Link href={shortcuts.projects} className="hidden sm:inline-flex items-center gap-1.5 text-xs transition-colors
+                    <Link href={shortcuts.events} className="hidden sm:inline-flex items-center gap-1.5 text-xs transition-colors
                                                                            text-gray-400 hover:text-gray-700
                                                                            dark:text-white/30 dark:hover:text-white/60">
                       Wszystkie <ArrowRightIcon size={11}/>
@@ -132,8 +132,8 @@ const Page = async () => {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {latestProjects.map((p) => (
-                        <Link key={p.id} href={`${shortcuts.projects}/${p.id}`}>
+                    {latestEvents.map((p) => (
+                        <Link key={p.id} href={`${shortcuts.events}/${p.id}`}>
                           <div className="group rounded-2xl border backdrop-blur-xl overflow-hidden transition-all duration-200
                                                         border-gray-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/50
                                                         dark:border-white/[0.07] dark:bg-white/[0.028] dark:hover:border-(--contrast-color)/30 dark:hover:bg-(--contrast-color)/[0.04]">
@@ -162,10 +162,10 @@ const Page = async () => {
                     ))}
                   </div>
 
-                  <Link href={shortcuts.projects} className="sm:hidden mt-4 inline-flex items-center gap-1.5 text-xs transition-colors
+                  <Link href={shortcuts.events} className="sm:hidden mt-4 inline-flex items-center gap-1.5 text-xs transition-colors
                                                                        text-gray-400 hover:text-gray-700
                                                                        dark:text-white/30 dark:hover:text-white/60">
-                    Wszystkie projekty <ArrowRightIcon size={11}/>
+                    Wszystkie wydarzenia <ArrowRightIcon size={11}/>
                   </Link>
                 </Animate>
               </div>

@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
 import {ArrowLeftIcon, HashIcon, LockIcon, SparkleIcon, StarIcon} from "@phosphor-icons/react/ssr";
-import type {ProjectType} from "@/shared/types/domen/project.type";
+import type {EventsType} from "@/shared/types/domen/events.type";
 import {CONSTANTS} from "@/shared/consts/consts.consts";
 import type {Metadata} from "next";
-import {projectByIdGet} from "@/lib/firebase/get/project-by-id.get";
+import {eventByIdGet} from "@/lib/firebase/get/event-by-id.get";
 
 interface Props {
     params: Promise<{id: string}>;
@@ -13,30 +13,30 @@ interface Props {
 
 export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
     const {id} = await params;
-    const project = await projectByIdGet({id});
+    const event = await eventByIdGet({id});
 
-    if (!project) return {title: "Projekt nie znaleziony"};
+    if (!event) return {title: "Projekt nie znaleziony"};
 
     return {
-        title: project.name,
-        description: project.description ?? "Amazing Project",
+        title: event.name,
+        description: event.description ?? "Amazing Project",
         openGraph: {
-            title: project.name,
-            description: project.description,
+            title: event.name,
+            description: event.description,
             type: "website",
-            url: `${CONSTANTS.FRONTEND_URL}/projects/${id}`,
-            images: [{url: project.image, width: 1200, height: 630, alt: project.name}],
+            url: `${CONSTANTS.FRONTEND_URL}/events/${id}`,
+            images: [{url: event.image, width: 1200, height: 630, alt: event.name}],
         },
-        twitter: {card: "summary_large_image", title: project.name, description: project.description, images: [project.image]},
+        twitter: {card: "summary_large_image", title: event.name, description: event.description, images: [event.image]},
         metadataBase: new URL(CONSTANTS.FRONTEND_URL),
     };
 };
 
 const ProjectDetails = async ({params}: Props) => {
     const {id} = await params;
-    const project: ProjectType | null = await projectByIdGet({id});
+    const event: EventsType | null = await eventByIdGet({id});
 
-    if (!project) {
+    if (!event) {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center space-y-4">
@@ -61,14 +61,14 @@ const ProjectDetails = async ({params}: Props) => {
                 {/* Breadcrumb */}
                 <div className="flex items-center gap-3 mb-10">
                     <Link
-                        href={shortcuts.projects}
+                        href={shortcuts.events}
                         className="inline-flex items-center gap-2 text-xs text-(--contrast-color)/30 transition-colors dark:text-white/30 dark:hover:text-white/60"
                     >
                         <ArrowLeftIcon size={12}/>
                         Projekty
                     </Link>
                     <span className="text-black/15 dark:text-white/15">/</span>
-                    <span className="text-xs text-(--contrast-color) truncate">{project.name}</span>
+                    <span className="text-xs text-(--contrast-color) truncate">{event.name}</span>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-8 items-start">
@@ -83,21 +83,21 @@ const ProjectDetails = async ({params}: Props) => {
                                 Projekt
                             </div>
                             <div className="flex items-center gap-3 mb-2">
-                                <h1 className="text-3xl font-extrabold tracking-tight text-black dark:text-white">{project.name}</h1>
-                                {project.private && (
+                                <h1 className="text-3xl font-extrabold tracking-tight text-black dark:text-white">{event.name}</h1>
+                                {event.private && (
                                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/[0.05] border border-black/[0.07] text-[9px] font-bold uppercase tracking-widest text-(--contrast-color) dark:bg-white/[0.05] dark:border-white/[0.07]">
                                         <LockIcon size={8}/>
                                         Prywatny
                                     </span>
                                 )}
                             </div>
-                            <p className="text-sm text-black/40 font-light leading-relaxed dark:text-white/40">{project.description}</p>
+                            <p className="text-sm text-black/40 font-light leading-relaxed dark:text-white/40">{event.description}</p>
                         </div>
 
                         {/* Hashtags */}
-                        {project.hashtags.length > 0 && (
+                        {event.hashtags.length > 0 && (
                             <div className="flex flex-wrap gap-2">
-                                {project.hashtags.map((tag, i) => (
+                                {event.hashtags.map((tag, i) => (
                                     <span
                                         key={i}
                                         className="inline-flex items-center gap-1 px-3 py-1 rounded-xl border border-black/[0.07] bg-black/[0.028] text-xs text-black/40 dark:border-white/[0.07] dark:bg-white/[0.028] dark:text-white/40"
@@ -110,14 +110,14 @@ const ProjectDetails = async ({params}: Props) => {
                         )}
 
                         {/* Interesting facts */}
-                        {project.interesting.length > 0 && (
+                        {event.interesting.length > 0 && (
                             <div className="rounded-2xl border border-black/[0.07] bg-black/[0.028] backdrop-blur-xl p-5 dark:border-white/[0.07] dark:bg-white/[0.028]">
                                 <div className="flex items-center gap-2 mb-4">
                                     <StarIcon size={14} className="text-(--contrast-color)"/>
                                     <p className="text-xs font-semibold tracking-widest uppercase text-(--contrast-color)">Ciekawostki</p>
                                 </div>
                                 <ul className="flex flex-col gap-2.5">
-                                    {project.interesting.map((fact, i) => (
+                                    {event.interesting.map((fact, i) => (
                                         <li key={i} className="flex items-start gap-3">
                                             <div className="mt-1.5 w-1 h-1 rounded-full bg-black/20 shrink-0 dark:bg-white/20"/>
                                             <span className="text-sm text-black/50 leading-relaxed dark:text-white/50">{fact}</span>
@@ -132,8 +132,8 @@ const ProjectDetails = async ({params}: Props) => {
                     <div className="flex flex-col gap-4">
                         <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/[0.07] bg-black/[0.028] group dark:border-white/[0.07] dark:bg-white/[0.028]">
                             <Image
-                                src={project.image}
-                                alt={project.name}
+                                src={event.image}
+                                alt={event.name}
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />

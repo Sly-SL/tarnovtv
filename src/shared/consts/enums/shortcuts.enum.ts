@@ -1,5 +1,5 @@
 export const shortcuts = {
-    "projects":"/projects",
+    "events":"/events",
     "media":"/media",
     "more":"/more",
     "home":"/",

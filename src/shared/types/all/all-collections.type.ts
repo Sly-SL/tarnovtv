@@ -1,1 +1,1 @@
-export type AllCollectionsType = "comments"| "offers" | "projects" | "users" | "sessions" | "media" | "settings" | "tokens" | "members"
+export type AllCollectionsType = "comments"| "offers" | "events" | "users" | "sessions" | "media" | "settings" | "tokens" | "members"

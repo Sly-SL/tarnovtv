@@ -1,14 +1,14 @@
 "use client";
 
 import {useEffect, useRef, useState, useTransition} from "react";
-import {projectsGet} from "@/lib/firebase/get/projects.get";
-import type {ProjectType} from "@/shared/types/domen/project.type";
+import {eventGet} from "@/lib/firebase/get/event.get";
+import type {EventsType} from "@/shared/types/domen/events.type";
 import {ImageIcon, PencilSimpleIcon, PlusIcon, SparkleIcon, TrashIcon, XIcon} from "@phosphor-icons/react";
 import {toast} from "sonner";
 import {ModeratorMiddleware} from "@/middlewares/moderator.middleware";
-import {projectDelete} from "@/lib/firebase/delete/project.delete";
-import {projectPatch} from "@/lib/firebase/patch/project.patch";
-import {projectPost} from "@/lib/firebase/post/project.post";
+import {eventDelete} from "@/lib/firebase/delete/event.delete";
+import {eventsPatch} from "@/lib/firebase/patch/events.patch";
+import {eventsPost} from "@/lib/firebase/post/events.post";
 import {UploadImageAction} from "@/lib/imagebb/upload.imagebb";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,9 +19,9 @@ const inputCls = "w-full px-3 py-2.5 rounded-xl border border-black/[0.08] bg-bl
 const labelCls = "block text-[10px] font-medium tracking-widest uppercase text-black/35 mb-1.5 dark:text-white/35";
 
 // Updated type — images is string[] instead of image: string
-type ProjectFormType = Omit<ProjectType, "id" | "image"> & {images: string[]};
+type EventFormType = Omit<EventsType, "id" | "image"> & {images: string[]};
 
-const EMPTY: ProjectFormType = {
+const EMPTY: EventFormType = {
     name: "",
     description: "",
     images: [],
@@ -31,9 +31,9 @@ const EMPTY: ProjectFormType = {
 };
 
 export default function ProjectsAdminPage() {
-    const [projects, setProjects] = useState<ProjectType[]>([]);
-    const [editing, setEditing] = useState<ProjectType | null>(null);
-    const [form, setForm] = useState<ProjectFormType>(EMPTY);
+    const [events, setEvents] = useState<EventsType[]>([]);
+    const [editing, setEditing] = useState<EventsType | null>(null);
+    const [form, setForm] = useState<EventFormType>(EMPTY);
     const [interestingRaw, setInterestingRaw] = useState("");
     const [hashtagsRaw, setHashtagsRaw] = useState("");
     const [showForm, setShowForm] = useState(false);
@@ -42,8 +42,8 @@ export default function ProjectsAdminPage() {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const load = async () => {
-        const data = await projectsGet();
-        setProjects(data);
+        const data = await eventGet();
+        setEvents(data);
         await ModeratorMiddleware();
     };
 
@@ -57,7 +57,7 @@ export default function ProjectsAdminPage() {
         setShowForm(true);
     };
 
-    const openEdit = (p: ProjectType) => {
+    const openEdit = (p: EventsType) => {
         setEditing(p);
         setForm({
             name: p.name,
@@ -120,10 +120,10 @@ export default function ProjectsAdminPage() {
         startTransition(async () => {
             try {
                 if (editing) {
-                    await projectPatch(editing.id, data);
+                    await eventsPatch(editing.id, data);
                     toast.success("Zaktualizowano projekt");
                 } else {
-                    await projectPost(data);
+                    await eventsPost(data);
                     toast.success("Dodano projekt");
                 }
                 closeForm();
@@ -137,7 +137,7 @@ export default function ProjectsAdminPage() {
     const handleDelete = (id: string) => {
         startTransition(async () => {
             try {
-                await projectDelete(id);
+                await eventDelete(id);
                 toast.success("Usunięto projekt");
                 await load();
             } catch {
@@ -171,15 +171,15 @@ export default function ProjectsAdminPage() {
                             <SparkleIcon size={9}/>
                             Panel moderatora
                         </div>
-                        <h1 className="text-3xl font-extrabold tracking-tight text-black dark:text-white">Zarządzaj projektami</h1>
-                        <p className="text-sm text-black/30 font-light mt-1 dark:text-white/30">Dodawaj, edytuj i usuwaj projekty.</p>
+                        <h1 className="text-3xl font-extrabold tracking-tight text-black dark:text-white">Zarządzaj wydarzeniami</h1>
+                        <p className="text-sm text-black/30 font-light mt-1 dark:text-white/30">Dodawaj, edytuj i usuwaj wydarzenia.</p>
                     </div>
                     <button
                         onClick={openNew}
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-linear-to-br from-(--contrast-color) to-indigo-500 text-white text-sm font-semibold shadow-[0_4px_20px_rgba(99,102,241,0.3)] hover:opacity-90 transition-all duration-150"
                     >
                         <PlusIcon size={16}/>
-                        Nowy projekt
+                        Nowe wydarzenie
                     </button>
                 </div>
 
@@ -187,12 +187,12 @@ export default function ProjectsAdminPage() {
 
                     {/* List */}
                     <div className="flex flex-col gap-3">
-                        {projects.length === 0 && (
+                        {events.length === 0 && (
                             <div className="rounded-3xl border border-black/[0.07] bg-black/[0.028] p-10 text-center text-black/25 text-sm dark:border-white/[0.07] dark:bg-white/[0.028] dark:text-white/25">
-                                Brak projektów — dodaj pierwszy →
+                                Brak wydarzeń — dodaj pierwsze →
                             </div>
                         )}
-                        {projects.map((p) => (
+                        {events.map((p) => (
                             <div
                                 key={p.id}
                                 className={[
@@ -219,7 +219,7 @@ export default function ProjectsAdminPage() {
                                         <p className="text-sm font-semibold text-black truncate dark:text-white">{p.name}</p>
                                         {p.private && (
                                             <span className="px-2 py-0.5 rounded-full bg-black/[0.05] text-black/30 text-[9px] font-bold uppercase tracking-widest shrink-0 dark:bg-white/[0.05] dark:text-white/30">
-                                                Prywatny
+                                                Prywatne
                                             </span>
                                         )}
                                     </div>
@@ -273,7 +273,7 @@ export default function ProjectsAdminPage() {
                             <div className="flex flex-col gap-3">
                                 <div>
                                     <label className={labelCls}>Nazwa</label>
-                                    <input value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} className={inputCls} placeholder="Nazwa projektu"/>
+                                    <input value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} className={inputCls} placeholder="Nazwa wydarzenia"/>
                                 </div>
                                 <div>
                                     <label className={labelCls}>Opis</label>
@@ -282,7 +282,7 @@ export default function ProjectsAdminPage() {
                                         onChange={e => setForm(f => ({...f, description: e.target.value}))}
                                         rows={3}
                                         className={inputCls + " resize-none"}
-                                        placeholder="Krótki opis projektu..."
+                                        placeholder="Krótki opis wydarzenia..."
                                     />
                                 </div>
 
@@ -386,7 +386,7 @@ export default function ProjectsAdminPage() {
                                     ].join(" ")}>
                                         {form.private && <svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                                     </div>
-                                    <span className="text-xs text-black/40 dark:text-white/40">Projekt prywatny (niewidoczny publicznie)</span>
+                                    <span className="text-xs text-black/40 dark:text-white/40">wydarzenie prywatne (niewidoczne publicznie)</span>
                                 </div>
 
                                 <button
@@ -394,7 +394,7 @@ export default function ProjectsAdminPage() {
                                     disabled={isPending || !form.name || isUploading}
                                     className="w-full py-3 rounded-xl bg-linear-to-br from-(--contrast-color) to-indigo-500 text-white text-sm font-semibold shadow-[0_4px_20px_rgba(99,102,241,0.25)] hover:opacity-90 disabled:opacity-40 transition-all duration-150"
                                 >
-                                    {isPending ? "Zapisuję..." : isUploading ? "Wysyłam zdjęcia..." : editing ? "Zapisz zmiany" : "Dodaj projekt"}
+                                    {isPending ? "Zapisuję..." : isUploading ? "Wysyłam zdjęcia..." : editing ? "Zapisz zmiany" : "Dodaj wydarzenie"}
                                 </button>
                             </div>
                         </div>

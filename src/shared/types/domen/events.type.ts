@@ -1,4 +1,4 @@
-export type ProjectType = {
+export type EventsType = {
     id: string
     name: string
     description: string

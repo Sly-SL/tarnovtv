@@ -1,9 +1,9 @@
 import type {MetadataRoute} from "next";
-import {projectsGet} from "@/lib/firebase/get/projects.get";
+import {eventGet} from "@/lib/firebase/get/event.get";
 import {CONSTANTS} from "@/shared/consts/consts.consts";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const projects = await projectsGet();
+    const events = await eventGet();
 
     return [
         {
@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
         },
         {
-            url: CONSTANTS.FRONTEND_URL+"/projects",
+            url: CONSTANTS.FRONTEND_URL+"/events",
             lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 0.9,
@@ -30,8 +30,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: "monthly",
             priority: 0.6,
         },
-        ...projects.map((project) => ({
-            url: `${CONSTANTS.FRONTEND_URL}/projects/${project.id}`,
+        ...events.map((event) => ({
+            url: `${CONSTANTS.FRONTEND_URL}/events/${event.id}`,
             lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 0.9,

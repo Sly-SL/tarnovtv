@@ -2,7 +2,7 @@ import {BUTTONSLEGACY} from "@/shared/consts/enums/buttons-header.enum";
 import ButtonHeader from "@/shared/components/custom/header/button.header";
 import AboutSubdiv from "@/shared/components/custom/header/subdivs/subdivs/about.subdiv";
 import SidebarChangeButton from "@/shared/components/custom/header/sidebar-change.button";
-import ProjectsSubdiv from "@/shared/components/custom/header/subdivs/subdivs/projects.subdiv";
+import EventsSubdiv from "./custom/header/subdivs/subdivs/events.subdiv";
 import ContactSubdiv from "@/shared/components/custom/header/subdivs/subdivs/contact.subdiv";
 import MediaSubdiv from "@/shared/components/custom/header/subdivs/subdivs/media.subdiv";
 import OffersSubdiv from "@/shared/components/custom/header/subdivs/subdivs/offers.subdiv";
@@ -50,7 +50,7 @@ const LegacyHeader = () => {
                             <AboutSubdiv/>
                             <ContactSubdiv/>
                             <MediaSubdiv/>
-                            <ProjectsSubdiv/>
+                            <EventsSubdiv/>
                             <UsSubdiv/>
                             <SettingsSubdiv/>
                         </li>

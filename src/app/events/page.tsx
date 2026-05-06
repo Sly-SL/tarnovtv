@@ -1,15 +1,15 @@
-import {projectsGet} from "@/lib/firebase/get/projects.get";
 import {ChatsCircleIcon, RocketLaunchIcon} from "@phosphor-icons/react/ssr";
 import {votingsGet} from "@/lib/firebase/get/voting.get";
-import ProjectCard from "@/shared/components/custom/body/project.body";
+import ProjectCard from "../../shared/components/custom/body/event.body";
 import VotingCard from "@/shared/components/custom/body/voting.body";
 import {GetUserBySessionIdAction} from "@/actions/auth/get-user-by-session-id.action";
+import {eventGet} from "@/lib/firebase/get/event.get";
 
 const Page = async () => {
-    const [projects, votings] = await Promise.all([projectsGet(), votingsGet()]);
+    const [events, votings] = await Promise.all([eventGet(), votingsGet()]);
     const user = await GetUserBySessionIdAction();
     const userId = user?.id;
-    const publicProjects = projects.filter(p => !p.private);
+    const publicEvents = events.filter(e => !e.private);
 
     return (
         <div className="relative min-h-screen w-full flex flex-col overflow-hidden bg-transparent">
@@ -34,7 +34,7 @@ const Page = async () => {
                                     bg-indigo-50 border border-indigo-200 text-indigo-600
                                     dark:bg-(--contrast-color)/10 dark:border-indigo-500/20 dark:text-(--contrast-color)/85">
                         <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-(--contrast-color) shadow-[0_0_6px_#818cf8] animate-pulse"/>
-                        Projekty & Głosowania
+                        Wydarzenia & Głosowania
                     </div>
                     <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight
                                    text-gray-900 dark:text-white">
@@ -45,7 +45,7 @@ const Page = async () => {
                     </h1>
                     <p className="text-sm font-light mt-1 max-w-lg
                                   text-gray-500 dark:text-white/30">
-                        Nasze projekty i aktywne głosowania — masz wpływ na to, co robimy.
+                        Nasze eventy i aktywne głosowania — masz wpływ na to, co robimy.
                     </p>
                 </div>
             </div>
@@ -60,22 +60,22 @@ const Page = async () => {
                             <RocketLaunchIcon size={16} className="text-indigo-500 dark:text-(--contrast-color)"/>
                             <span className="text-[11px] font-medium tracking-widest uppercase
                                             text-gray-400 dark:text-white/35">
-                                Projekty
+                                Wydarzenia
                             </span>
                         </div>
 
-                        {publicProjects.length === 0 ? (
+                        {publicEvents.length === 0 ? (
                             <div className="rounded-2xl border p-12 text-center text-sm
                                             border-gray-200 bg-gray-50 text-gray-400
                                             dark:border-white/[0.07] dark:bg-white/[0.028] dark:text-white/25">
-                                Projekty są w przygotowaniu — wróć wkrótce.
+                                Wydarzenia są w przygotowaniu — wróć wkrótce.
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                                {publicProjects.map((project, i) => (
+                                {publicEvents.map((event, i) => (
                                     <ProjectCard
-                                        key={project.id}
-                                        project={project}
+                                        key={event.id}
+                                        event={event}
                                         style={{animation: `fadeUp ${0.3 + i * 0.07}s cubic-bezier(0.16,1,0.3,1) both`}}
                                     />
                                 ))}

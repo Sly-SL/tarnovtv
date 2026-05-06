@@ -27,10 +27,10 @@ export const BUTTONSLEGACY: ButtonHeaderProps[] = [
         getElementByIdAction: shortcuts.media.slice(1) + SUBDIV
     },
     {
-        link:shortcuts.projects,
-        children: "Projekty",
-        id:shortcuts.projects.slice(1),
-        getElementByIdAction: shortcuts.projects.slice(1) + SUBDIV
+        link:shortcuts.events,
+        children: "Wydarzenia",
+        id:shortcuts.events.slice(1),
+        getElementByIdAction: shortcuts.events.slice(1) + SUBDIV
     },
     {
         link:shortcuts.about,
@@ -79,9 +79,9 @@ export const BUTTONSNEW: ButtonHeaderProps[] = [
         label:"Tarnov TV"
     },
     {
-        link:shortcuts.projects,
+        link:shortcuts.events,
         children:<RocketLaunchIcon height={35} width={35}/>,
-        label:"Projekty"
+        label:"Wydarzenia"
     },
     {
         link:shortcuts.media,

@@ -58,7 +58,7 @@ const ProjectBody:FC<CardProjectProps> = ({ Img, Title, Description, Link: Proje
 
                             {id ? (
                                 <Link
-                                    href={`/projects/${id}`}
+                                    href={`/events/${id}`}
                                     className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg dark:bg-white/5 dark:hover:bg-white/10 dark:text-white/90
                                     bg-black/20 hover:bg-black/30
                                      transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/50"

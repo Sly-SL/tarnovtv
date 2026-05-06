@@ -13,7 +13,7 @@ type FormValues = {
     message: string;
 };
 
-const subjects = ["Współpraca", "Zgłoszenie błędu", "Propozycja projektu", "Pytanie ogólne", "Inne"];
+const subjects = ["Współpraca", "Zgłoszenie błędu", "Propozycja wydarzenia", "Pytanie ogólne", "Inne"];
 
 const contacts = [
     {icon: <EnvelopeIcon size={18} weight="duotone"/>, label: "E-mail", value: "tarnovtv@gmail.com", href: "mailto:tarnovtv@gmail.com"},
