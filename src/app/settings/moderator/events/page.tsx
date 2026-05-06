@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useRef, useState, useTransition} from "react";
+import {type ChangeEvent, useEffect, useRef, useState, useTransition} from "react";
 import {eventGet} from "@/lib/firebase/get/event.get";
 import type {EventsType} from "@/shared/types/domen/events.type";
 import {ImageIcon, PencilSimpleIcon, PlusIcon, SparkleIcon, TrashIcon, XIcon} from "@phosphor-icons/react";
@@ -80,7 +80,7 @@ export default function ProjectsAdminPage() {
         setShowForm(false);
     };
 
-    const handleFilesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFilesChange = async (e: ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files ?? []);
         if (!files.length) return;
 
@@ -223,7 +223,7 @@ export default function ProjectsAdminPage() {
                                             </span>
                                         )}
                                     </div>
-                                    <p className="text-xs text-black/35 truncate dark:text-white/35">{p.description}</p>
+                                    <p className="text-xs text-black/35 line-clamp-2 dark:text-white/35">{p.description}</p>
                                     <div className="flex items-center gap-2 mt-1">
                                         {((p as any).images?.length ?? 0) > 0 && (
                                             <span className="text-[10px] text-black/25 flex items-center gap-1 dark:text-white/25">
