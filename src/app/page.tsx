@@ -196,7 +196,7 @@ const Page = async () => {
                                         </span>
                       </h2>
                     </div>
-                    <Link href={shortcuts.voting} className="hidden sm:inline-flex items-center gap-1.5 text-xs transition-colors
+                    <Link href={shortcuts.events} className="hidden sm:inline-flex items-center gap-1.5 text-xs transition-colors
                                                                            text-gray-400 hover:text-gray-700
                                                                            dark:text-white/30 dark:hover:text-white/60">
                       Wszystkie <ArrowRightIcon size={11}/>
