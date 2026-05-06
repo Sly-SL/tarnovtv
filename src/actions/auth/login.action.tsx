@@ -14,6 +14,8 @@ import {sessionPost} from "@/lib/firebase/post/session.post";
 import {getSessionMetaData} from "@/shared/util/get-session-metadata.util";
 import {render} from "@react-email/render";
 import {generateToken} from "@/shared/util/token/generate-token.util";
+import {Timestamp} from "firebase-admin/firestore";
+import type {UserType} from "@/shared/types/domen/user.type";
 
 export async function LoginAction(data: LoginFormValues) {
     if (!data.login || !data.password) {
@@ -56,7 +58,12 @@ export async function LoginAction(data: LoginFormValues) {
         )
         .digest("hex");
 
-    await userPatch({"badAttempts":0},user.id)
+    let newUser:Partial<UserType> = {"badAttempts":0}
+    if(!user.createdAt) {
+        newUser = {"badAttempts":0,"createdAt":Timestamp.now()}
+    }
+
+    await userPatch(newUser,user.id)
 
     await sessionPost({
         id: sessionId,
