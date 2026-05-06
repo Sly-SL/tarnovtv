@@ -11,9 +11,13 @@ import {
   InstagramLogoIcon,
   PhoneIncomingIcon,
   RocketLaunchIcon,
+  ScalesIcon,
   TiktokLogoIcon,
   UsersThreeIcon,
 } from "@phosphor-icons/react/ssr";
+import {votingsGet} from "@/lib/firebase/get/voting.get";
+import VotingCard from "@/shared/components/custom/body/voting.body";
+import {GetUserBySessionIdAction} from "@/actions/auth/get-user-by-session-id.action";
 
 const stats = [
   {icon: <TiktokLogoIcon size={18}/>, value: "10K+", label: "TikTok", color: "text-gray-800 dark:text-white"},
@@ -23,9 +27,10 @@ const stats = [
 ];
 
 const Page = async () => {
-  const [events, media] = await Promise.all([eventGet(), mediaGet()]);
+  const [events, media, voting,user] = await Promise.all([eventGet(), mediaGet(), votingsGet(),GetUserBySessionIdAction()]);
 
   const latestEvents = events.filter((e) => !e.private).slice(0, 3);
+  const latestVoting = voting.slice(0,4)
   const latestMedia = media.slice(0, 6);
 
   return (
@@ -104,7 +109,6 @@ const Page = async () => {
           </div>
         </section>
 
-        {/* ── LATEST PROJECTS ── */}
         {latestEvents.length > 0 && (
             <section className="relative z-10 px-4 sm:px-8 lg:px-12 py-16">
               <div className="max-w-screen-xl mx-auto">
@@ -159,6 +163,49 @@ const Page = async () => {
                             </div>
                           </div>
                         </Link>
+                    ))}
+                  </div>
+
+                  <Link href={shortcuts.events} className="sm:hidden mt-4 inline-flex items-center gap-1.5 text-xs transition-colors
+                                                                       text-gray-400 hover:text-gray-700
+                                                                       dark:text-white/30 dark:hover:text-white/60">
+                    Wszystkie wydarzenia <ArrowRightIcon size={11}/>
+                  </Link>
+                </Animate>
+              </div>
+            </section>
+        )}
+
+        {/* ── LATEST VOTING ── */}
+        {latestVoting.length > 0 && (
+            <section className="relative z-10 px-4 sm:px-8 lg:px-12 py-16">
+              <div className="max-w-screen-xl mx-auto">
+                <Animate preset="fadeDown">
+                  <div className="flex items-end justify-between mb-8">
+                    <div>
+                      <div className="inline-flex hover:scale-[1.04] duration-700 items-center gap-1.5 px-3 py-1 mb-3 rounded-full text-[10px] font-semibold tracking-widest uppercase
+                                                    border border-indigo-200 text-(--contrast-color)
+                                                    bg-(--contrast-color)/10 dark:border-(--contrast-color)/20">
+                        <ScalesIcon size={9}/>
+                        Głosowania
+                      </div>
+                      <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                        Ostatnie{" "}
+                        <span className="bg-linear-to-br from-(--contrast-color) to-indigo-400 bg-clip-text text-transparent">
+                                            głosowania
+                                        </span>
+                      </h2>
+                    </div>
+                    <Link href={shortcuts.voting} className="hidden sm:inline-flex items-center gap-1.5 text-xs transition-colors
+                                                                           text-gray-400 hover:text-gray-700
+                                                                           dark:text-white/30 dark:hover:text-white/60">
+                      Wszystkie <ArrowRightIcon size={11}/>
+                    </Link>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {latestVoting.map((v,i) => (
+                        <VotingCard key={i} voting={v} userId={user ? user.id : undefined}/>
                     ))}
                   </div>
 
