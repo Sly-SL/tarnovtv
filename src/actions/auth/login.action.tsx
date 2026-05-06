@@ -14,7 +14,6 @@ import {sessionPost} from "@/lib/firebase/post/session.post";
 import {getSessionMetaData} from "@/shared/util/get-session-metadata.util";
 import {render} from "@react-email/render";
 import {generateToken} from "@/shared/util/token/generate-token.util";
-import {Timestamp} from "firebase-admin/firestore";
 import type {UserType} from "@/shared/types/domen/user.type";
 
 export async function LoginAction(data: LoginFormValues) {
@@ -60,7 +59,7 @@ export async function LoginAction(data: LoginFormValues) {
 
     let newUser:Partial<UserType> = {"badAttempts":0}
     if(!user.createdAt) {
-        newUser = {"badAttempts":0,"createdAt":Timestamp.now()}
+        newUser = {"badAttempts":0,"createdAt":Date.now()}
     }
 
     await userPatch(newUser,user.id)

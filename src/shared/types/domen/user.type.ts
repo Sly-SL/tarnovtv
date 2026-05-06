@@ -1,5 +1,4 @@
 import type {AllUsersRolesType} from "@/shared/types/all/all-user-roles.type";
-import type {Timestamp} from "firebase-admin/firestore";
 
 export type UserType = {
     id: string;
@@ -12,6 +11,6 @@ export type UserType = {
     image: string;
     role: AllUsersRolesType;
     isDeactivated: boolean;
-    deactivatedAt: Timestamp | null;
-    createdAt: Timestamp;
+    deactivatedAt: number | null;
+    createdAt: number;
 };

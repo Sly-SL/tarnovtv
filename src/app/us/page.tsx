@@ -12,8 +12,9 @@ import {
 } from "@phosphor-icons/react/ssr";
 import type {MemberType} from "@/shared/types/domen/member.type";
 import {MembersGetAction} from "@/actions/member/get.member.action";
+import type {ReactNode} from "react";
 
-const SocialLink = ({href, icon}: {href?: string; icon: React.ReactNode}) => {
+const SocialLink = ({href, icon}: {href?: string; icon: ReactNode}) => {
     if (!href) return null;
     return (
         <Link href={href} target="_blank" rel="noopener noreferrer"
