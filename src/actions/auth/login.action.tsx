@@ -75,6 +75,7 @@ export async function LoginAction(data: LoginFormValues) {
      (await cookies()).set("session", sessionId, {
         httpOnly: CONSTANTS.SESSION.httpOnly,
         path: "/",
+         domain:CONSTANTS.SESSION.domain,
         secure: CONSTANTS.SESSION.secure,
         sameSite: CONSTANTS.SESSION.sameSite,
         maxAge: ms(CONSTANTS.SESSION.maxAge) / 1000,
