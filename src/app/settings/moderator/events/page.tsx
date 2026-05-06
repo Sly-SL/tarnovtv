@@ -8,12 +8,12 @@ import {toast} from "sonner";
 import {ModeratorMiddleware} from "@/middlewares/moderator.middleware";
 import {eventDelete} from "@/lib/firebase/delete/event.delete";
 import {eventsPatch} from "@/lib/firebase/patch/events.patch";
-import {eventsPost} from "@/lib/firebase/post/events.post";
 import {UploadImageAction} from "@/lib/imagebb/upload.imagebb";
 import Image from "next/image";
 import Link from "next/link";
 import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
 import {ArrowLeftIcon} from "@phosphor-icons/react/ssr";
+import {AddEventAction} from "@/actions/admin/add-event.action";
 
 const inputCls = "w-full px-3 py-2.5 rounded-xl border border-black/[0.08] bg-black/[0.04] text-black text-sm placeholder:text-black/20 outline-none focus:border-(--contrast-color)/40 focus:bg-(--contrast-color)/[0.06] transition-all duration-200 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white dark:placeholder:text-white/20";
 const labelCls = "block text-[10px] font-medium tracking-widest uppercase text-black/35 mb-1.5 dark:text-white/35";
@@ -123,7 +123,7 @@ export default function ProjectsAdminPage() {
                     await eventsPatch(editing.id, data);
                     toast.success("Zaktualizowano projekt");
                 } else {
-                    await eventsPost(data);
+                    await AddEventAction(data);
                     toast.success("Dodano projekt");
                 }
                 closeForm();

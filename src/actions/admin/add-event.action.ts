@@ -1,12 +1,12 @@
 'use server'
 
-import {ModeratorMiddleware} from "@/middlewares/moderator.middleware";
-import {addDataWithCustomId} from "@/lib/firebase/firebase-admin";
 import type {EventsType} from "@/shared/types/domen/events.type";
+import {eventsPost} from "@/lib/firebase/post/events.post";
+import {ModeratorActionMiddleware} from "@/middlewares/moderator-action.middleware";
 
-export async function AddEventAction(event:EventsType) {
-    await ModeratorMiddleware()
-    const { id, ...eventsData } = event;
+export async function AddEventAction(event:Omit<EventsType, "id">) {
+    await ModeratorActionMiddleware()
+    const {...eventsData } = event;
 
-    await addDataWithCustomId("events", id, eventsData);
+    await eventsPost(eventsData);
 }

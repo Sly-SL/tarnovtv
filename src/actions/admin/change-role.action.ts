@@ -5,6 +5,7 @@ import {userPatch} from "@/lib/firebase/patch/user.patch";
 import {userGet} from "@/lib/firebase/get/user.get";
 import type {AllUsersRolesType} from "@/shared/types/all/all-user-roles.type";
 import {settingsGet} from "@/lib/firebase/get/settings.get";
+import {AdminActionMiddleware} from "@/middlewares/admin-action.middleware";
 
 type ChangeRoleResult =
     | {success: true}
@@ -13,9 +14,7 @@ type ChangeRoleResult =
 export async function changeUserRoleAction(targetId: string, newRole: AllUsersRolesType): Promise<ChangeRoleResult> {
     const caller = await GetUserBySessionIdAction();
 
-    if (!caller || caller.role !== "admin") {
-        return {success: false, message: "Brak uprawnień"};
-    }
+    await AdminActionMiddleware()
 
     const target = await userGet("id", targetId);
     const targetSettings = await settingsGet({id:targetId})
@@ -28,7 +27,7 @@ export async function changeUserRoleAction(targetId: string, newRole: AllUsersRo
         return {success: false, message: "Nie można degradować administratora"};
     }
 
-    if (caller.id === targetId && newRole !== "admin") {
+    if (caller?.id === targetId && newRole !== "admin") {
         return {success: false, message: "Nie możesz zmienić własnej roli"};
     }
 

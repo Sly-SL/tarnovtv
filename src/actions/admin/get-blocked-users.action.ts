@@ -1,12 +1,11 @@
 "use server"
 
 import {adminDb} from "@/lib/firebase/firebase-admin";
-import {GetUserBySessionIdAction} from "@/actions/auth/get-user-by-session-id.action";
 import type {UserType} from "@/shared/types/domen/user.type";
+import {AdminActionMiddleware} from "@/middlewares/admin-action.middleware";
 
 export async function getBlockedUsersAction(): Promise<UserType[]> {
-    const caller = await GetUserBySessionIdAction();
-    if (!caller || caller.role !== "admin") return [];
+    await AdminActionMiddleware()
 
     const snap = await adminDb
         .collection("users")
