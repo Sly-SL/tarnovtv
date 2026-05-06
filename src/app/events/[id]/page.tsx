@@ -15,11 +15,11 @@ export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
     const {id} = await params;
     const event = await eventByIdGet({id});
 
-    if (!event) return {title: "Projekt nie znaleziony"};
+    if (!event) return {title: "Wydarzenie nie znalezione"};
 
     return {
         title: event.name,
-        description: event.description ?? "Amazing Project",
+        description: event.description ?? "Amazing Event",
         openGraph: {
             title: event.name,
             description: event.description,
@@ -41,7 +41,7 @@ const ProjectDetails = async ({params}: Props) => {
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center space-y-4">
                     <div className="w-12 h-12 mx-auto rounded-full border-2 border-black/10 border-t-black/40 animate-spin dark:border-white/10 dark:border-t-white/40"/>
-                    <p className="text-sm text-black/30 dark:text-white/30">Ładowanie projektu...</p>
+                    <p className="text-sm text-black/30 dark:text-white/30">Ładowanie wydarzenia...</p>
                 </div>
             </div>
         );
@@ -65,7 +65,7 @@ const ProjectDetails = async ({params}: Props) => {
                         className="inline-flex items-center gap-2 text-xs text-(--contrast-color)/30 transition-colors dark:text-white/30 dark:hover:text-white/60"
                     >
                         <ArrowLeftIcon size={12}/>
-                        Projekty
+                        Wydarzenia
                     </Link>
                     <span className="text-black/15 dark:text-white/15">/</span>
                     <span className="text-xs text-(--contrast-color) truncate">{event.name}</span>
@@ -80,7 +80,7 @@ const ProjectDetails = async ({params}: Props) => {
                         <div>
                             <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-4 rounded-full bg-amber-500/10 border border-amber-500/20 text-[10px] font-semibold tracking-widest uppercase text-(--contrast-color)/85">
                                 <SparkleIcon size={9}/>
-                                Projekt
+                                Wydarzenie
                             </div>
                             <div className="flex items-center gap-3 mb-2">
                                 <h1 className="text-3xl font-extrabold tracking-tight text-black dark:text-white">{event.name}</h1>
@@ -131,12 +131,12 @@ const ProjectDetails = async ({params}: Props) => {
                     {/* Right col — image */}
                     <div className="flex flex-col gap-4">
                         <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/[0.07] bg-black/[0.028] group dark:border-white/[0.07] dark:bg-white/[0.028]">
-                            <Image
+                            {event.image && <Image
                                 src={event.image}
                                 alt={event.name}
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
+                            />}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
                         </div>
                     </div>

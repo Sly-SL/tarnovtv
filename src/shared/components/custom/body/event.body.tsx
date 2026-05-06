@@ -1,8 +1,10 @@
-export const revalidate = 3600
-
+import Link from "next/link";
 import Image from "next/image";
 import type {EventsType} from "../../../types/domen/events.type";
 import type {CSSProperties} from "react";
+import {shortcuts} from "@/shared/consts/enums/shortcuts.enum";
+
+export const revalidate = 3600
 
 type Props = {
     event: EventsType;
@@ -11,7 +13,7 @@ type Props = {
 
 const EventCard = ({event, style}: Props) => {
     return (
-        <div
+        <Link href={shortcuts.events + "/" + event.id}
             className="rounded-2xl border border-white/[0.07] bg-white/[0.028] backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.35)] overflow-hidden flex flex-col"
             style={style}
         >
@@ -56,7 +58,7 @@ const EventCard = ({event, style}: Props) => {
                     </div>
                 )}
             </div>
-        </div>
+        </Link>
     );
 };
 
