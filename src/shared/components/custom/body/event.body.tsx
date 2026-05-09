@@ -28,15 +28,15 @@ const EventCard = ({event, style}: Props) => {
             <div className="p-5 flex flex-col gap-3 flex-1">
                 {/* Title */}
                 <div>
-                    <p className="text-base font-bold text-white leading-tight">{event.name}</p>
-                    <p className="text-xs text-white/35 mt-1 leading-relaxed">{event.description}</p>
+                    <p className="text-base font-bold text-black dark:text-white leading-tight">{event.name}</p>
+                    <p className="text-xs text-black/35 dark:text-white/35 mt-1 leading-relaxed">{event.description}</p>
                 </div>
 
                 {/* Interesting facts */}
                 {event.interesting.length > 0 && (
                     <ul className="flex flex-col gap-1.5">
                         {event.interesting.map((fact, i) => (
-                            <li key={i} className="flex items-start gap-2 text-xs text-white/50">
+                            <li key={i} className="flex items-start gap-2 text-xs text-black/50 dark:text-white/50">
                                 <span className="mt-[3px] w-1.5 h-1.5 rounded-full bg-(--contrast-color)/60 shrink-0"/>
                                 {fact}
                             </li>
