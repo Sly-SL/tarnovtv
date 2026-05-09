@@ -35,13 +35,13 @@ const NewMode = () => {
                                     {button.children}
                                 </span>
                                 {/* Label */}
-                                <span className="whitespace-nowrap text-sm font-medium opacity-0 -translate-x-2 pt-2
+                                {button.label != "Ustawienia" && <span className="whitespace-nowrap text-sm font-medium opacity-0 -translate-x-2 pt-2
                                                  group-hover:opacity-100 group-hover:translate-x-0
                                                  transition-all duration-500
                                                  text-gray-600 group-hover:text-gray-900
                                                  dark:text-white/70 dark:group-hover:text-white/90">
                                     {button.label}
-                                </span>
+                                </span>}
                             </ButtonHeader>
                         ))}
                     </ul>
@@ -63,15 +63,13 @@ const NewMode = () => {
                                     " hover:bg-(--contrast-color)/10"
                                 }
                             >
-                                <div className="flex flex-col">
-                                    <span className="w-8 h-8 flex items-center justify-center text-(--contrast-color)">
-                                        {button.children}
-                                    </span>
-                                    <span className="text-[9px] font-medium leading-none tracking-wide
-                                                     text-gray-400 dark:text-white/40">
-                                        {button.label}
-                                    </span>
-                                </div>
+    <span className="w-8 h-8 flex items-center justify-center text-(--contrast-color)">
+        {button.children}
+    </span>
+                                {button.label != "Ustawienia" && <span
+                                    className="text-[9px] font-medium leading-none tracking-wide text-gray-400 dark:text-white/40">
+        {button.label}
+    </span>}
                             </ButtonHeader>
                         ))}
                     </ul>

@@ -56,16 +56,15 @@ export default function ButtonHeader({link, children, className, getElementByIdA
         };
     }, [id, getElementByIdAction]);
 
-    // button.header.tsx
     return (
         <li id={id} className={`${className ?? ""}`}>
             {noLink ? (
-                <span className="text-[rgba(22,22,23,0.8)] flex gap-4 nav-link-shadow dark:text-[#ffffff]/80">
+                <span className="flex w-full justify-center nav-link-shadow text-[rgba(22,22,23,0.8)] dark:text-[#ffffff]/80">
                 {children}
             </span>
             ) : (
-                <Link href={link}>
-                <span className="text-[rgba(22,22,23,0.8)] flex gap-4 nav-link-shadow hover:text-[rgba(22,22,23,1)] dark:text-[#ffffff]/80 font-normal dark:hover:text-[#ffffff]">
+                <Link href={link} className="flex w-full justify-center">
+                <span className="flex flex-col items-center w-full nav-link-shadow text-[rgba(22,22,23,0.8)] hover:text-[rgba(22,22,23,1)] dark:text-[#ffffff]/80 font-normal dark:hover:text-[#ffffff]">
                     {children}
                 </span>
                 </Link>
